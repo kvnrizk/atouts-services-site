@@ -156,4 +156,18 @@ export const endpoints = {
     update: (id: number) => `/testimonials/${id}`,
     delete: (id: number) => `/testimonials/${id}`,
   },
+  priceReferences: {
+    create: '/price-references',
+    getAll: '/price-references',
+    adminAll: '/price-references/admin/all',
+    getByCategory: (category: string) => `/price-references/category/${category}`,
+    update: (id: number) => `/price-references/${id}`,
+    delete: (id: number) => `/price-references/${id}`,
+  },
+  estimations: {
+    calculate: '/estimations/calculate',
+    captureContact: (sessionId: string) => `/estimations/${sessionId}/contact`,
+    adminAll: '/estimations/admin/all',
+    stats: '/estimations/admin/stats',
+  },
 };

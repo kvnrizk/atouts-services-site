@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Phone, ChevronLeft, ChevronRight, Calculator } from "lucide-react";
+import Link from "next/link";
 
 const slides = [
   {
@@ -102,6 +103,15 @@ export const Hero = () => {
                   >
                     Nos Services
                   </Button>
+                  <Link href="/simulateur">
+                    <Button
+                      size="lg"
+                      className="border-2 border-yellow-400 bg-transparent text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 px-8 py-6 text-lg font-semibold backdrop-blur-sm hover:scale-105 transition-all"
+                    >
+                      <Calculator className="h-5 w-5 mr-2" />
+                      Estimer mes travaux
+                    </Button>
+                  </Link>
                 </div>
 
                 <div className="mt-8 flex flex-wrap justify-center items-center gap-4 text-white/80 text-sm">

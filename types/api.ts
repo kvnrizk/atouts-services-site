@@ -140,3 +140,71 @@ export interface Testimonial {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface PriceReference {
+  id?: number;
+  category: string;
+  workItem: string;
+  label: string;
+  unit: string;
+  priceLow: number;
+  priceMid: number;
+  priceHigh: number;
+  active?: boolean;
+  sortOrder?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Estimation {
+  id?: number;
+  sessionId: string;
+  category: string;
+  surfaceArea: number;
+  rooms?: number;
+  qualityLevel: string;
+  selectedItems: Array<{
+    workItem: string;
+    label: string;
+    quantity: number;
+    unit: string;
+    unitPriceLow: number;
+    unitPriceMid: number;
+    unitPriceHigh: number;
+  }>;
+  totalLow: number;
+  totalMid: number;
+  totalHigh: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  convertedToQuote?: boolean;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface EstimationResult {
+  sessionId: string;
+  totalLow: number;
+  totalMid: number;
+  totalHigh: number;
+  items: Array<{
+    label: string;
+    quantity: number;
+    unit: string;
+    totalLow: number;
+    totalMid: number;
+    totalHigh: number;
+  }>;
+}
+
+export interface EstimationStats {
+  total: number;
+  withContact: number;
+  conversionRate: number;
+  avgEstimate: number;
+}

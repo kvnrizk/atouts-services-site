@@ -75,5 +75,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...realisationPages,
     ...cityLandingPages,
+    {
+      url: `${BASE_URL}/simulateur`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }

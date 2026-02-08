@@ -73,6 +73,12 @@ export const Header = () => {
             >
               Témoignages
             </button>
+            <Link
+              href="/simulateur"
+              className="text-gray-700 hover:text-primary transition-colors font-medium"
+            >
+              Simulateur
+            </Link>
             <button
               onClick={() => scrollToSection('contact')}
               className="text-gray-700 hover:text-primary transition-colors font-medium"
@@ -122,6 +128,13 @@ export const Header = () => {
               >
                 Témoignages
               </button>
+              <Link
+                href="/simulateur"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Simulateur
+              </Link>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-left text-gray-700 hover:text-primary transition-colors font-medium"

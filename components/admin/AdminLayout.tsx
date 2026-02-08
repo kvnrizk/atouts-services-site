@@ -15,6 +15,7 @@ import {
   BookOpen,
   MapPin,
   Star,
+  Calculator,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -31,6 +32,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     { icon: BookOpen, label: 'Blog', path: '/admin/blog' },
     { icon: MapPin, label: 'Pages villes', path: '/admin/city-pages' },
     { icon: Star, label: 'Avis clients', path: '/admin/testimonials' },
+    { icon: Calculator, label: 'Simulateur', path: '/admin/simulator' },
   ];
 
   const handleLogout = async () => {
