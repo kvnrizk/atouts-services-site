@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient, endpoints } from "@/lib/api";
+import { trackQuoteRequest, getUtmParams } from "@/lib/analytics";
 import type { QuoteRequest } from "@/types/api";
 
 export const useQuoteRequests = () => {
@@ -13,7 +14,11 @@ export const useQuoteRequests = () => {
     setIsSubmitting(true);
 
     try {
-      await apiClient.post(endpoints.quoteRequests.create, data);
+      const utmParams = getUtmParams();
+      const payload = { ...data, ...utmParams };
+      await apiClient.post(endpoints.quoteRequests.create, payload);
+
+      trackQuoteRequest(data.project_type || "non-specifie");
 
       toast({
         title: "Demande envoyée !",

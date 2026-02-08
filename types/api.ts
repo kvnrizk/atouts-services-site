@@ -7,6 +7,14 @@ export interface QuoteRequest {
   phone: string;
   project_type?: string;
   message: string;
+  surface_area?: string;
+  rooms?: string;
+  current_state?: string;
+  desired_timeline?: string;
+  budget_range?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
 }
 
 export interface QuoteRequestResponse extends QuoteRequest {

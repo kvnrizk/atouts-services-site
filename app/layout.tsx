@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import { PlausibleAnalytics } from "@/components/PlausibleAnalytics";
+import { UtmCapture } from "@/components/UtmCapture";
+import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 
 const inter = Inter({
@@ -47,6 +50,9 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <Toaster />
+        <PlausibleAnalytics />
+        <UtmCapture />
+        <CookieConsent />
       </body>
     </html>
   );
