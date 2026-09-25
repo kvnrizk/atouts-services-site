@@ -1,20 +1,21 @@
 "use client";
 
 import type { ConversionData } from '@/types/api';
+import { FEATURES } from "@/lib/features";
 
 interface ConversionFunnelProps {
   data: ConversionData;
 }
 
 const STEPS = [
-  { key: 'estimations' as const, label: 'Estimations', color: 'bg-blue-500' },
-  { key: 'quotes' as const, label: 'Demandes de devis', color: 'bg-indigo-500' },
-  { key: 'projects' as const, label: 'Projets', color: 'bg-purple-500' },
-  { key: 'payments' as const, label: 'Paiements', color: 'bg-green-500' },
-];
+  { key: 'estimations' as const, label: 'Estimations', color: 'bg-blue-500', on: FEATURES.simulator },
+  { key: 'quotes' as const, label: 'Demandes de devis', color: 'bg-indigo-500', on: true },
+  { key: 'projects' as const, label: 'Projets', color: 'bg-purple-500', on: true },
+  { key: 'payments' as const, label: 'Paiements', color: 'bg-green-500', on: FEATURES.payments },
+].filter((s) => s.on);
 
 export function ConversionFunnel({ data }: ConversionFunnelProps) {
-  const max = Math.max(data.estimations, data.quotes, data.projects, data.payments, 1);
+  const max = Math.max(...STEPS.map((s) => data[s.key]), 1);
 
   return (
     <div className="space-y-4">

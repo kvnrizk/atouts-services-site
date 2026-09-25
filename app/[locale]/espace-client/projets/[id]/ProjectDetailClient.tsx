@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, Euro, Clock, CreditCard, Loader2 } from 'lucide-react';
 import type { Project } from '@/types/api';
+import { FEATURES } from "@/lib/features";
 
 export default function ProjectDetailClient() {
   const params = useParams();
@@ -157,7 +158,7 @@ export default function ProjectDetailClient() {
             </div>
 
             {/* Payment CTA */}
-            {project.status === 'devis_accepte' && project.deposit_amount && (
+            {FEATURES.payments && project.status === 'devis_accepte' && project.deposit_amount && (
               <Card className="border-blue-200 bg-blue-50">
                 <CardContent className="pt-6">
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

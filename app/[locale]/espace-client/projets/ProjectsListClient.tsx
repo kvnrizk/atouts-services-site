@@ -33,7 +33,7 @@ export default function ProjectsListClient() {
       <ClientLayout>
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Mes Projets</h1>
-          <p className="text-gray-500 mt-1">Suivez l'avancement de vos travaux</p>
+          <p className="text-gray-500 mt-1">Suivez l&apos;avancement de vos travaux</p>
         </div>
 
         {isLoading ? (
@@ -46,7 +46,7 @@ export default function ProjectsListClient() {
               <FolderOpen className="h-16 w-16 text-gray-300 mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-1">Aucun projet</h3>
               <p className="text-gray-500 text-sm text-center max-w-sm">
-                Vous n'avez pas encore de projet en cours. Demandez un devis pour commencer !
+                Vous n&apos;avez pas encore de projet en cours. Demandez un devis pour commencer !
               </p>
             </CardContent>
           </Card>

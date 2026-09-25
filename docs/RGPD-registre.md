@@ -43,7 +43,11 @@ Article 30 du RGPD. À tenir à jour à chaque nouveau traitement, nouveau prest
 | Destinataires | Gérant et personnel habilité ; Render |
 | Durée | Relation contractuelle + 5 ans (prescription civile). **Pas de suppression automatique** : le job signale les comptes inactifs depuis 5 ans pour revue manuelle (les garanties décennales peuvent justifier de conserver les documents de chantier) |
 
-## 3. Paiements
+## 3. Paiements en ligne — SUSPENDU
+
+Désactivé le 25/09/2026 : l'entreprise n'encaisse pas de paiement via le site (acomptes réglés hors site).
+`FEATURES.payments = false` côté site, `FEATURE_PAYMENTS` côté API (toutes les routes, webhook compris, répondent 404).
+À réactiver seulement après mise à jour de ce registre et de la politique de confidentialité.
 
 | | |
 |---|---|
@@ -106,7 +110,7 @@ Données éventuellement existantes supprimées 3 ans après leur dernière mise
 |---|---|---|---|
 | Vercel Inc. | Hébergement du site | États-Unis / CDN mondial | Certifié EU-US Data Privacy Framework |
 | Render Services, Inc. | API + base de données | Francfort (UE) | DPA Render (à signer / vérifier) |
-| Stripe Payments Europe, Ltd. | Paiement | Irlande (UE) | DPA Stripe |
+| ~~Stripe Payments Europe, Ltd.~~ | Paiement — **suspendu** | Irlande (UE) | DPA Stripe (si réactivé) |
 | Plausible Insights OÜ | Mesure d'audience | UE | DPA Plausible |
 | **[À COMPLÉTER]** | Envoi des e-mails (SMTP) | ? | DPA à vérifier |
 | Google (si consentement) | Carte, conversions Ads | États-Unis | EU-US Data Privacy Framework |

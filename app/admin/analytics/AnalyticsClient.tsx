@@ -19,6 +19,7 @@ import type {
   SourceData,
   PopularServiceData,
 } from '@/types/api';
+import { FEATURES } from "@/lib/features";
 
 function AnalyticsContent() {
   const [dashboard, setDashboard] = useState<DashboardAnalytics | null>(null);
@@ -63,7 +64,7 @@ function AnalyticsContent() {
     );
   }
 
-  const statCards = [
+  const allStatCards = [
     {
       title: 'Devis ce mois',
       value: dashboard?.quotes?.thisMonth || 0,
@@ -80,6 +81,7 @@ function AnalyticsContent() {
     },
     {
       title: 'Revenu total',
+      feature: FEATURES.payments,
       value: `${(dashboard?.payments?.totalRevenue || 0).toLocaleString('fr-FR')} €`,
       total: `${(dashboard?.payments?.thisMonth || 0).toLocaleString('fr-FR')} € ce mois`,
       icon: Euro,
@@ -87,12 +89,15 @@ function AnalyticsContent() {
     },
     {
       title: 'Estimations',
+      feature: FEATURES.simulator,
       value: dashboard?.estimations?.total || 0,
       total: `${dashboard?.estimations?.withContact || 0} avec contact`,
       icon: Calculator,
       color: 'bg-amber-500',
     },
   ];
+
+  const statCards = allStatCards.filter((c) => !("feature" in c) || c.feature);
 
   return (
     <div>
@@ -102,7 +107,7 @@ function AnalyticsContent() {
       </div>
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {statCards.map((stat) => {
           const Icon = stat.icon;
           return (
@@ -124,7 +129,8 @@ function AnalyticsContent() {
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Revenue */}
+        {/* Revenue (online payments only) */}
+        {FEATURES.payments && (
         <Card>
           <CardHeader>
             <CardTitle>Revenus mensuels</CardTitle>
@@ -137,6 +143,7 @@ function AnalyticsContent() {
             )}
           </CardContent>
         </Card>
+        )}
 
         {/* Conversion Funnel */}
         <Card>

@@ -38,7 +38,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     { icon: MapPin, label: 'Pages villes', path: '/admin/city-pages' },
     { icon: Star, label: 'Avis clients', path: '/admin/testimonials' },
     ...(FEATURES.simulator ? [{ icon: Calculator, label: 'Simulateur', path: '/admin/simulator' }] : []),
-    { icon: CreditCard, label: 'Paiements', path: '/admin/payments' },
+    ...(FEATURES.payments ? [{ icon: CreditCard, label: 'Paiements', path: '/admin/payments' }] : []),
     { icon: BarChart3, label: 'Analytiques', path: '/admin/analytics' },
   ];
 

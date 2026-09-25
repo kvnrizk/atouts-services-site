@@ -4,8 +4,11 @@ import Link from 'next/link';
 import { XCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { notFound } from 'next/navigation';
+import { FEATURES } from '@/lib/features';
 
 export default function PaymentCancelPage() {
+  if (!FEATURES.payments) notFound();
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <Card className="max-w-md w-full">

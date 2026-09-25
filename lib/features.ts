@@ -5,4 +5,7 @@
 export const FEATURES = {
   /** Price simulator (/simulateur + /admin/simulator). Disabled 2026-09-25 at the owner's request. */
   simulator: false,
+  /** Online payments (Stripe checkout, /admin/payments, /espace-client/paiement). Disabled 2026-09-25:
+   *  the company does not take payments through the site (deposits are paid outside it). */
+  payments: false,
 } as const;

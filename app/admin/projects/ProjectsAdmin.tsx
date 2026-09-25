@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Eye, FolderOpen, TrendingUp } from 'lucide-react';
 import type { Project, ProjectStats } from '@/types/api';
+import { FEATURES } from "@/lib/features";
 
 export default function ProjectsAdmin() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -187,6 +188,7 @@ export default function ProjectsAdmin() {
                 </div>
               </CardContent>
             </Card>
+            {FEATURES.payments && (
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
@@ -200,6 +202,7 @@ export default function ProjectsAdmin() {
                 </div>
               </CardContent>
             </Card>
+            )}
             {stats.byStatus.slice(0, 2).map((s) => (
               <Card key={s.status}>
                 <CardContent className="pt-6">

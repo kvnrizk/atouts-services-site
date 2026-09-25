@@ -28,8 +28,8 @@ export default function ConditionsGeneralesPage() {
             <li>découvrir nos services et nos réalisations ;</li>
             {FEATURES.simulator && <li>obtenir une estimation de prix indicative en ligne ;</li>}
             <li>nous envoyer une demande de devis ou de rappel ;</li>
-            <li>accéder à l&apos;espace client pour suivre ses chantiers ;</li>
-            <li>régler en ligne un acompte ou une facture.</li>
+            <li>accéder à l&apos;espace client pour suivre ses chantiers{FEATURES.payments ? " ;" : "."}</li>
+            {FEATURES.payments && <li>régler en ligne un acompte ou une facture.</li>}
           </ul>
         </>
       ),
@@ -76,6 +76,7 @@ export default function ConditionsGeneralesPage() {
     },
     {
       title: "Paiements en ligne",
+      show: FEATURES.payments,
       body: (
         <>
           <p>

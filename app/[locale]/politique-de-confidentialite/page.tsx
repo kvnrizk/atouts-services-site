@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { LegalPage, Fill } from "@/components/legal/LegalPage";
 import { LEGAL } from "@/lib/legal";
+import { FEATURES } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 // Durations below must stay in sync with the backend RetentionService (src/retention/retention.service.ts)
 // and docs/RGPD-registre.md.
-const processing = [
+const allProcessing: { what: string; data: string; purpose: string; basis: string; retention: string; feature?: boolean }[] = [
   {
     what: "Demandes de devis et de rappel",
     data: "Nom, prénom, e-mail, téléphone, description du projet, type de travaux, surface, délai souhaité ; campagne publicitaire d'origine le cas échéant",
@@ -29,6 +30,7 @@ const processing = [
   },
   {
     what: "Paiements",
+    feature: FEATURES.payments,
     data: "Montant, date, référence de la transaction. Vos données bancaires sont saisies et traitées uniquement par Stripe : nous n'y avons jamais accès",
     purpose: "Encaisser les acomptes et factures",
     basis: "Exécution du contrat et obligation légale comptable (art. 6-1-b et 6-1-c)",
@@ -63,6 +65,9 @@ const processing = [
     retention: "Durée limitée fixée par nos hébergeurs, au plus 12 mois",
   },
 ];
+
+// Hide processing activities of switched-off features (lib/features.ts)
+const processing = allProcessing.filter((p) => p.feature !== false);
 
 export default function PolitiqueConfidentialitePage() {
   return (
@@ -112,7 +117,7 @@ export default function PolitiqueConfidentialitePage() {
       <ul>
         <li><strong>{LEGAL.hosts.frontend.name}</strong> — hébergement du site (États-Unis)</li>
         <li><strong>{LEGAL.hosts.backend.name}</strong> — serveur et base de données, hébergés à {LEGAL.hosts.backend.region}</li>
-        <li><strong>Stripe Payments Europe, Ltd.</strong> (Irlande) — paiement en ligne</li>
+        {FEATURES.payments && <li><strong>Stripe Payments Europe, Ltd.</strong> (Irlande) — paiement en ligne</li>}
         <li><strong>Plausible Insights OÜ</strong> (Estonie) — mesure d&apos;audience anonyme, serveurs dans l&apos;Union européenne</li>
         <li><strong><Fill value={LEGAL.emailProvider} what="prestataire d'envoi des e-mails" /></strong> — envoi des e-mails (confirmations, newsletter)</li>
         <li>
