@@ -23,10 +23,6 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
         protocol: "http",
         hostname: "localhost",
         port: "8080",

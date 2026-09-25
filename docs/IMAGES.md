@@ -13,32 +13,24 @@ Update this file whenever an image is added, replaced or removed.
 - Unsplash License: free commercial use, no attribution required; forbidden to resell
   unmodified or to build a competing photo library. https://unsplash.com/license
 
-## Stock photos in use (kept 2026-09-25)
+## Stock photos in use (owner's selection, 2026-09-25)
 
-Served from `public/images/stock/` (downloaded 2026-09-25) — never hotlinked from Unsplash, so visitors'
-IP addresses are not sent to a third party (RGPD). The file name of #5 carries the ad warning.
+**Source of truth: `lib/site-images.ts`** (also shown in the admin → *Photos du site*, with download buttons).
+Files live in `public/images/stock/` — never hotlinked from Unsplash, so visitors' IP addresses are not sent
+to a third party (RGPD). Only photos 1–6 are kept; 7–13 (case-study placeholders and before/after samples)
+were removed on 2026-09-25.
 
-| # | Unsplash photo ID | Subject | Used on | Status |
+| # | File | Subject | Used on | Status |
 |---|---|---|---|---|
-| 1 | `1600585154340-be6161a56a0c` | Contemporary house | Homepage hero | OK decoration |
-| 2 | `1484154218962-a197022b5858` | White kitchen | Homepage hero, Rénovation header | OK decoration |
-| 3 | `1562259949-e8e7689d7828` | Paint roller | Homepage hero, Peinture header | OK decoration |
-| 4 | `1552321554-5fefe8c9ef14` | Bright bathroom | Homepage hero, Salles de bains header | OK decoration |
-| 5 | `1621905251189-08b45d6a269e` | Electrician at work (**recognisable person**) | Électricité header | ⚠️ **NEVER USE IN ADS.** Site only. No model release; looks like our employee. Replace with a photo of our own team when available. |
-| 6 | `1600210492486-724fe5c67fb0` | Living room with parquet | Revêtements de sol header | OK decoration |
+| 1 | `maison-contemporaine.jpg` | Contemporary house | Homepage hero | OK decoration |
+| 2 | `cuisine-blanche.jpg` | White kitchen | Homepage hero, Rénovation header | OK decoration |
+| 3 | `rouleau-peinture.jpg` | Paint roller | Homepage hero, Peinture header | OK decoration |
+| 4 | `salle-de-bains-lumineuse.jpg` | Bright bathroom | Homepage hero, Salles de bains header | OK decoration |
+| 5 | `electricien-au-travail.jpg` | Electrician at work (**recognisable person**) | Électricité header | ⚠️ **NEVER USE IN ADS.** Site only. No model release. Replace with a photo of our own team when available. |
+| 6 | `salon-parquet.jpg` | Living room with parquet | Revêtements de sol header | OK decoration |
 
-## Must be replaced before launch
-
-| Unsplash photo ID | Where | Why |
-|---|---|---|
-| `1620626011761-996317b8d101` | Case study "Issy-les-Moulineaux" (`lib/services-data.ts`) | Stock photo presented as our project |
-| `1507652313519-d4e9174996dd` | Case study "Boulogne-Billancourt" (`lib/services-data.ts`) | Stock photo presented as our project |
-
-## Development-only samples (never shown in production)
-
-`TEMP preview` block in `app/[locale]/services/[slug]/page.tsx`:
-`1584622650111-993a426fbf0a`, `1600566752355-35792bedcfea`, `1604709177225-055f99402ea3`,
-`1564540583246-934409427776`, `1631889993959-41b4e9c6e3c5` (plus #4, #7, #8 above).
+Service pages no longer use a before/after slider as hero; the Avant/Après gallery only shows real projects
+added from the admin.
 
 ## Own assets
 

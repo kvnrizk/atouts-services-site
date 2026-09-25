@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import Image from "next/image";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Reveal } from "@/components/Reveal";
 import { ServiceQuoteCard } from "@/components/ServiceQuoteCard";
@@ -70,32 +71,6 @@ export default async function ServicePage({
     // API not available during build, that's fine
   }
 
-  // TEMP preview: sample before/after pairs in dev when the API returns nothing. Remove once real projects exist.
-  if (beforeAfterProjects.length === 0 && process.env.NODE_ENV !== "production" && service.apiCategory === "salles-de-bains") {
-    beforeAfterProjects = [
-      {
-        id: -1,
-        title: "Salle de bains — Issy-les-Moulineaux",
-        description: "Remplacement de la baignoire par une douche à l'italienne, carrelage grand format.",
-        beforeImageUrl: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1920&h=1080&fit=crop&q=75",
-        afterImageUrl: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&h=1080&fit=crop&q=75",
-        category: service.apiCategory,
-      },
-      ...[
-        ["Douche à l'italienne — Issy-les-Moulineaux", "1584622650111-993a426fbf0a", "1600566752355-35792bedcfea"],
-        ["Salle d'eau — Boulogne-Billancourt", "1507652313519-d4e9174996dd", "1604709177225-055f99402ea3"],
-        ["Double vasque marbre — Meudon", "1552321554-5fefe8c9ef14", "1564540583246-934409427776"],
-        ["Bois et béton ciré — Vanves", "1620626011761-996317b8d101", "1631889993959-41b4e9c6e3c5"],
-      ].map(([title, before, after], i) => ({
-        id: -2 - i,
-        title,
-        beforeImageUrl: `https://images.unsplash.com/photo-${before}?w=800&h=600&fit=crop&q=75`,
-        afterImageUrl: `https://images.unsplash.com/photo-${after}?w=800&h=600&fit=crop&q=75`,
-        category: service.apiCategory,
-      })),
-    ];
-  }
-
   const testimonialItems = apiTestimonials.length > 0
     ? apiTestimonials.map((t) => ({
         name: t.clientName,
@@ -105,8 +80,6 @@ export default async function ServicePage({
       }))
     : service.testimonials.items;
 
-  // First before/after pair becomes the interactive hero; the rest go in the gallery below.
-  const [heroPair, ...otherPairs] = beforeAfterProjects;
 
   const jsonLd = getServiceJsonLd({
     title: service.title,
@@ -129,26 +102,18 @@ export default async function ServicePage({
       />
       <Header />
       <main id="main-content">
-        {/* Hero — before/after slider when a real project exists, static photo otherwise.
+        {/* Hero — the service's own photo (lib/site-images.ts), optimised by next/image.
             Pulled up under the sticky header (65px) so the image fills the viewport. */}
         <section className="relative -mt-[65px] h-[88svh] min-h-[560px] bg-neutral-950 text-white" aria-label={service.title}>
-          {heroPair ? (
-            <BeforeAfterSlider
-              beforeImage={heroPair.beforeImageUrl}
-              afterImage={heroPair.afterImageUrl}
-              title={heroPair.title}
-              className="h-full"
-              labelsTopClass="top-24"
-              sizes="100vw"
-              priority
-            />
-          ) : (
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${service.heroImage})` }}
-            />
-          )}
-          {/* Gradient and text ignore the pointer so the slider stays draggable everywhere except links */}
+          <Image
+            src={service.heroImage}
+            alt={service.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {/* Gradient and text sit on top of the photo */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-neutral-950/70 via-neutral-950/20 to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0">
@@ -251,14 +216,14 @@ export default async function ServicePage({
                 </section>
               )}
 
-              {/* More before/after pairs */}
-              {otherPairs.length > 0 && (
+              {/* Real before/after projects added from the admin (hidden when there are none) */}
+              {beforeAfterProjects.length > 0 && (
                 <Reveal>
                   <section>
                     <p className={eyebrow}>{service.beforeAfter.title}</p>
                     <h2 className={sectionTitle}>{service.beforeAfter.subtitle}</h2>
                     <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                      {otherPairs.slice(0, 4).map((project) => (
+                      {beforeAfterProjects.slice(0, 4).map((project) => (
                         <figure key={project.id}>
                           <BeforeAfterSlider
                             beforeImage={project.beforeImageUrl}
@@ -355,9 +320,12 @@ export default async function ServicePage({
                     href={`/services/${s.slug}`}
                     className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900"
                   >
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                      style={{ backgroundImage: `url(${s.heroImage.replace("w=1920&h=1080", "w=600&h=750")})` }}
+                    <Image
+                      src={s.heroImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-5 text-white">

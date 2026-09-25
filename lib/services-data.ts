@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { serviceLinks } from "./service-links";
+import { SITE_IMAGES } from "./site-images";
 
 export interface ServiceFeature {
   icon: LucideIcon;
@@ -96,8 +97,7 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Services de peinture professionnels pour l'intérieur et l'extérieur. Transformez vos espaces avec des finitions impeccables et des couleurs qui vous ressemblent.",
     heroIcon: Paintbrush,
-    heroImage:
-      "/images/stock/rouleau-peinture.jpg",
+    heroImage: SITE_IMAGES.peinture.src,
     apiCategory: "peinture",
     tagline: "Des murs nets, des finitions impeccables.",
     duration: "1–2 jours / pièce",
@@ -166,8 +166,7 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Rénovation complète d'appartements et maisons. De la conception à la réalisation, nous transformons vos espaces avec expertise et savoir-faire.",
     heroIcon: Home,
-    heroImage:
-      "/images/stock/cuisine-blanche.jpg",
+    heroImage: SITE_IMAGES.cuisine.src,
     apiCategory: "renovation",
     tagline: "Votre intérieur, repensé de A à Z.",
     duration: "3–6 sem. (60 m²)",
@@ -236,9 +235,8 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Installation électrique, mise aux normes NFC 15-100, domotique et éclairage LED. Sécurisez et modernisez votre installation avec nos experts.",
     heroIcon: Zap,
-    // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see docs/IMAGES.md). Site only.
-    heroImage:
-      "/images/stock/electricien-NE-PAS-UTILISER-EN-PUB.jpg",
+    // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see lib/site-images.ts). Site only.
+    heroImage: SITE_IMAGES.electricien.src,
     apiCategory: "electricite",
     tagline: "Une installation sûre, aux normes.",
     included: [
@@ -306,8 +304,7 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Création et rénovation de salles de bains sur mesure. Du design moderne à l'installation complète, transformez votre espace en un lieu de détente unique.",
     heroIcon: Bath,
-    heroImage:
-      "/images/stock/salle-de-bains-lumineuse.jpg",
+    heroImage: SITE_IMAGES.salleDeBains.src,
     apiCategory: "salles-de-bains",
     tagline: "De la baignoire à la douche à l'italienne.",
     duration: "5–10 jours",
@@ -321,29 +318,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Meuble vasque et robinetterie",
       "Sèche-serviettes",
     ],
-    // PLACEHOLDER — exemples fictifs pour la maquette. À remplacer par de vrais chantiers avant la mise en ligne.
-    caseStudies: [
-      {
-        location: "Issy-les-Moulineaux",
-        surface: "6 m²",
-        duration: "8 jours",
-        title: "Une baignoire inutilisée devient une douche XXL",
-        problem: "Baignoire des années 90 jamais utilisée, carrelage fissuré, peu de rangement.",
-        solution: "Douche à l'italienne avec paroi fixe, WC suspendu, carrelage grand format et niche murale.",
-        result: "Une pièce visuellement deux fois plus grande, entièrement accessible.",
-        image: "/images/stock/placeholder-etude-cas-1.jpg",
-      },
-      {
-        location: "Boulogne-Billancourt",
-        surface: "4 m²",
-        duration: "6 jours",
-        title: "Salle d'eau sous combles optimisée",
-        problem: "Pièce mansardée, plafond bas, ancienne cabine de douche qui fuyait.",
-        solution: "Reprise complète de l'étanchéité, douche sur mesure sous la pente, meuble vasque suspendu.",
-        result: "Plus aucune fuite et 30 % de rangement en plus.",
-        image: "/images/stock/placeholder-etude-cas-2.jpg",
-      },
-    ],
+    caseStudies: [],
     features: {
       title: "Notre Expertise",
       subtitle: "Des services complets pour votre salle de bains",
@@ -398,8 +373,7 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Pose de parquet, carrelage, PVC, moquette et sols techniques. Des finitions impeccables pour sublimer vos intérieurs.",
     heroIcon: Layers,
-    heroImage:
-      "/images/stock/salon-parquet.jpg",
+    heroImage: SITE_IMAGES.parquet.src,
     apiCategory: "revetements-sol",
     tagline: "Des sols qui durent, posés au millimètre.",
     duration: "1–3 jours / pièce",

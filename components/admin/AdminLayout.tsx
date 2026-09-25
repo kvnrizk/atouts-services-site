@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import {
   LayoutDashboard,
   Images,
+  Image as ImageIcon,
   FileText,
   LogOut,
   Menu,
@@ -32,6 +33,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     { icon: LayoutDashboard, label: 'Tableau de bord', path: '/admin/dashboard' },
     { icon: Images, label: 'Portfolio', path: '/admin/portfolio' },
     { icon: ArrowLeftRight, label: 'Avant / Après', path: '/admin/before-after' },
+    { icon: ImageIcon, label: 'Photos du site', path: '/admin/photos' },
     { icon: Briefcase, label: 'Projets', path: '/admin/projects' },
     { icon: FileText, label: 'Demandes de devis', path: '/admin/quotes' },
     { icon: BookOpen, label: 'Blog', path: '/admin/blog' },

@@ -4,13 +4,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { trackPhoneClick } from "@/lib/analytics";
+import { SITE_IMAGES } from "@/lib/site-images";
 
-const heroImages = [
-  "/images/stock/maison-contemporaine.jpg",
-  "/images/stock/cuisine-blanche.jpg",
-  "/images/stock/rouleau-peinture.jpg",
-  "/images/stock/salle-de-bains-lumineuse.jpg",
-];
+const heroImages = [SITE_IMAGES.maison, SITE_IMAGES.cuisine, SITE_IMAGES.peinture, SITE_IMAGES.salleDeBains].map((i) => i.src);
 
 export const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
