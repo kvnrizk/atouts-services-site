@@ -9,8 +9,11 @@ import { useSyncExternalStore } from "react";
  * - refusing is as easy as accepting, nothing is pre-ticked
  * - the choice (accept OR refuse) is remembered 6 months, then asked again
  * - bumping CONSENT_VERSION (e.g. when a new tracker is added) asks everyone again
+ * - no consent-based tracker configured => no banner (see ACTIVE_CATEGORIES)
  */
-export type ConsentCategory = "thirdParty" | "ads";
+import { ACTIVE_CATEGORIES, CONSENT_NEEDED, type ConsentCategory } from "./consent-config";
+
+export { ACTIVE_CATEGORIES, CONSENT_NEEDED, type ConsentCategory };
 
 export interface ConsentState {
   version: number;

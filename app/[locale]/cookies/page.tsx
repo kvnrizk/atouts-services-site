@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { LegalPage } from "@/components/legal/LegalPage";
 import { CookieSettingsLink } from "@/components/CookieSettingsLink";
+import { ACTIVE_CATEGORIES, CONSENT_NEEDED, type ConsentCategory } from "@/lib/consent-config";
 
 export const metadata: Metadata = {
   title: "Politique cookies",
@@ -11,14 +12,21 @@ export const metadata: Metadata = {
 
 // Audited 2026-09-25 with a fresh browser: only NEXT_LOCALE + atouts_consent are set without consent.
 // Update this list whenever a tracker is added (and bump CONSENT_VERSION in lib/consent.ts).
-const trackers = [
+const trackers: { name: string; who: string; purpose: string; duration: string; consent: string; category?: ConsentCategory }[] = [
   { name: "atouts_consent", who: "Atouts Services", purpose: "Mémoriser vos choix concernant les cookies", duration: "6 mois", consent: "Non requis (strictement nécessaire)" },
   { name: "NEXT_LOCALE", who: "Atouts Services", purpose: "Mémoriser la langue choisie (FR / EN)", duration: "Session du navigateur", consent: "Non requis (strictement nécessaire)" },
   { name: "access_token", who: "Atouts Services", purpose: "Vous garder connecté à l'espace client ou à l'administration (déposé uniquement après connexion)", duration: "7 jours", consent: "Non requis (strictement nécessaire)" },
   { name: "Plausible Analytics", who: "Plausible Insights OÜ (UE)", purpose: "Mesure d'audience anonyme — aucun cookie déposé, aucune adresse IP conservée", duration: "Aucun stockage sur votre appareil", consent: "Non requis (exemption CNIL)" },
-  { name: "Cookies Google Maps", who: "Google", purpose: "Afficher la carte interactive de notre zone d'intervention", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — catégorie « Contenus tiers »" },
-  { name: "Cookies Google Ads", who: "Google", purpose: "Mesurer si une visite venue de nos annonces aboutit à une demande de devis", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — catégorie « Publicité »" },
+  { name: "Cookies Google Maps", who: "Google", purpose: "Afficher la carte interactive de notre zone d'intervention", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — « Carte interactive »", category: "thirdParty" },
+  { name: "Cookies Google Ads", who: "Google", purpose: "Mesurer si une visite venue de nos annonces aboutit à une demande de devis", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — « Mesure de nos annonces »", category: "ads" },
 ];
+
+// Only list what is actually configured on the site (lib/consent-config.ts)
+const activeTrackers = trackers.filter(
+  (t) =>
+    (t.name !== "atouts_consent" || CONSENT_NEEDED) && // only created when there is a banner
+    (!t.category || ACTIVE_CATEGORIES.includes(t.category)),
+);
 
 export default function CookiesPage() {
   return (
@@ -37,7 +45,7 @@ export default function CookiesPage() {
             <tr><th>Nom</th><th>Émetteur</th><th>Finalité</th><th>Durée</th><th>Consentement</th></tr>
           </thead>
           <tbody>
-            {trackers.map((t) => (
+            {activeTrackers.map((t) => (
               <tr key={t.name}>
                 <td className="font-semibold text-neutral-950">{t.name}</td>
                 <td>{t.who}</td>
@@ -55,20 +63,30 @@ export default function CookiesPage() {
       </p>
 
       <h2>3. Vos choix</h2>
+      {CONSENT_NEEDED ? (
+        <>
+          <p>
+            Lors de votre première visite, un bandeau vous permet de <strong>tout accepter</strong>,{" "}
+            <strong>tout refuser</strong> ou de <strong>personnaliser</strong> vos choix. Refuser est aussi simple
+            qu&apos;accepter et n&apos;empêche pas d&apos;utiliser le site. Votre choix est conservé 6 mois, puis vous
+            sera redemandé.
+          </p>
+          <p>
+            Vous pouvez modifier vos choix à tout moment :{" "}
+            <CookieSettingsLink className="font-semibold text-sky-700 underline hover:no-underline" />, également
+            accessible en bas de chaque page.
+          </p>
+        </>
+      ) : (
+        <p>
+          Ce site n&apos;utilise actuellement <strong>aucun cookie soumis à votre consentement</strong> : seuls les
+          traceurs strictement nécessaires ci-dessus sont utilisés. C&apos;est pourquoi aucun bandeau ne vous est
+          présenté. Si nous ajoutons un jour un service qui en nécessite, votre accord vous sera demandé avant tout dépôt.
+        </p>
+      )}
       <p>
-        Lors de votre première visite, un bandeau vous permet de <strong>tout accepter</strong>,{" "}
-        <strong>tout refuser</strong> ou de <strong>personnaliser</strong> vos choix par catégorie. Refuser est aussi
-        simple qu&apos;accepter et n&apos;empêche pas d&apos;utiliser le site (seule la carte interactive est alors
-        remplacée par un lien). Votre choix est conservé 6 mois, puis vous sera redemandé.
-      </p>
-      <p>
-        Vous pouvez modifier vos choix à tout moment :{" "}
-        <CookieSettingsLink className="font-semibold text-sky-700 underline hover:no-underline" />, également accessible
-        en bas de chaque page.
-      </p>
-      <p>
-        Vous pouvez aussi configurer votre navigateur pour bloquer les cookies ; certaines fonctions (connexion à
-        l&apos;espace client) pourraient alors ne plus fonctionner.
+        Vous pouvez aussi configurer votre navigateur pour bloquer les cookies ; la connexion à l&apos;espace client
+        pourrait alors ne plus fonctionner.
       </p>
 
       <h2>4. En savoir plus</h2>
