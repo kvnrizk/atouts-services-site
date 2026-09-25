@@ -125,7 +125,7 @@
     "necessaryTitle": "Indispensables",
     "necessaryDesc": "Mémorisent votre langue et vos choix de cookies.",
     "analyticsTitle": "Statistiques anonymes",
-    "analyticsDesc": "Nombre de visites et pages vues, sans cookie ni adresse IP (Plausible, hébergé en Europe).",
+    "analyticsDesc": "Nombre de visites, pages vues, ville et provenance, sans cookie ; l'adresse IP n'est ni conservée ni transmise (outil interne).",
     "thirdPartyTitle": "Carte interactive",
     "thirdPartyDesc": "Afficher notre zone d'intervention sur Google Maps. Sinon, la carte est remplacée par un lien.",
     "adsTitle": "Mesure de nos annonces",

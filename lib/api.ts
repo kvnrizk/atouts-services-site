@@ -205,5 +205,6 @@ export const endpoints = {
     quoteTrends: '/analytics/quote-trends',
     sources: '/analytics/sources',
     popularServices: '/analytics/popular-services',
+    traffic: (days: number) => `/analytics/traffic?days=${days}`,
   },
 };

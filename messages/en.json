@@ -125,7 +125,7 @@
     "necessaryTitle": "Essential",
     "necessaryDesc": "Remember your language and cookie choices.",
     "analyticsTitle": "Anonymous statistics",
-    "analyticsDesc": "Visit and page counts, no cookies and no IP address (Plausible, hosted in Europe).",
+    "analyticsDesc": "Visits, page views, town and source, without cookies; IP addresses are neither stored nor shared (in-house tool).",
     "thirdPartyTitle": "Interactive map",
     "thirdPartyDesc": "Show our service area on Google Maps. Otherwise, the map is replaced by a link.",
     "adsTitle": "Ad measurement",

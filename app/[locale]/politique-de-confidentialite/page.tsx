@@ -52,9 +52,9 @@ const allProcessing: { what: string; data: string; purpose: string; basis: strin
   },
   {
     what: "Mesure d'audience",
-    data: "Pages vues, pays, type d'appareil, site de provenance — de façon anonyme et agrégée, sans cookie ni conservation de l'adresse IP (Plausible Analytics)",
+    data: "Pages vues, ville et pays, type d'appareil (mobile / ordinateur), site ou campagne de provenance, clics sur le téléphone et envois de demande de devis — sans cookie. L'adresse IP sert uniquement, au moment de la visite, à déduire la ville et un identifiant anonyme qui change chaque jour ; elle n'est ni conservée ni transmise",
     purpose: "Comprendre la fréquentation du site pour l'améliorer",
-    basis: "Intérêt légitime (art. 6-1-f) ; traceur exempté de consentement (CNIL)",
+    basis: "Intérêt légitime (art. 6-1-f) ; outil interne exempté de consentement (CNIL) : statistiques anonymes, sans recoupement avec d'autres données",
     retention: "25 mois maximum",
   },
   {
@@ -118,7 +118,6 @@ export default function PolitiqueConfidentialitePage() {
         <li><strong>{LEGAL.hosts.frontend.name}</strong> — hébergement du site (États-Unis)</li>
         <li><strong>{LEGAL.hosts.backend.name}</strong> — serveur et base de données, hébergés à {LEGAL.hosts.backend.region}</li>
         {FEATURES.payments && <li><strong>Stripe Payments Europe, Ltd.</strong> (Irlande) — paiement en ligne</li>}
-        <li><strong>Plausible Insights OÜ</strong> (Estonie) — mesure d&apos;audience anonyme, serveurs dans l&apos;Union européenne</li>
         <li><strong><Fill value={LEGAL.emailProvider} what="prestataire d'envoi des e-mails" /></strong> — envoi des e-mails (confirmations, newsletter)</li>
         <li>
           <strong>Google</strong> — uniquement si vous l&apos;acceptez dans le bandeau cookies : carte Google Maps

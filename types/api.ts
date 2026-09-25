@@ -325,3 +325,17 @@ export interface NewsletterSubscriber {
   subscribedAt: string;
   isActive: boolean;
 }
+
+/** GET /analytics/traffic — cookieless visitor analytics (backend TrafficService.report) */
+export interface TrafficReport {
+  days: number;
+  totals: { visitors: number; pageViews: number; quotes: number; phoneClicks: number; conversionRate: number };
+  timeline: { date: string; visitors: number; pageViews: number }[];
+  sources: { source: string; visitors: number; quotes: number; phoneClicks: number }[];
+  campaigns: { campaign: string; visitors: number; quotes: number; phoneClicks: number }[];
+  cities: { city: string; visitors: number }[];
+  pages: { path: string; pageViews: number }[];
+  devices: { device: string; visitors: number }[];
+  services: { service: string; visits: number; quotes: number }[];
+  quoteFunnel: { step: string; visitors: number }[];
+}

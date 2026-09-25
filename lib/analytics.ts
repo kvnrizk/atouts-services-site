@@ -15,14 +15,71 @@ declare global {
 }
 
 /**
- * Track a custom event via Plausible
+ * Events that also feed the built-in visitor analytics (admin → Analytiques), mapped to the
+ * backend's event names with only the small props it keeps.
+ */
+const COLLECTED_EVENTS: Record<string, { name: string; prop: string }> = {
+  "Phone Click": { name: "phone_click", prop: "location" },
+  "Quote Request": { name: "quote_submitted", prop: "service" },
+  "Quote Form Step": { name: "quote_step", prop: "step" },
+};
+
+/**
+ * Track a custom event: Plausible (if configured) + built-in analytics for conversion events.
  */
 export function trackEvent(
   event: string,
   props?: Record<string, string | number | boolean>
 ) {
-  if (typeof window !== "undefined" && window.plausible) {
-    window.plausible(event, props ? { props } : undefined);
+  if (typeof window === "undefined") return;
+  window.plausible?.(event, props ? { props } : undefined);
+  const collected = COLLECTED_EVENTS[event];
+  if (collected) {
+    const value = props?.[collected.prop];
+    sendToCollector({
+      type: "event",
+      name: collected.name,
+      path: window.location.pathname,
+      props: value !== undefined ? { [collected.prop]: String(value) } : {},
+    });
+  }
+}
+
+// --- Built-in visitor analytics (cookieless, see app/api/collect/route.ts) ---
+
+/** Where the visit started, captured once and kept in memory (never written to the device). */
+let entryReferrer: string | undefined;
+let paidClick = false;
+let visitCaptured = false;
+
+export function captureVisitContext() {
+  if (typeof window === "undefined" || visitCaptured) return;
+  visitCaptured = true;
+  captureUtmParams();
+  entryReferrer = document.referrer || undefined;
+  const params = new URLSearchParams(window.location.search);
+  // Google Ads click ids: only their presence is used, to label the visit "Google Ads"
+  paidClick = ["gclid", "gbraid", "wbraid"].some((k) => params.has(k));
+}
+
+/** Private or utility pages that shouldn't count as audience. */
+const UNTRACKED = /^\/(en\/)?(espace-client|newsletter)(\/|$)/;
+
+export function trackPageview(path: string) {
+  if (UNTRACKED.test(path)) return;
+  sendToCollector({ type: "pageview", path });
+}
+
+function sendToCollector(payload: { type: "pageview" | "event"; path: string; name?: string; props?: Record<string, string> }) {
+  captureVisitContext();
+  const body = JSON.stringify({ ...payload, referrer: entryReferrer, utm: capturedUtm, paid: paidClick });
+  try {
+    // sendBeacon survives page unloads (e.g. tapping the phone number); text/plain avoids a CORS preflight
+    if (!navigator.sendBeacon?.("/api/collect", new Blob([body], { type: "text/plain" }))) {
+      void fetch("/api/collect", { method: "POST", body, keepalive: true });
+    }
+  } catch {
+    // analytics must never break the page
   }
 }
 

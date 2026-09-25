@@ -16,7 +16,7 @@ const trackers: { name: string; who: string; purpose: string; duration: string; 
   { name: "atouts_consent", who: "Atouts Services", purpose: "Mémoriser vos choix concernant les cookies", duration: "6 mois", consent: "Non requis (strictement nécessaire)" },
   { name: "NEXT_LOCALE", who: "Atouts Services", purpose: "Mémoriser la langue choisie (FR / EN)", duration: "Session du navigateur", consent: "Non requis (strictement nécessaire)" },
   { name: "access_token", who: "Atouts Services", purpose: "Vous garder connecté à l'espace client ou à l'administration (déposé uniquement après connexion)", duration: "7 jours", consent: "Non requis (strictement nécessaire)" },
-  { name: "Plausible Analytics", who: "Plausible Insights OÜ (UE)", purpose: "Mesure d'audience anonyme — aucun cookie déposé, aucune adresse IP conservée", duration: "Aucun stockage sur votre appareil", consent: "Non requis (exemption CNIL)" },
+  { name: "Statistiques de visite", who: "Atouts Services (outil interne)", purpose: "Compter les visites de façon anonyme — aucun cookie déposé, adresse IP ni conservée ni transmise", duration: "Aucun stockage sur votre appareil", consent: "Non requis (exemption CNIL)" },
   { name: "Cookies Google Maps", who: "Google", purpose: "Afficher la carte interactive de notre zone d'intervention", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — « Carte interactive »", category: "thirdParty" },
   { name: "Cookies Google Ads", who: "Google", purpose: "Mesurer si une visite venue de nos annonces aboutit à une demande de devis", duration: "Selon Google (jusqu'à 13 mois)", consent: "Oui — « Mesure de nos annonces »", category: "ads" },
 ];

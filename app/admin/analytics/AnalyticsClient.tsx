@@ -11,6 +11,7 @@ import { ConversionFunnel } from '@/components/admin/charts/ConversionFunnel';
 import { TrafficSources } from '@/components/admin/charts/TrafficSources';
 import { QuoteTrends } from '@/components/admin/charts/QuoteTrends';
 import { PopularServices } from '@/components/admin/charts/PopularServices';
+import { TrafficDashboard } from '@/components/admin/TrafficDashboard';
 import type {
   DashboardAnalytics,
   RevenueData,
@@ -105,6 +106,10 @@ function AnalyticsContent() {
         <h1 className="text-3xl font-bold text-gray-900">Analytiques</h1>
         <p className="text-gray-600 mt-2">Vue d&apos;ensemble de vos performances</p>
       </div>
+
+      <TrafficDashboard />
+
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Activité commerciale</h2>
 
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">

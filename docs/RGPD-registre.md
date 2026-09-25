@@ -83,8 +83,9 @@ Désactivé le 25/09/2026 : l'entreprise n'encaisse pas de paiement via le site 
 |---|---|
 | Finalité | Statistiques de fréquentation anonymes |
 | Base légale | Intérêt légitime (6-1-f) ; exemption de consentement CNIL (outil sans cookie, sans conservation d'IP) |
-| Outil | Plausible Analytics — Plausible Insights OÜ (Estonie), serveurs UE |
-| Données | Pages vues, pays, appareil, provenance — agrégées, non nominatives |
+| Outil | Outil interne (tables `page_views`, `site_events`) — relais anonymisant `app/api/collect/route.ts` sur Vercel, stockage Render (Francfort) |
+| Données | Page, ville/pays (en-têtes de géolocalisation Vercel), appareil, provenance/campagne, clics téléphone et envois de devis, identifiant anonyme quotidien (hash IP + navigateur + sel du jour). **Ni IP, ni navigateur complet, ni URL de provenance complète, ni gclid conservés** |
+| Garanties | Pas de cookie ni de stockage sur l'appareil ; pas de suivi d'un jour à l'autre ; robots exclus ; pas de recoupement avec les demandes de devis nominatives ; accès admin uniquement |
 | Durée | 25 mois maximum |
 
 ## 7. Cookies soumis à consentement
@@ -111,7 +112,6 @@ Données éventuellement existantes supprimées 3 ans après leur dernière mise
 | Vercel Inc. | Hébergement du site | États-Unis / CDN mondial | Certifié EU-US Data Privacy Framework |
 | Render Services, Inc. | API + base de données | Francfort (UE) | DPA Render (à signer / vérifier) |
 | ~~Stripe Payments Europe, Ltd.~~ | Paiement — **suspendu** | Irlande (UE) | DPA Stripe (si réactivé) |
-| Plausible Insights OÜ | Mesure d'audience | UE | DPA Plausible |
 | **[À COMPLÉTER]** | Envoi des e-mails (SMTP) | ? | DPA à vérifier |
 | Google (si consentement) | Carte, conversions Ads | États-Unis | EU-US Data Privacy Framework |
 
