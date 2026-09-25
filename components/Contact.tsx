@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { GoogleMap } from "@/components/GoogleMap";
 import { trackPhoneClick } from "@/lib/analytics";
 import { Reveal } from "@/components/Reveal";
+import { ServiceQuoteCard } from "@/components/ServiceQuoteCard";
 
 export const Contact = () => {
   return (
@@ -13,7 +14,7 @@ export const Contact = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Contactez-nous</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Parlons de votre projet ! Appelez-nous ou écrivez-nous, réponse le jour même.
+            Parlons de votre projet ! Laissez-nous vos coordonnées ou appelez-nous, réponse le jour même.
           </p>
         </div>
 
@@ -92,35 +93,8 @@ export const Contact = () => {
           </Reveal>
 
           <Reveal className="space-y-6" delay={150}>
-            <Card className="bg-neutral-950 text-white border-0 shadow-elegant self-start">
-              <CardContent className="p-8 text-center space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Contactez-nous directement</h3>
-                  <p className="text-neutral-300">
-                    Pour une réponse rapide, appelez-nous ou envoyez-nous un email.
-                    Nous revenons vers vous le jour même.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-4">
-                  <a
-                    href="tel:+33634026180"
-                    onClick={() => trackPhoneClick("contact_cta")}
-                    className="flex items-center justify-center gap-3 bg-sky-400 text-neutral-950 font-semibold text-lg py-4 px-6 rounded-lg hover:bg-sky-300 transition-colors"
-                  >
-                    <Phone className="h-6 w-6" aria-hidden="true" />
-                    Appelez-nous maintenant
-                  </a>
-                  <a
-                    href="mailto:contact@atouts-services.fr"
-                    className="flex items-center justify-center gap-3 bg-white/10 border-2 border-white text-white font-semibold text-lg py-4 px-6 rounded-lg hover:bg-white/20 transition-colors"
-                  >
-                    <Mail className="h-6 w-6" aria-hidden="true" />
-                    Envoyez-nous un email
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+            {/* The section already carries id="contact" (target of every "Devis gratuit" link) */}
+            <ServiceQuoteCard anchorId={null} trackingLocation="contact-form" />
 
             <GoogleMap className="h-[250px] rounded-lg overflow-hidden shadow-md" zoom={13} />
           </Reveal>
