@@ -51,7 +51,9 @@ export default function MentionsLegalesPage() {
         <li>Couverture géographique : <Fill value={insurer.coverage} what="zone couverte (ex. France métropolitaine)" /></li>
       </ul>
 
-      <h2>4. Médiation de la consommation</h2>
+      {mediator.name && (
+        <>
+      <h2>Médiation de la consommation</h2>
       <p>
         Conformément aux articles L611-1 et suivants du Code de la consommation, en cas de litige non résolu
         directement avec nous, tout client consommateur peut recourir gratuitement au médiateur de la consommation
@@ -65,8 +67,10 @@ export default function MentionsLegalesPage() {
       <p>
         Une réclamation écrite préalable auprès de {LEGAL.companyName} est nécessaire avant de saisir le médiateur.
       </p>
+        </>
+      )}
 
-      <h2>5. Propriété intellectuelle</h2>
+      <h2>4. Propriété intellectuelle</h2>
       <p>
         Les textes, le logo, la charte graphique et les photographies de chantiers publiés sur ce site sont la
         propriété d&apos;{LEGAL.companyName}. Toute reproduction sans autorisation écrite préalable est interdite.
@@ -78,14 +82,14 @@ export default function MentionsLegalesPage() {
         Elles ne représentent pas des réalisations d&apos;{LEGAL.companyName}.
       </p>
 
-      <h2>6. Données personnelles et cookies</h2>
+      <h2>5. Données personnelles et cookies</h2>
       <p>
         Le traitement de vos données est décrit dans notre{" "}
         <Link href="/politique-de-confidentialite">politique de confidentialité</Link> et l&apos;usage des cookies dans
         notre <Link href="/cookies">politique cookies</Link>.
       </p>
 
-      <h2>7. Responsabilité</h2>
+      <h2>6. Responsabilité</h2>
       <p>
         {LEGAL.companyName} s&apos;efforce d&apos;assurer l&apos;exactitude des informations publiées sur ce site, sans
         pouvoir en garantir l&apos;exhaustivité. Les informations générales (conseils, fourchettes de prix indicatives
@@ -94,10 +98,10 @@ export default function MentionsLegalesPage() {
         {LEGAL.companyName} n&apos;est pas responsable de leur contenu.
       </p>
 
-      <h2>8. Droit applicable</h2>
+      <h2>7. Droit applicable</h2>
       <p>
         Les présentes mentions légales sont régies par le droit français. En cas de litige, et après échec de toute
-        tentative de résolution amiable ou de médiation, les tribunaux français sont compétents.
+        tentative de résolution amiable, les tribunaux français sont compétents.
       </p>
     </LegalPage>
   );

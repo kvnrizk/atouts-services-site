@@ -34,7 +34,11 @@ export const LEGAL = {
     coverage: null as string | null,
   },
 
-  /** Médiateur de la consommation (Code de la consommation L612-1) — mandatory for B2C. */
+  /**
+   * Médiateur de la consommation (Code de la consommation L612-1, L616-1, R616-1).
+   * Left empty for now at the owner's request (2026-09-25): mediation sections are HIDDEN from the
+   * legal pages until `name` is filled in, then they reappear automatically.
+   */
   mediator: {
     name: null as string | null,
     website: null as string | null,

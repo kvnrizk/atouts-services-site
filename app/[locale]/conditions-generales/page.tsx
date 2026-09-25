@@ -120,18 +120,19 @@ export default function ConditionsGeneralesPage() {
       ),
     },
     {
-      title: "Réclamations et médiation de la consommation",
+      title: LEGAL.mediator.name ? "Réclamations et médiation de la consommation" : "Réclamations",
       body: (
         <>
           <p>
             Toute réclamation peut être adressée à <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a> ou par courrier à{" "}
             {LEGAL.address}.
           </p>
-          <p>
-            À défaut de solution amiable, le client consommateur peut saisir gratuitement le médiateur de la consommation :{" "}
-            <Fill value={LEGAL.mediator.name} what="nom du médiateur" /> —{" "}
-            <Fill value={LEGAL.mediator.website} what="site web du médiateur" />.
-          </p>
+          {LEGAL.mediator.name && (
+            <p>
+              À défaut de solution amiable, le client consommateur peut saisir gratuitement le médiateur de la consommation :{" "}
+              {LEGAL.mediator.name} — <Fill value={LEGAL.mediator.website} what="site web du médiateur" />.
+            </p>
+          )}
         </>
       ),
     },
@@ -143,7 +144,7 @@ export default function ConditionsGeneralesPage() {
       title: "Droit applicable",
       body: (
         <p>
-          Les présentes conditions sont soumises au droit français. À défaut de résolution amiable ou de médiation, le
+          Les présentes conditions sont soumises au droit français. À défaut de résolution amiable, le
           litige est porté devant la juridiction compétente selon les règles de droit commun ; le consommateur peut
           notamment saisir le tribunal du lieu de son domicile.
         </p>
