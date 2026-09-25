@@ -236,6 +236,7 @@ export const servicesData: Record<string, ServiceData> = {
     description:
       "Installation électrique, mise aux normes NFC 15-100, domotique et éclairage LED. Sécurisez et modernisez votre installation avec nos experts.",
     heroIcon: Zap,
+    // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see docs/IMAGES.md). Site only.
     heroImage:
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&h=1080&fit=crop",
     apiCategory: "electricite",
