@@ -196,6 +196,7 @@ export const endpoints = {
   },
   newsletter: {
     subscribe: '/newsletter/subscribe',
+    unsubscribe: '/newsletter/unsubscribe',
   },
   analytics: {
     dashboard: '/analytics/dashboard',

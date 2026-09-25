@@ -97,7 +97,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Services de peinture professionnels pour l'intérieur et l'extérieur. Transformez vos espaces avec des finitions impeccables et des couleurs qui vous ressemblent.",
     heroIcon: Paintbrush,
     heroImage:
-      "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1920&h=1080&fit=crop",
+      "/images/stock/rouleau-peinture.jpg",
     apiCategory: "peinture",
     tagline: "Des murs nets, des finitions impeccables.",
     duration: "1–2 jours / pièce",
@@ -167,7 +167,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Rénovation complète d'appartements et maisons. De la conception à la réalisation, nous transformons vos espaces avec expertise et savoir-faire.",
     heroIcon: Home,
     heroImage:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1920&h=1080&fit=crop",
+      "/images/stock/cuisine-blanche.jpg",
     apiCategory: "renovation",
     tagline: "Votre intérieur, repensé de A à Z.",
     duration: "3–6 sem. (60 m²)",
@@ -238,7 +238,7 @@ export const servicesData: Record<string, ServiceData> = {
     heroIcon: Zap,
     // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see docs/IMAGES.md). Site only.
     heroImage:
-      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&h=1080&fit=crop",
+      "/images/stock/electricien-NE-PAS-UTILISER-EN-PUB.jpg",
     apiCategory: "electricite",
     tagline: "Une installation sûre, aux normes.",
     included: [
@@ -307,7 +307,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Création et rénovation de salles de bains sur mesure. Du design moderne à l'installation complète, transformez votre espace en un lieu de détente unique.",
     heroIcon: Bath,
     heroImage:
-      "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&h=1080&fit=crop",
+      "/images/stock/salle-de-bains-lumineuse.jpg",
     apiCategory: "salles-de-bains",
     tagline: "De la baignoire à la douche à l'italienne.",
     duration: "5–10 jours",
@@ -331,7 +331,7 @@ export const servicesData: Record<string, ServiceData> = {
         problem: "Baignoire des années 90 jamais utilisée, carrelage fissuré, peu de rangement.",
         solution: "Douche à l'italienne avec paroi fixe, WC suspendu, carrelage grand format et niche murale.",
         result: "Une pièce visuellement deux fois plus grande, entièrement accessible.",
-        image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&h=900&fit=crop&q=75",
+        image: "/images/stock/placeholder-etude-cas-1.jpg",
       },
       {
         location: "Boulogne-Billancourt",
@@ -341,7 +341,7 @@ export const servicesData: Record<string, ServiceData> = {
         problem: "Pièce mansardée, plafond bas, ancienne cabine de douche qui fuyait.",
         solution: "Reprise complète de l'étanchéité, douche sur mesure sous la pente, meuble vasque suspendu.",
         result: "Plus aucune fuite et 30 % de rangement en plus.",
-        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=900&fit=crop&q=75",
+        image: "/images/stock/placeholder-etude-cas-2.jpg",
       },
     ],
     features: {
@@ -399,7 +399,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Pose de parquet, carrelage, PVC, moquette et sols techniques. Des finitions impeccables pour sublimer vos intérieurs.",
     heroIcon: Layers,
     heroImage:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop",
+      "/images/stock/salon-parquet.jpg",
     apiCategory: "revetements-sol",
     tagline: "Des sols qui durent, posés au millimètre.",
     duration: "1–3 jours / pièce",

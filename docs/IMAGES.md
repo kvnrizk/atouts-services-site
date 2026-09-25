@@ -15,6 +15,9 @@ Update this file whenever an image is added, replaced or removed.
 
 ## Stock photos in use (kept 2026-09-25)
 
+Served from `public/images/stock/` (downloaded 2026-09-25) — never hotlinked from Unsplash, so visitors'
+IP addresses are not sent to a third party (RGPD). The file name of #5 carries the ad warning.
+
 | # | Unsplash photo ID | Subject | Used on | Status |
 |---|---|---|---|---|
 | 1 | `1600585154340-be6161a56a0c` | Contemporary house | Homepage hero | OK decoration |

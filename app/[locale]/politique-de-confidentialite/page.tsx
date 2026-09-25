@@ -1,180 +1,173 @@
 import type { Metadata } from "next";
-import { FEATURES } from "@/lib/features";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Link } from "@/i18n/navigation";
+import { LegalPage, Fill } from "@/components/legal/LegalPage";
+import { LEGAL } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Politique de Confidentialité",
+  title: "Politique de confidentialité",
   description:
-    "Politique de confidentialité et protection des données personnelles du site Atouts Services.",
+    "Comment Atouts Services collecte, utilise et protège vos données personnelles : finalités, durées de conservation, destinataires et vos droits (RGPD).",
   alternates: { canonical: "/politique-de-confidentialite" },
 };
 
+// Durations below must stay in sync with the backend RetentionService (src/retention/retention.service.ts)
+// and docs/RGPD-registre.md.
+const processing = [
+  {
+    what: "Demandes de devis et de rappel",
+    data: "Nom, prénom, e-mail, téléphone, description du projet, type de travaux, surface, délai souhaité ; campagne publicitaire d'origine le cas échéant",
+    purpose: "Répondre à votre demande, vous recontacter, établir un devis",
+    basis: "Mesures précontractuelles prises à votre demande (art. 6-1-b RGPD)",
+    retention: "3 ans après notre dernier échange, puis suppression automatique. Si la demande aboutit à un chantier : voir « Espace client »",
+  },
+  {
+    what: "Espace client et suivi de chantier",
+    data: "Identité, coordonnées, mot de passe (chiffré), informations et documents du chantier, messages",
+    purpose: "Gérer votre compte, suivre vos travaux, partager les documents du chantier",
+    basis: "Exécution du contrat (art. 6-1-b)",
+    retention: "Durée de la relation contractuelle, puis 5 ans (prescription civile). Les garanties légales des travaux (jusqu'à 10 ans) peuvent justifier une conservation plus longue des seuls documents de chantier",
+  },
+  {
+    what: "Paiements",
+    data: "Montant, date, référence de la transaction. Vos données bancaires sont saisies et traitées uniquement par Stripe : nous n'y avons jamais accès",
+    purpose: "Encaisser les acomptes et factures",
+    basis: "Exécution du contrat et obligation légale comptable (art. 6-1-b et 6-1-c)",
+    retention: "10 ans (article L123-22 du Code de commerce)",
+  },
+  {
+    what: "Newsletter",
+    data: "Adresse e-mail, date d'inscription",
+    purpose: "Vous envoyer nos conseils et actualités (1 à 2 e-mails par mois)",
+    basis: "Votre consentement (art. 6-1-a), retirable à tout moment via le lien présent dans chaque e-mail",
+    retention: "Jusqu'à votre désinscription ; l'adresse est alors supprimée sous 24 h",
+  },
+  {
+    what: "Avis clients publiés",
+    data: "Prénom et initiale du nom, ville, note, commentaire",
+    purpose: "Publier des témoignages sur le site",
+    basis: "Votre consentement (art. 6-1-a)",
+    retention: "Jusqu'au retrait de votre consentement",
+  },
+  {
+    what: "Mesure d'audience",
+    data: "Pages vues, pays, type d'appareil, site de provenance — de façon anonyme et agrégée, sans cookie ni conservation de l'adresse IP (Plausible Analytics)",
+    purpose: "Comprendre la fréquentation du site pour l'améliorer",
+    basis: "Intérêt légitime (art. 6-1-f) ; traceur exempté de consentement (CNIL)",
+    retention: "25 mois maximum",
+  },
+  {
+    what: "Sécurité du site",
+    data: "Journaux techniques des serveurs (adresse IP, date, page demandée)",
+    purpose: "Prévenir les abus et les attaques, limiter les envois massifs de formulaires",
+    basis: "Intérêt légitime (art. 6-1-f)",
+    retention: "Durée limitée fixée par nos hébergeurs, au plus 12 mois",
+  },
+];
+
 export default function PolitiqueConfidentialitePage() {
   return (
-    <>
-      <Header />
-      <main id="main-content" className="pt-20">
-        <section className="bg-blue-50 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Politique de Confidentialit&eacute;
-            </h1>
-          </div>
-        </section>
+    <LegalPage
+      title="Politique de confidentialité"
+      intro="Nous collectons uniquement les données nécessaires pour répondre à vos demandes et réaliser vos travaux. Nous ne les vendons ni ne les louons jamais."
+    >
+      <h2>1. Responsable du traitement</h2>
+      <p>
+        {LEGAL.companyName} ({LEGAL.legalForm}), {LEGAL.address} — SIRET {LEGAL.siret}. Contact pour toute question
+        relative à vos données : <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.
+      </p>
 
-        <section className="py-16">
-          <div className="container mx-auto px-4 max-w-3xl prose prose-gray">
-            <p>
-              La pr&eacute;sente politique de confidentialit&eacute; d&eacute;crit la mani&egrave;re dont
-              Atouts Services collecte, utilise et prot&egrave;ge vos donn&eacute;es personnelles
-              conform&eacute;ment au R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD).
-            </p>
+      <h2>2. Données collectées, finalités, bases légales et durées de conservation</h2>
+      <div className="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Traitement</th>
+              <th>Données</th>
+              <th>Finalité et base légale</th>
+              <th>Durée de conservation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {processing.map((p) => (
+              <tr key={p.what}>
+                <td className="font-semibold text-neutral-950">{p.what}</td>
+                <td>{p.data}</td>
+                <td>{p.purpose}. <em>{p.basis}</em></td>
+                <td>{p.retention}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Les champs obligatoires des formulaires sont signalés : sans eux, nous ne pouvons pas traiter votre demande.
+        Nous ne prenons aucune décision automatisée à votre égard.
+      </p>
 
-            <h2>1. Responsable du traitement</h2>
-            <p>
-              Le responsable du traitement des donn&eacute;es est :
-            </p>
-            <ul>
-              <li><strong>Atouts Services</strong></li>
-              <li>Issy-les-Moulineaux, Hauts-de-Seine (92)</li>
-              <li>Email : contact@atouts-services.fr</li>
-              <li>T&eacute;l&eacute;phone : 06 34 02 61 80</li>
-            </ul>
+      <h2>3. Destinataires et sous-traitants</h2>
+      <p>
+        Vos données sont accessibles uniquement aux personnes habilitées d&apos;{LEGAL.companyName}. Elles sont
+        également traitées, pour notre compte et selon nos instructions, par :
+      </p>
+      <ul>
+        <li><strong>{LEGAL.hosts.frontend.name}</strong> — hébergement du site (États-Unis)</li>
+        <li><strong>{LEGAL.hosts.backend.name}</strong> — serveur et base de données, hébergés à {LEGAL.hosts.backend.region}</li>
+        <li><strong>Stripe Payments Europe, Ltd.</strong> (Irlande) — paiement en ligne</li>
+        <li><strong>Plausible Insights OÜ</strong> (Estonie) — mesure d&apos;audience anonyme, serveurs dans l&apos;Union européenne</li>
+        <li><strong><Fill value={LEGAL.emailProvider} what="prestataire d'envoi des e-mails" /></strong> — envoi des e-mails (confirmations, newsletter)</li>
+        <li>
+          <strong>Google</strong> — uniquement si vous l&apos;acceptez dans le bandeau cookies : carte Google Maps
+          (« Contenus tiers ») et mesure des conversions Google Ads (« Publicité »)
+        </li>
+      </ul>
 
-            <h2>2. Donn&eacute;es collect&eacute;es</h2>
-            <p>Nous collectons les donn&eacute;es suivantes :</p>
-            <ul>
-              <li>
-                <strong>Formulaire de devis :</strong> nom, pr&eacute;nom, email, t&eacute;l&eacute;phone,
-                adresse, description du projet, type de travaux.
-              </li>
-              {FEATURES.simulator && (
-              <>
-              <li>
-                <strong>Simulateur de prix :</strong> cat&eacute;gorie de travaux, surface, options
-                s&eacute;lectionn&eacute;es. Si vous laissez vos coordonn&eacute;es : nom, pr&eacute;nom,
-                email, t&eacute;l&eacute;phone.
-              </li>
-              </>
-              )}
-              <li>
-                <strong>Espace client :</strong> nom, pr&eacute;nom, email, t&eacute;l&eacute;phone,
-                mot de passe (chiffr&eacute;).
-              </li>
-              <li>
-                <strong>Donn&eacute;es de navigation :</strong> pages visit&eacute;es, dur&eacute;e de visite,
-                source de trafic (UTM). Ces donn&eacute;es sont collect&eacute;es de mani&egrave;re anonyme
-                via Plausible Analytics, un outil respectueux de la vie priv&eacute;e qui ne d&eacute;pose
-                aucun cookie.
-              </li>
-            </ul>
+      <h2>4. Transferts hors de l&apos;Union européenne</h2>
+      <p>
+        Certains prestataires (Vercel, Render, Google) sont établis aux États-Unis. Ces transferts sont encadrés par le
+        cadre de protection des données UE–États-Unis (<em>Data Privacy Framework</em>) lorsque le prestataire y est
+        certifié, ou à défaut par les clauses contractuelles types de la Commission européenne. Notre base de données
+        est hébergée dans l&apos;Union européenne.
+      </p>
 
-            <h2>3. Finalit&eacute;s du traitement</h2>
-            <p>Vos donn&eacute;es sont utilis&eacute;es pour :</p>
-            <ul>
-              <li>R&eacute;pondre &agrave; vos demandes de devis et vous recontacter</li>
-              <li>G&eacute;n&eacute;rer des estimations de prix personnalis&eacute;es</li>
-              <li>G&eacute;rer votre espace client et le suivi de vos projets</li>
-              <li>Traiter vos paiements de mani&egrave;re s&eacute;curis&eacute;e via Stripe</li>
-              <li>Am&eacute;liorer nos services et notre site web</li>
-              <li>Respecter nos obligations l&eacute;gales et comptables</li>
-            </ul>
+      <h2>5. Vos droits</h2>
+      <p>Vous disposez à tout moment des droits suivants sur vos données :</p>
+      <ul>
+        <li><strong>accès</strong> : savoir quelles données nous détenons et en obtenir une copie ;</li>
+        <li><strong>rectification</strong> des données inexactes ;</li>
+        <li><strong>effacement</strong> (« droit à l&apos;oubli »), sauf obligation légale de conservation ;</li>
+        <li><strong>limitation</strong> du traitement et <strong>opposition</strong> ;</li>
+        <li><strong>portabilité</strong> : recevoir vos données dans un format réutilisable ;</li>
+        <li><strong>retrait de votre consentement</strong> (newsletter, cookies, avis) à tout moment ;</li>
+        <li>définir des <strong>directives</strong> sur le sort de vos données après votre décès.</li>
+      </ul>
+      <p>
+        Pour exercer ces droits, écrivez à <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a> ou à{" "}
+        {LEGAL.companyName}, {LEGAL.address}. Nous répondons dans un délai d&apos;un mois. Un justificatif
+        d&apos;identité ne vous sera demandé qu&apos;en cas de doute raisonnable sur votre identité.
+      </p>
+      <p>
+        Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une
+        réclamation à la CNIL (<a href="https://www.cnil.fr/fr/plaintes" rel="noopener noreferrer" target="_blank">cnil.fr/fr/plaintes</a>).
+      </p>
 
-            <h2>4. Base l&eacute;gale du traitement</h2>
-            <ul>
-              <li>
-                <strong>Ex&eacute;cution d&rsquo;un contrat :</strong> traitement de vos demandes de devis,
-                gestion de projets, paiements.
-              </li>
-              <li>
-                <strong>Int&eacute;r&ecirc;t l&eacute;gitime :</strong> am&eacute;lioration de nos services,
-                analyses statistiques anonymes.
-              </li>
-              <li>
-                <strong>Obligation l&eacute;gale :</strong> conservation des documents comptables.
-              </li>
-            </ul>
+      <h2>6. Cookies</h2>
+      <p>
+        Ce site ne dépose aucun cookie publicitaire sans votre accord. Le détail des cookies et la façon de modifier
+        vos choix figurent dans notre <Link href="/cookies">politique cookies</Link>.
+      </p>
 
-            <h2>5. Dur&eacute;e de conservation</h2>
-            <ul>
-              <li><strong>Demandes de devis :</strong> 3 ans apr&egrave;s le dernier contact</li>
-              <li><strong>Donn&eacute;es clients :</strong> dur&eacute;e de la relation contractuelle + 5 ans</li>
-              <li><strong>Donn&eacute;es comptables :</strong> 10 ans (obligation l&eacute;gale)</li>
-              <li><strong>Donn&eacute;es de navigation :</strong> 26 mois maximum</li>
-            </ul>
+      <h2>7. Sécurité</h2>
+      <p>
+        Connexions chiffrées (HTTPS), mots de passe stockés sous forme chiffrée, accès à l&apos;administration réservé
+        aux personnes habilitées, limitation du nombre d&apos;envois de formulaires, suppression automatique des
+        données arrivées au terme de leur durée de conservation.
+      </p>
 
-            <h2>6. Destinataires des donn&eacute;es</h2>
-            <p>
-              Vos donn&eacute;es sont accessibles uniquement au personnel habilit&eacute; d&rsquo;Atouts Services.
-              Elles peuvent &ecirc;tre transmises aux sous-traitants suivants :
-            </p>
-            <ul>
-              <li><strong>Vercel</strong> (h&eacute;bergement du site)</li>
-              <li><strong>Stripe</strong> (traitement des paiements)</li>
-              <li><strong>Plausible Analytics</strong> (statistiques anonymes de visite)</li>
-            </ul>
-            <p>
-              Aucune donn&eacute;e n&rsquo;est transf&eacute;r&eacute;e en dehors de l&rsquo;Union Europ&eacute;enne
-              sans garanties appropri&eacute;es.
-            </p>
-
-            <h2>7. Cookies</h2>
-            <p>
-              Ce site n&rsquo;utilise <strong>aucun cookie publicitaire ni de tra&ccedil;age</strong>.
-              Nous utilisons Plausible Analytics, un outil d&rsquo;analyse web qui fonctionne sans cookies
-              et respecte votre vie priv&eacute;e. Un cookie fonctionnel peut &ecirc;tre utilis&eacute;
-              pour m&eacute;moriser votre pr&eacute;f&eacute;rence de consentement.
-            </p>
-
-            <h2>8. Vos droits</h2>
-            <p>
-              Conform&eacute;ment au RGPD, vous disposez des droits suivants :
-            </p>
-            <ul>
-              <li><strong>Droit d&rsquo;acc&egrave;s :</strong> obtenir une copie de vos donn&eacute;es personnelles</li>
-              <li><strong>Droit de rectification :</strong> corriger des donn&eacute;es inexactes</li>
-              <li><strong>Droit &agrave; l&rsquo;effacement :</strong> demander la suppression de vos donn&eacute;es</li>
-              <li><strong>Droit &agrave; la limitation :</strong> limiter le traitement de vos donn&eacute;es</li>
-              <li><strong>Droit &agrave; la portabilit&eacute; :</strong> recevoir vos donn&eacute;es dans un format structur&eacute;</li>
-              <li><strong>Droit d&rsquo;opposition :</strong> vous opposer au traitement de vos donn&eacute;es</li>
-            </ul>
-            <p>
-              Pour exercer ces droits, contactez-nous &agrave; :
-              <a href="mailto:contact@atouts-services.fr">contact@atouts-services.fr</a>
-            </p>
-            <p>
-              Vous pouvez &eacute;galement adresser une r&eacute;clamation aupr&egrave;s de la CNIL
-              (Commission Nationale de l&rsquo;Informatique et des Libert&eacute;s) :
-              <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>
-            </p>
-
-            <h2>9. S&eacute;curit&eacute; des donn&eacute;es</h2>
-            <p>
-              Nous mettons en &oelig;uvre les mesures techniques et organisationnelles suivantes
-              pour prot&eacute;ger vos donn&eacute;es :
-            </p>
-            <ul>
-              <li>Chiffrement des communications (HTTPS/SSL)</li>
-              <li>Mots de passe chiffr&eacute;s (bcrypt)</li>
-              <li>Acc&egrave;s restreint aux donn&eacute;es (authentification JWT)</li>
-              <li>Protection contre les attaques (rate limiting, validation des entr&eacute;es)</li>
-              <li>Sauvegardes r&eacute;guli&egrave;res de la base de donn&eacute;es</li>
-            </ul>
-
-            <h2>10. Modification de la politique</h2>
-            <p>
-              Cette politique de confidentialit&eacute; peut &ecirc;tre mise &agrave; jour &agrave; tout moment.
-              La date de derni&egrave;re mise &agrave; jour est indiqu&eacute;e ci-dessous.
-            </p>
-
-            <p className="text-sm text-gray-500 mt-8">
-              Derni&egrave;re mise &agrave; jour : f&eacute;vrier 2026
-            </p>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+      <h2>8. Modifications</h2>
+      <p>
+        Cette politique peut évoluer (nouveau service, nouvelle obligation légale). La date de dernière mise à jour
+        figure en haut de page.
+      </p>
+    </LegalPage>
   );
 }

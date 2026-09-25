@@ -6,10 +6,10 @@ import { Phone } from "lucide-react";
 import { trackPhoneClick } from "@/lib/analytics";
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1200&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1920&h=1200&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1920&h=1200&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&h=1200&fit=crop&q=80",
+  "/images/stock/maison-contemporaine.jpg",
+  "/images/stock/cuisine-blanche.jpg",
+  "/images/stock/rouleau-peinture.jpg",
+  "/images/stock/salle-de-bains-lumineuse.jpg",
 ];
 
 export const Hero = () => {

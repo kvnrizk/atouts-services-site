@@ -1,100 +1,104 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Link } from "@/i18n/navigation";
+import { LegalPage, Fill } from "@/components/legal/LegalPage";
+import { LEGAL } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Mentions Légales",
-  description: "Mentions légales du site Atouts Services.",
+  title: "Mentions légales",
+  description: "Mentions légales du site Atouts Services : éditeur, hébergeurs, assurance, médiation de la consommation.",
   alternates: { canonical: "/mentions-legales" },
 };
 
 export default function MentionsLegalesPage() {
+  const { insurer, mediator, hosts } = LEGAL;
   return (
-    <>
-      <Header />
-      <main id="main-content" className="pt-20">
-        <section className="bg-blue-50 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Mentions L&eacute;gales
-            </h1>
-          </div>
-        </section>
+    <LegalPage title="Mentions légales">
+      <h2>1. Éditeur du site</h2>
+      <p>Le site <strong>atouts-services.fr</strong> est édité par :</p>
+      <ul>
+        <li><strong>{LEGAL.companyName}</strong>, {LEGAL.legalForm}</li>
+        <li>Capital social : <Fill value={LEGAL.shareCapital} what="capital social (extrait Kbis)" /></li>
+        <li>Siège social : {LEGAL.address}</li>
+        <li>SIRET : {LEGAL.siret} — {LEGAL.rcs}</li>
+        <li>Répertoire des métiers : <Fill value={LEGAL.rmNumber} what="numéro RM, si immatriculé à la Chambre de métiers" /></li>
+        <li>N° TVA intracommunautaire : {LEGAL.vatNumber}</li>
+        <li>Activité (code NAF) : {LEGAL.nafCode}</li>
+        <li>Téléphone : <a href="tel:+33634026180">{LEGAL.phone}</a> — E-mail : <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a></li>
+      </ul>
+      <p>Directeur de la publication : {LEGAL.publicationDirector}.</p>
 
-        <section className="py-16">
-          <div className="container mx-auto px-4 max-w-3xl prose prose-gray">
-            <h2>1. &Eacute;diteur du site</h2>
-            <p>
-              Le site <strong>www.atouts-services.fr</strong> est &eacute;dit&eacute; par :
-            </p>
-            <ul>
-              <li><strong>Raison sociale :</strong> Atouts Services</li>
-              <li><strong>Forme juridique :</strong> Entreprise individuelle</li>
-              <li><strong>Si&egrave;ge social :</strong> Issy-les-Moulineaux, Hauts-de-Seine (92)</li>
-              <li><strong>T&eacute;l&eacute;phone :</strong> 06 34 02 61 80</li>
-              <li><strong>Email :</strong> contact@atouts-services.fr</li>
-              <li><strong>SIRET :</strong> [Num&eacute;ro SIRET &agrave; renseigner]</li>
-              <li><strong>Num&eacute;ro TVA intracommunautaire :</strong> [&Agrave; renseigner]</li>
-            </ul>
-            <p>
-              <strong>Directeur de la publication :</strong> Le repr&eacute;sentant l&eacute;gal de la soci&eacute;t&eacute; Atouts Services.
-            </p>
+      <h2>2. Hébergement</h2>
+      <h3>Site internet</h3>
+      <p>
+        {hosts.frontend.name}, {hosts.frontend.address} — <a href={hosts.frontend.website} rel="noopener noreferrer" target="_blank">vercel.com</a>
+      </p>
+      <h3>Serveur applicatif et base de données</h3>
+      <p>
+        {hosts.backend.name}, <Fill value={hosts.backend.address} what="adresse postale de Render (render.com/privacy)" /> —{" "}
+        <a href={hosts.backend.website} rel="noopener noreferrer" target="_blank">render.com</a>.
+        Les données sont hébergées dans la région de {hosts.backend.region}.
+      </p>
 
-            <h2>2. H&eacute;bergement</h2>
-            <p>Le site est h&eacute;berg&eacute; par :</p>
-            <ul>
-              <li><strong>Vercel Inc.</strong></li>
-              <li>440 N Barranca Ave #4133, Covina, CA 91723, &Eacute;tats-Unis</li>
-              <li>Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a></li>
-            </ul>
+      <h2>3. Assurance professionnelle</h2>
+      <p>
+        {LEGAL.companyName} est titulaire d&apos;une assurance de responsabilité civile décennale (articles L241-1 et
+        suivants du Code des assurances) :
+      </p>
+      <ul>
+        <li>Assureur : <Fill value={insurer.name} what="nom de l'assureur (attestation décennale)" /></li>
+        <li>Adresse de l&apos;assureur : <Fill value={insurer.address} what="adresse de l'assureur" /></li>
+        <li>N° de contrat : <Fill value={insurer.policyNumber} what="numéro de police" /></li>
+        <li>Couverture géographique : <Fill value={insurer.coverage} what="zone couverte (ex. France métropolitaine)" /></li>
+      </ul>
 
-            <h2>3. Propri&eacute;t&eacute; intellectuelle</h2>
-            <p>
-              L&rsquo;ensemble des &eacute;l&eacute;ments composant le site (textes, images, logos, vid&eacute;os, graphismes, ic&ocirc;nes)
-              sont la propri&eacute;t&eacute; exclusive d&rsquo;Atouts Services ou de ses partenaires, sauf mention contraire.
-              Toute reproduction, repr&eacute;sentation, modification, publication, transmission ou d&eacute;naturation,
-              totale ou partielle, est interdite sans l&rsquo;autorisation &eacute;crite pr&eacute;alable d&rsquo;Atouts Services.
-            </p>
+      <h2>4. Médiation de la consommation</h2>
+      <p>
+        Conformément aux articles L611-1 et suivants du Code de la consommation, en cas de litige non résolu
+        directement avec nous, tout client consommateur peut recourir gratuitement au médiateur de la consommation
+        suivant :
+      </p>
+      <ul>
+        <li><Fill value={mediator.name} what="nom du médiateur" /></li>
+        <li>Site internet : <Fill value={mediator.website} what="site web du médiateur" /></li>
+        <li>Adresse : <Fill value={mediator.address} what="adresse du médiateur" /></li>
+      </ul>
+      <p>
+        Une réclamation écrite préalable auprès de {LEGAL.companyName} est nécessaire avant de saisir le médiateur.
+      </p>
 
-            <h2>4. Responsabilit&eacute;</h2>
-            <p>
-              Atouts Services s&rsquo;efforce d&rsquo;assurer l&rsquo;exactitude et la mise &agrave; jour des informations
-              diffus&eacute;es sur ce site, dont elle se r&eacute;serve le droit de modifier le contenu &agrave; tout moment
-              et sans pr&eacute;avis. Toutefois, Atouts Services ne peut garantir l&rsquo;exactitude, la pr&eacute;cision
-              ou l&rsquo;exhaustivit&eacute; des informations mises &agrave; disposition sur ce site.
-            </p>
-            <p>
-              En cons&eacute;quence, Atouts Services d&eacute;cline toute responsabilit&eacute; pour toute impr&eacute;cision,
-              inexactitude ou omission portant sur des informations disponibles sur le site.
-            </p>
+      <h2>5. Propriété intellectuelle</h2>
+      <p>
+        Les textes, le logo, la charte graphique et les photographies de chantiers publiés sur ce site sont la
+        propriété d&apos;{LEGAL.companyName}. Toute reproduction sans autorisation écrite préalable est interdite.
+      </p>
+      <p>
+        Certaines photographies d&apos;illustration (en-têtes de pages, visuels d&apos;ambiance) proviennent de la
+        banque d&apos;images <a href="https://unsplash.com" rel="noopener noreferrer" target="_blank">Unsplash</a> et
+        sont utilisées sous la <a href="https://unsplash.com/license" rel="noopener noreferrer" target="_blank">licence Unsplash</a>.
+        Elles ne représentent pas des réalisations d&apos;{LEGAL.companyName}.
+      </p>
 
-            <h2>5. Liens hypertextes</h2>
-            <p>
-              Le site peut contenir des liens vers d&rsquo;autres sites internet. Atouts Services n&rsquo;exerce aucun
-              contr&ocirc;le sur le contenu de ces sites tiers et d&eacute;cline toute responsabilit&eacute; quant &agrave;
-              leur contenu.
-            </p>
+      <h2>6. Données personnelles et cookies</h2>
+      <p>
+        Le traitement de vos données est décrit dans notre{" "}
+        <Link href="/politique-de-confidentialite">politique de confidentialité</Link> et l&apos;usage des cookies dans
+        notre <Link href="/cookies">politique cookies</Link>.
+      </p>
 
-            <h2>6. Assurance professionnelle</h2>
-            <p>
-              Atouts Services dispose d&rsquo;une assurance responsabilit&eacute; civile professionnelle et d&rsquo;une
-              garantie d&eacute;cennale couvrant l&rsquo;ensemble de ses activit&eacute;s de r&eacute;novation et
-              de travaux du b&acirc;timent.
-            </p>
+      <h2>7. Responsabilité</h2>
+      <p>
+        {LEGAL.companyName} s&apos;efforce d&apos;assurer l&apos;exactitude des informations publiées sur ce site, sans
+        pouvoir en garantir l&apos;exhaustivité. Les informations générales (conseils, fourchettes de prix indicatives
+        publiées sur le blog) ne constituent pas un devis : seul un devis écrit, établi après visite, engage{" "}
+        {LEGAL.companyName}. Les liens vers des sites tiers sont fournis à titre informatif ;{" "}
+        {LEGAL.companyName} n&apos;est pas responsable de leur contenu.
+      </p>
 
-            <h2>7. Droit applicable</h2>
-            <p>
-              Les pr&eacute;sentes mentions l&eacute;gales sont r&eacute;gies par le droit fran&ccedil;ais. En cas de
-              litige, les tribunaux fran&ccedil;ais seront seuls comp&eacute;tents.
-            </p>
-
-            <p className="text-sm text-gray-500 mt-8">
-              Derni&egrave;re mise &agrave; jour : f&eacute;vrier 2026
-            </p>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+      <h2>8. Droit applicable</h2>
+      <p>
+        Les présentes mentions légales sont régies par le droit français. En cas de litige, et après échec de toute
+        tentative de résolution amiable ou de médiation, les tribunaux français sont compétents.
+      </p>
+    </LegalPage>
   );
 }

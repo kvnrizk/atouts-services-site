@@ -51,8 +51,6 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />
         <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <a

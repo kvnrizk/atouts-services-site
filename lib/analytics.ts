@@ -69,9 +69,14 @@ const UTM_KEYS = [
 export type UtmParams = Partial<Record<(typeof UTM_KEYS)[number], string>>;
 
 /**
- * Capture UTM parameters from the URL and store in sessionStorage.
- * Call this on page load (e.g., in a client layout effect).
+ * UTM parameters (which campaign/ad brought the visitor) are kept IN MEMORY only, never written
+ * to the visitor's device: writing to the device would require consent (ePrivacy art. 82), and
+ * linking a campaign to a named quote request is not anonymous statistics. Internal links use
+ * client-side navigation, so the value survives from the landing page to the quote form.
  */
+let capturedUtm: UtmParams = {};
+
+/** Call once on page load (UtmCapture component). */
 export function captureUtmParams() {
   if (typeof window === "undefined") return;
 
@@ -87,21 +92,10 @@ export function captureUtmParams() {
     }
   }
 
-  if (hasUtm) {
-    sessionStorage.setItem("utm_params", JSON.stringify(utm));
-  }
+  if (hasUtm) capturedUtm = utm;
 }
 
-/**
- * Retrieve stored UTM parameters (to attach to form submissions).
- */
+/** UTM parameters captured on this visit (attached to quote requests). */
 export function getUtmParams(): UtmParams {
-  if (typeof window === "undefined") return {};
-
-  try {
-    const stored = sessionStorage.getItem("utm_params");
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
+  return capturedUtm;
 }
