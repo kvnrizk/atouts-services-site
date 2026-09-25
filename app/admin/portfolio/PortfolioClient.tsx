@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { apiClient, endpoints, API_URL } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -191,7 +192,7 @@ function PortfolioContent() {
                 <div className="space-y-2">
                   <Input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
                   {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />Téléchargement en cours...</p>)}
-                  {formData.imageUrl && (<img src={formData.imageUrl} alt="Preview" className="w-full h-48 object-cover rounded-md" />)}
+                  {formData.imageUrl && (<Image src={formData.imageUrl} alt="Preview" width={400} height={192} className="w-full h-48 object-cover rounded-md" />)}
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -216,7 +217,7 @@ function PortfolioContent() {
           {portfolioItems.map((item) => (
             <Card key={item.id} className="overflow-hidden hover-lift">
               <div className="relative">
-                <img src={item.imageUrl} alt={item.title} className="w-full h-48 object-cover" />
+                <Image src={item.imageUrl} alt={item.title} width={400} height={192} className="w-full h-48 object-cover" />
                 {!item.published && (<div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Non publié</div>)}
               </div>
               <CardContent className="p-4">

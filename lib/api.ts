@@ -167,7 +167,42 @@ export const endpoints = {
   estimations: {
     calculate: '/estimations/calculate',
     captureContact: (sessionId: string) => `/estimations/${sessionId}/contact`,
+    downloadPdf: (sessionId: string) => `/estimations/${sessionId}/pdf`,
     adminAll: '/estimations/admin/all',
     stats: '/estimations/admin/stats',
+  },
+  projects: {
+    create: '/projects',
+    adminAll: '/projects/admin/all',
+    adminStats: '/projects/admin/stats',
+    update: (id: number) => `/projects/${id}`,
+    addUpdate: (id: number) => `/projects/${id}/updates`,
+    addDocument: (id: number) => `/projects/${id}/documents`,
+    my: '/projects/my',
+    myOne: (id: number) => `/projects/my/${id}`,
+  },
+  clientAuth: {
+    register: '/auth/client/register',
+    login: '/auth/client/login',
+    logout: '/auth/logout',
+    me: '/auth/me',
+  },
+  payments: {
+    checkout: '/payments/checkout',
+    my: '/payments/my',
+    adminAll: '/payments/admin/all',
+    adminStats: '/payments/admin/stats',
+    refund: (id: number) => `/payments/admin/refund/${id}`,
+  },
+  newsletter: {
+    subscribe: '/newsletter/subscribe',
+  },
+  analytics: {
+    dashboard: '/analytics/dashboard',
+    revenue: '/analytics/revenue',
+    conversions: '/analytics/conversions',
+    quoteTrends: '/analytics/quote-trends',
+    sources: '/analytics/sources',
+    popularServices: '/analytics/popular-services',
   },
 };

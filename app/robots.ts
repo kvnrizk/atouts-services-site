@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/admin/",
+      disallow: ["/admin/", "/espace-client/"],
     },
     sitemap: "https://www.atouts-services.fr/sitemap.xml",
   };

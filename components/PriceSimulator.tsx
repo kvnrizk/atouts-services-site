@@ -17,8 +17,9 @@ import {
   Calculator,
   Minus,
   Plus as PlusIcon,
+  Download,
 } from "lucide-react";
-import { apiClient, endpoints } from "@/lib/api";
+import { apiClient, endpoints, API_URL } from "@/lib/api";
 import { trackEvent, trackSimulatorStart, trackSimulatorComplete, getUtmParams } from "@/lib/analytics";
 import type { PriceReference, EstimationResult } from "@/types/api";
 
@@ -63,11 +64,18 @@ export function PriceSimulator() {
   const fetchPriceRefs = useCallback(async (cat: string) => {
     setIsLoadingRefs(true);
     try {
-      const data = await apiClient.get(endpoints.priceReferences.getByCategory(cat));
+      const rawData = await apiClient.get(endpoints.priceReferences.getByCategory(cat));
+      // Deduplicate by workItem (keep first occurrence)
+      const seen = new Set<string>();
+      const data = (rawData as PriceReference[]).filter((ref) => {
+        if (seen.has(ref.workItem)) return false;
+        seen.add(ref.workItem);
+        return true;
+      });
       setPriceRefs(data);
       // Pre-select all items with default quantities based on surface
       const surface = parseFloat(surfaceArea) || 50;
-      const items: SelectedItem[] = (data as PriceReference[]).map((ref) => ({
+      const items: SelectedItem[] = data.map((ref) => ({
         workItem: ref.workItem,
         quantity: ref.unit === "forfait" ? 1 : ref.unit === "unite" ? 5 : ref.unit === "ml" ? Math.round(surface * 0.5) : surface,
       }));
@@ -127,6 +135,23 @@ export function PriceSimulator() {
     }
   };
 
+  const handleDownloadPdf = async () => {
+    if (!result?.sessionId) return;
+    try {
+      const response = await fetch(`${API_URL}${endpoints.estimations.downloadPdf(result.sessionId)}`);
+      if (!response.ok) throw new Error("PDF download failed");
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "estimation-atouts-services.pdf";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      // Silent fail
+    }
+  };
+
   const toggleItem = (workItem: string) => {
     setSelectedItems((prev) => {
       const existing = prev.find((i) => i.workItem === workItem);
@@ -175,12 +200,21 @@ export function PriceSimulator() {
               Fourchette : {formatPrice(result.totalLow)} - {formatPrice(result.totalHigh)}
             </p>
           </div>
-          <Button
-            onClick={() => window.location.href = "/#contact"}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
-          >
-            Demander un devis formel
-          </Button>
+          <div className="flex gap-3 justify-center">
+            <Button
+              onClick={handleDownloadPdf}
+              variant="outline"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Telecharger le PDF
+            </Button>
+            <Button
+              onClick={() => window.location.href = "/#contact"}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Demander un devis formel
+            </Button>
+          </div>
         </CardContent>
       </Card>
     );
@@ -322,7 +356,7 @@ export function PriceSimulator() {
                       const isSelected = !!item;
                       return (
                         <div
-                          key={ref.workItem}
+                          key={ref.id}
                           className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
                             isSelected ? "border-blue-300 bg-blue-50/50" : "border-gray-200"
                           }`}

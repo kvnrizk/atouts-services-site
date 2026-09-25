@@ -110,32 +110,38 @@ export function MultiStepQuoteForm() {
   return (
     <div className="max-w-2xl mx-auto">
       {/* Progress bar */}
-      <div className="flex items-center justify-between mb-8">
-        {[1, 2, 3, 4].map((s) => (
-          <div key={s} className="flex items-center flex-1">
-            <button
-              onClick={() => s < step && setStep(s)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                s <= step
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-500"
-              } ${s < step ? "cursor-pointer hover:bg-blue-700" : ""}`}
-              disabled={s >= step}
-            >
-              {s}
-            </button>
-            {s < 4 && (
-              <div
-                className={`flex-1 h-1 mx-2 rounded ${
-                  s < step ? "bg-blue-600" : "bg-gray-200"
-                }`}
-              />
-            )}
-          </div>
-        ))}
+      <div className="flex items-center justify-between mb-8" role="group" aria-label={`Étape ${step} sur 4`}>
+        {[1, 2, 3, 4].map((s) => {
+          const labels = ["Type de projet", "Détails du projet", "Vos coordonnées", "Message & envoi"];
+          return (
+            <div key={s} className="flex items-center flex-1">
+              <button
+                onClick={() => s < step && setStep(s)}
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                  s <= step
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-500"
+                } ${s < step ? "cursor-pointer hover:bg-blue-700" : ""}`}
+                disabled={s >= step}
+                aria-label={`Étape ${s}: ${labels[s - 1]}`}
+                aria-current={s === step ? "step" : undefined}
+              >
+                {s}
+              </button>
+              {s < 4 && (
+                <div
+                  className={`flex-1 h-1 mx-2 rounded ${
+                    s < step ? "bg-blue-600" : "bg-gray-200"
+                  }`}
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      <div className="text-sm text-gray-500 text-center mb-6">
+      <div className="text-sm text-gray-500 text-center mb-6" aria-live="polite">
         {step === 1 && "Type de projet"}
         {step === 2 && "Détails du projet"}
         {step === 3 && "Vos coordonnées"}
@@ -151,7 +157,7 @@ export function MultiStepQuoteForm() {
                 Quel type de travaux souhaitez-vous ?
               </h3>
               <p className="text-gray-600 mb-6">Sélectionnez le service qui correspond à votre projet</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="radiogroup" aria-label="Type de travaux">
                 {SERVICES.map((service) => {
                   const Icon = service.icon;
                   const selected = formData.project_type === service.value;
@@ -164,8 +170,10 @@ export function MultiStepQuoteForm() {
                           ? "border-blue-600 bg-blue-50"
                           : "border-gray-200 hover:border-blue-300"
                       }`}
+                      role="radio"
+                      aria-checked={selected}
                     >
-                      <Icon className={`h-6 w-6 mb-2 ${selected ? "text-blue-600" : "text-gray-400"}`} />
+                      <Icon className={`h-6 w-6 mb-2 ${selected ? "text-blue-600" : "text-gray-400"}`} aria-hidden="true" />
                       <div className="font-semibold text-gray-900">{service.label}</div>
                       <div className="text-sm text-gray-500">{service.desc}</div>
                     </button>
@@ -185,10 +193,11 @@ export function MultiStepQuoteForm() {
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="surface_area" className="block text-sm font-medium text-gray-700 mb-2">
                       Surface approximative (m²)
                     </label>
                     <Input
+                      id="surface_area"
                       type="number"
                       value={formData.surface_area}
                       onChange={(e) => updateField("surface_area", e.target.value)}
@@ -196,10 +205,11 @@ export function MultiStepQuoteForm() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="rooms" className="block text-sm font-medium text-gray-700 mb-2">
                       Nombre de pièces
                     </label>
                     <Input
+                      id="rooms"
                       type="number"
                       value={formData.rooms}
                       onChange={(e) => updateField("rooms", e.target.value)}
@@ -212,7 +222,7 @@ export function MultiStepQuoteForm() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     État actuel
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" role="radiogroup" aria-label="État actuel">
                     {STATES.map((state) => {
                       const selected = formData.current_state === state.value;
                       return (
@@ -224,6 +234,8 @@ export function MultiStepQuoteForm() {
                               ? "border-blue-600 bg-blue-50"
                               : "border-gray-200 hover:border-blue-300"
                           }`}
+                          role="radio"
+                          aria-checked={selected}
                         >
                           <div className="font-medium text-gray-900 text-sm">{state.label}</div>
                           <div className="text-xs text-gray-500">{state.desc}</div>
@@ -237,7 +249,7 @@ export function MultiStepQuoteForm() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Délai souhaité
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Délai souhaité">
                     {TIMELINES.map((tl) => {
                       const selected = formData.desired_timeline === tl.value;
                       return (
@@ -249,6 +261,8 @@ export function MultiStepQuoteForm() {
                               ? "border-blue-600 bg-blue-50 font-semibold"
                               : "border-gray-200 hover:border-blue-300"
                           }`}
+                          role="radio"
+                          aria-checked={selected}
                         >
                           {tl.label}
                         </button>
@@ -270,42 +284,50 @@ export function MultiStepQuoteForm() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Prénom *</label>
+                    <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 mb-2">Prénom *</label>
                     <Input
+                      id="first_name"
                       value={formData.first_name}
                       onChange={(e) => updateField("first_name", e.target.value)}
                       placeholder="Votre prénom"
                       required
+                      aria-required="true"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Nom *</label>
+                    <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 mb-2">Nom *</label>
                     <Input
+                      id="last_name"
                       value={formData.last_name}
                       onChange={(e) => updateField("last_name", e.target.value)}
                       placeholder="Votre nom"
                       required
+                      aria-required="true"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                   <Input
+                    id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => updateField("email", e.target.value)}
                     placeholder="votre@email.com"
                     required
+                    aria-required="true"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Téléphone *</label>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Téléphone *</label>
                   <Input
+                    id="phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
                     placeholder="06 XX XX XX XX"
                     required
+                    aria-required="true"
                   />
                 </div>
               </div>
@@ -319,12 +341,15 @@ export function MultiStepQuoteForm() {
                 Décrivez votre projet
               </h3>
               <p className="text-gray-600 mb-6">Ajoutez les détails qui nous aideront à préparer votre devis</p>
+              <label htmlFor="message" className="sr-only">Description de votre projet</label>
               <Textarea
+                id="message"
                 value={formData.message}
                 onChange={(e) => updateField("message", e.target.value)}
                 placeholder="Décrivez votre projet en quelques mots : travaux souhaités, contraintes particulières, budget approximatif..."
                 rows={6}
                 required
+                aria-required="true"
               />
 
               {/* Summary */}

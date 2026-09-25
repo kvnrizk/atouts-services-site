@@ -6,6 +6,7 @@ import {
   Layers, PaintBucket,
   type LucideIcon,
 } from "lucide-react";
+import { serviceLinks } from "./service-links";
 
 export interface ServiceFeature {
   icon: LucideIcon;
@@ -31,6 +32,17 @@ export interface FAQ {
   answer: string;
 }
 
+export interface CaseStudy {
+  location: string;
+  surface: string;
+  duration: string;
+  title: string;
+  problem: string;
+  solution: string;
+  result: string;
+  image: string;
+}
+
 export interface ServiceData {
   slug: string;
   title: string;
@@ -38,6 +50,14 @@ export interface ServiceData {
   heroIcon: LucideIcon;
   heroImage: string;
   apiCategory: string;
+  /** Hero headline — the promise, not the service name (the name is in the eyebrow). */
+  tagline: string;
+  /** Typical duration shown in the trust bar; must stay consistent with the FAQ answers. */
+  duration?: string;
+  /** Concrete "what's included" checklist — answers "do you do X?" and adds indexable text. */
+  included: string[];
+  /** Real projects told as problem → solution → result. Section is hidden when empty. */
+  caseStudies: CaseStudy[];
   features: {
     title: string;
     subtitle: string;
@@ -79,6 +99,19 @@ export const servicesData: Record<string, ServiceData> = {
     heroImage:
       "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1920&h=1080&fit=crop",
     apiCategory: "peinture",
+    tagline: "Des murs nets, des finitions impeccables.",
+    duration: "1–2 jours / pièce",
+    included: [
+      "Protection des sols et du mobilier",
+      "Rebouchage, ponçage et enduits",
+      "Sous-couche adaptée au support",
+      "Murs, plafonds et boiseries",
+      "Peintures labellisées A+",
+      "Peinture extérieure et façades",
+      "Enduits et effets décoratifs",
+      "Nettoyage de fin de chantier",
+    ],
+    caseStudies: [],
     features: {
       title: "Notre Expertise",
       subtitle: "Des services complets pour vos projets de peinture",
@@ -136,6 +169,19 @@ export const servicesData: Record<string, ServiceData> = {
     heroImage:
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1920&h=1080&fit=crop",
     apiCategory: "renovation",
+    tagline: "Votre intérieur, repensé de A à Z.",
+    duration: "3–6 sem. (60 m²)",
+    included: [
+      "Démolition et évacuation des gravats",
+      "Cloisons, plâtrerie et isolation",
+      "Plomberie et électricité",
+      "Sols et revêtements muraux",
+      "Menuiseries intérieures",
+      "Peinture et finitions",
+      "Coordination de tous les corps de métier",
+      "Nettoyage de fin de chantier",
+    ],
+    caseStudies: [],
     features: {
       title: "Notre Expertise",
       subtitle: "Des services complets pour vos projets de rénovation",
@@ -193,6 +239,18 @@ export const servicesData: Record<string, ServiceData> = {
     heroImage:
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&h=1080&fit=crop",
     apiCategory: "electricite",
+    tagline: "Une installation sûre, aux normes.",
+    included: [
+      "Diagnostic de l'installation existante",
+      "Mise aux normes NF C 15-100",
+      "Remplacement du tableau électrique",
+      "Prises, interrupteurs et circuits",
+      "Éclairage LED intérieur et extérieur",
+      "Domotique et volets connectés",
+      "Saignées rebouchées, murs propres",
+      "Attestation de conformité",
+    ],
+    caseStudies: [],
     features: {
       title: "Notre Expertise",
       subtitle: "Des services complets pour vos installations électriques",
@@ -243,13 +301,48 @@ export const servicesData: Record<string, ServiceData> = {
 
   "salles-de-bains": {
     slug: "salles-de-bains",
-    title: "Salles de Bains",
+    title: "Salles de bains",
     description:
       "Création et rénovation de salles de bains sur mesure. Du design moderne à l'installation complète, transformez votre espace en un lieu de détente unique.",
     heroIcon: Bath,
     heroImage:
       "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&h=1080&fit=crop",
     apiCategory: "salles-de-bains",
+    tagline: "De la baignoire à la douche à l'italienne.",
+    duration: "5–10 jours",
+    included: [
+      "Dépose de l'existant et évacuation",
+      "Douche à l'italienne",
+      "WC suspendu",
+      "Étanchéité sous carrelage",
+      "Plomberie et électricité",
+      "Faïence et carrelage grand format",
+      "Meuble vasque et robinetterie",
+      "Sèche-serviettes",
+    ],
+    // PLACEHOLDER — exemples fictifs pour la maquette. À remplacer par de vrais chantiers avant la mise en ligne.
+    caseStudies: [
+      {
+        location: "Issy-les-Moulineaux",
+        surface: "6 m²",
+        duration: "8 jours",
+        title: "Une baignoire inutilisée devient une douche XXL",
+        problem: "Baignoire des années 90 jamais utilisée, carrelage fissuré, peu de rangement.",
+        solution: "Douche à l'italienne avec paroi fixe, WC suspendu, carrelage grand format et niche murale.",
+        result: "Une pièce visuellement deux fois plus grande, entièrement accessible.",
+        image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&h=900&fit=crop&q=75",
+      },
+      {
+        location: "Boulogne-Billancourt",
+        surface: "4 m²",
+        duration: "6 jours",
+        title: "Salle d'eau sous combles optimisée",
+        problem: "Pièce mansardée, plafond bas, ancienne cabine de douche qui fuyait.",
+        solution: "Reprise complète de l'étanchéité, douche sur mesure sous la pente, meuble vasque suspendu.",
+        result: "Plus aucune fuite et 30 % de rangement en plus.",
+        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=900&fit=crop&q=75",
+      },
+    ],
     features: {
       title: "Notre Expertise",
       subtitle: "Des services complets pour votre salle de bains",
@@ -300,13 +393,26 @@ export const servicesData: Record<string, ServiceData> = {
 
   "revetements-sol": {
     slug: "revetements-sol",
-    title: "Revêtements de Sol",
+    title: "Revêtements de sol",
     description:
       "Pose de parquet, carrelage, PVC, moquette et sols techniques. Des finitions impeccables pour sublimer vos intérieurs.",
     heroIcon: Layers,
     heroImage:
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop",
     apiCategory: "revetements-sol",
+    tagline: "Des sols qui durent, posés au millimètre.",
+    duration: "1–3 jours / pièce",
+    included: [
+      "Dépose de l'ancien revêtement",
+      "Ragréage et préparation du support",
+      "Parquet massif ou contrecollé",
+      "Carrelage et grès cérame",
+      "Sols vinyles (LVT)",
+      "Plinthes et barres de seuil",
+      "Ponçage et vitrification",
+      "Nettoyage de fin de chantier",
+    ],
+    caseStudies: [],
     features: {
       title: "Notre Expertise",
       subtitle: "Des solutions complètes pour tous vos sols",
@@ -357,6 +463,14 @@ export const servicesData: Record<string, ServiceData> = {
 };
 
 export const allServiceSlugs = Object.keys(servicesData);
+
+// Keep the lightweight menu list (lib/service-links.ts) in sync with the real pages.
+if (process.env.NODE_ENV !== "production") {
+  const menuSlugs = serviceLinks.map((l) => l.slug).join(",");
+  if (menuSlugs !== allServiceSlugs.join(",")) {
+    console.warn(`[services] service-links.ts (${menuSlugs}) is out of sync with servicesData (${allServiceSlugs.join(",")})`);
+  }
+}
 
 export function getServiceData(slug: string): ServiceData | undefined {
   return servicesData[slug];

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { apiClient, endpoints, API_URL } from "@/lib/api";
 import { Button } from "@/components/ui/button";
@@ -243,7 +244,7 @@ function BlogContent() {
                 <div className="space-y-2">
                   <Input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
                   {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />T\u00e9l\u00e9chargement en cours...</p>)}
-                  {formData.coverImageUrl && (<img src={formData.coverImageUrl} alt="Preview" className="w-full h-48 object-cover rounded-md" />)}
+                  {formData.coverImageUrl && (<Image src={formData.coverImageUrl} alt="Preview" width={800} height={192} className="w-full h-48 object-cover rounded-md" />)}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -279,7 +280,7 @@ function BlogContent() {
             <Card key={item.id} className="overflow-hidden hover-lift">
               <CardContent className="p-4 flex gap-4">
                 {item.coverImageUrl && (
-                  <img src={item.coverImageUrl} alt={item.title} className="w-32 h-24 object-cover rounded-md flex-shrink-0" />
+                  <Image src={item.coverImageUrl} alt={item.title} width={128} height={96} className="w-32 h-24 object-cover rounded-md flex-shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">

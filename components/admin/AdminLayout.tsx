@@ -16,7 +16,11 @@ import {
   MapPin,
   Star,
   Calculator,
+  Briefcase,
+  CreditCard,
+  BarChart3,
 } from 'lucide-react';
+import { FEATURES } from '@/lib/features';
 import { useState } from 'react';
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -28,11 +32,14 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     { icon: LayoutDashboard, label: 'Tableau de bord', path: '/admin/dashboard' },
     { icon: Images, label: 'Portfolio', path: '/admin/portfolio' },
     { icon: ArrowLeftRight, label: 'Avant / Après', path: '/admin/before-after' },
+    { icon: Briefcase, label: 'Projets', path: '/admin/projects' },
     { icon: FileText, label: 'Demandes de devis', path: '/admin/quotes' },
     { icon: BookOpen, label: 'Blog', path: '/admin/blog' },
     { icon: MapPin, label: 'Pages villes', path: '/admin/city-pages' },
     { icon: Star, label: 'Avis clients', path: '/admin/testimonials' },
-    { icon: Calculator, label: 'Simulateur', path: '/admin/simulator' },
+    ...(FEATURES.simulator ? [{ icon: Calculator, label: 'Simulateur', path: '/admin/simulator' }] : []),
+    { icon: CreditCard, label: 'Paiements', path: '/admin/payments' },
+    { icon: BarChart3, label: 'Analytiques', path: '/admin/analytics' },
   ];
 
   const handleLogout = async () => {

@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "testimonials": "Testimonials",
+    "simulator": "Simulator",
+    "contact": "Contact",
+    "clientPortal": "Client Portal",
+    "freeQuote": "Free Quote",
+    "portfolio": "Our work",
+    "blog": "Blog",
+    "allServices": "All services"
+  },
+  "hero": {
+    "slides": {
+      "1": {
+        "title": "Complete Renovation",
+        "subtitle": "Transform your living space",
+        "description": "Expertise in apartment and house renovation in Issy-les-Moulineaux"
+      },
+      "2": {
+        "title": "Interior Painting",
+        "subtitle": "Flawless finishes",
+        "description": "Personalised advice and professional application"
+      },
+      "3": {
+        "title": "Bathrooms",
+        "subtitle": "Custom design",
+        "description": "Creation and renovation of modern bathrooms"
+      },
+      "4": {
+        "title": "Electrical Installation",
+        "subtitle": "Safety and compliance",
+        "description": "Professional electrical upgrades and installations"
+      }
+    },
+    "requestQuote": "Request a free quote",
+    "ourServices": "Our Services",
+    "estimateWork": "Estimate my project",
+    "decennalGuarantee": "10-year warranty",
+    "freeQuote": "Free quote",
+    "qualifiedArtisans": "Qualified craftsmen"
+  },
+  "trust": {
+    "decennalGuarantee": "10-year warranty",
+    "freeQuote": "Free quote",
+    "qualifiedArtisans": "Qualified craftsmen",
+    "ileDeFrance": "Paris region"
+  },
+  "services": {
+    "title": "Our Services",
+    "painting": "Painting Company",
+    "renovation": "Property Renovation",
+    "electrical": "Electrical Work",
+    "flooring": "Floor Coverings",
+    "bathroom": "Bathroom",
+    "ourServices": "OUR SERVICES",
+    "expertise": "Complete expertise for all your renovation and improvement projects",
+    "requestQuote": "Request a free quote"
+  },
+  "about": {
+    "title": "Why choose A Touts Services?",
+    "description": "Based in Issy-les-Moulineaux in the Hauts-de-Seine department, our company with over 10 years of experience specialises in complete renovation and building services.",
+    "expertise": "Recognised expertise",
+    "expertiseDesc": "Qualified and certified craftsmen for all your projects",
+    "support": "Personalised support",
+    "supportDesc": "End-to-end project management with a single point of contact",
+    "guarantee": "Warranty and insurance",
+    "guaranteeDesc": "All our work is guaranteed and covered by 10-year insurance",
+    "stats": {
+      "experience": "Years of experience",
+      "experienceDesc": "Over a decade serving our clients",
+      "projects": "Completed projects",
+      "projectsDesc": "Hundreds of satisfied clients",
+      "satisfaction": "Client satisfaction",
+      "satisfactionDesc": "Our absolute priority",
+      "warranty": "10-year warranty",
+      "warrantyDesc": "Your peace of mind guaranteed"
+    }
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "Our clients' satisfaction is our greatest reward"
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Let's talk about your project! Free quote within 24h",
+    "coordinates": "Our details",
+    "address": "Address",
+    "phone": "Phone",
+    "clickToCall": "Click to call",
+    "email": "Email",
+    "hours": "Opening hours",
+    "hoursValue": "Mon - Fri: 8:00 AM - 6:00 PM\nSat: 9:00 AM - 5:00 PM",
+    "serviceArea": "Service area",
+    "serviceAreaDesc": "We operate throughout the Hauts-de-Seine department and Paris: Issy-les-Moulineaux, Boulogne-Billancourt, Meudon, Sèvres, Vanves, Clamart and surrounding areas."
+  },
+  "footer": {
+    "description": "Your renovation expert in Issy-les-Moulineaux. Over 10 years of experience in painting, electrical work, bathrooms and much more.",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "serviceArea": "Service area",
+    "serviceAreaValue": "Paris Region: Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94)",
+    "decennalGuarantee": "10-year warranty",
+    "insuredCompany": "Insured company",
+    "allRightsReserved": "Atouts Services. All rights reserved.",
+    "legalLinks": "Legal information",
+    "privacyPolicy": "Privacy policy",
+    "legalMentions": "Legal notices",
+    "termsOfUse": "Terms of use",
+    "servicesTitle": "Our services",
+    "companyTitle": "Company",
+    "areasTitle": "Service areas",
+    "cookies": "Cookie settings"
+  },
+  "cookie": {
+    "message": "This site uses privacy-friendly analytics tools to improve your experience. No advertising cookies are used.",
+    "decline": "Decline",
+    "accept": "Accept"
+  },
+  "mobileCTA": {
+    "freeQuote": "Free quote"
+  },
+  "offline": {
+    "title": "Offline",
+    "message": "You don't have an internet connection. Please check your network and try again.",
+    "retry": "Retry",
+    "callUs": "Call us"
+  }
+}

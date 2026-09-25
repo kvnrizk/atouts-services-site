@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { apiClient, endpoints } from '@/lib/api';
@@ -37,22 +38,24 @@ export async function BeforeAfterPreview() {
             >
               <div className="grid grid-cols-2 gap-px bg-gray-200">
                 <div className="relative">
-                  <img
+                  <Image
                     src={project.beforeImageUrl}
                     alt="Avant"
+                    width={300}
+                    height={128}
                     className="w-full h-32 object-cover"
-                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-0.5 rounded text-xs font-bold">
                     AVANT
                   </div>
                 </div>
                 <div className="relative">
-                  <img
+                  <Image
                     src={project.afterImageUrl}
                     alt="Après"
+                    width={300}
+                    height={128}
                     className="w-full h-32 object-cover"
-                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-0.5 rounded text-xs font-bold">
                     APRÈS
@@ -62,7 +65,7 @@ export async function BeforeAfterPreview() {
               <div className="p-4">
                 <h3 className="font-bold text-gray-900 mb-1">{project.title}</h3>
                 {project.category && (
-                  <span className="inline-block text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
+                  <span className="inline-block text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded">
                     {project.category}
                   </span>
                 )}

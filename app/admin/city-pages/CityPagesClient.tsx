@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { apiClient, endpoints, API_URL } from "@/lib/api";
 import { Button } from "@/components/ui/button";
@@ -221,7 +222,7 @@ function CityPagesContent() {
                 <div className="space-y-2">
                   <Input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
                   {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />T\u00e9l\u00e9chargement...</p>)}
-                  {formData.heroImageUrl && (<img src={formData.heroImageUrl} alt="Preview" className="w-full h-48 object-cover rounded-md" />)}
+                  {formData.heroImageUrl && (<Image src={formData.heroImageUrl} alt="Preview" width={800} height={192} className="w-full h-48 object-cover rounded-md" />)}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -256,7 +257,7 @@ function CityPagesContent() {
           {pages.map((item) => (
             <Card key={item.id} className="overflow-hidden hover-lift">
               {item.heroImageUrl && (
-                <img src={item.heroImageUrl} alt={item.cityName} className="w-full h-40 object-cover" />
+                <Image src={item.heroImageUrl} alt={item.cityName} width={400} height={160} className="w-full h-40 object-cover" />
               )}
               <CardContent className="p-4">
                 <div className="flex items-start justify-between">

@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "testimonials": "Témoignages",
+    "simulator": "Simulateur",
+    "contact": "Contact",
+    "clientPortal": "Espace Client",
+    "freeQuote": "Devis gratuit",
+    "portfolio": "Réalisations",
+    "blog": "Blog",
+    "allServices": "Tous nos services"
+  },
+  "hero": {
+    "slides": {
+      "1": {
+        "title": "Rénovation Complète",
+        "subtitle": "Transformez votre espace de vie",
+        "description": "Expertise en rénovation d'appartements et maisons à Issy-les-Moulineaux"
+      },
+      "2": {
+        "title": "Peinture Intérieure",
+        "subtitle": "Des finitions impeccables",
+        "description": "Conseils personnalisés et application professionnelle"
+      },
+      "3": {
+        "title": "Salles de Bains",
+        "subtitle": "Design sur mesure",
+        "description": "Création et rénovation de salles de bains modernes"
+      },
+      "4": {
+        "title": "Installation Électrique",
+        "subtitle": "Sécurité et conformité",
+        "description": "Mise aux normes et installations électriques professionnelles"
+      }
+    },
+    "requestQuote": "Demander un devis gratuit",
+    "ourServices": "Nos Services",
+    "estimateWork": "Estimer mes travaux",
+    "decennalGuarantee": "Garantie décennale",
+    "freeQuote": "Devis gratuit",
+    "qualifiedArtisans": "Artisans qualifiés"
+  },
+  "trust": {
+    "decennalGuarantee": "Garantie décennale",
+    "freeQuote": "Devis gratuit",
+    "qualifiedArtisans": "Artisans qualifiés",
+    "ileDeFrance": "Île-de-France"
+  },
+  "services": {
+    "title": "Nos Services",
+    "painting": "Entreprise de Peinture",
+    "renovation": "Rénovation Immobilière",
+    "electrical": "Électricité",
+    "flooring": "Revêtements de Sols",
+    "bathroom": "Salle de Bains",
+    "ourServices": "NOS SERVICES",
+    "expertise": "Une expertise complète pour tous vos projets de rénovation et d'aménagement",
+    "requestQuote": "Demander un devis gratuit"
+  },
+  "about": {
+    "title": "Pourquoi choisir A Touts Services ?",
+    "description": "Implantée à Issy-les-Moulineaux dans le département des Hauts-de-Seine, notre entreprise forte de plus de 10 ans d'expérience s'est spécialisée dans la rénovation complète et les services du bâtiment.",
+    "expertise": "Expertise reconnue",
+    "expertiseDesc": "Des artisans qualifiés et certifiés pour tous vos travaux",
+    "support": "Accompagnement personnalisé",
+    "supportDesc": "Un suivi de projet de A à Z avec un interlocuteur unique",
+    "guarantee": "Garantie et assurance",
+    "guaranteeDesc": "Tous nos travaux sont garantis et assurés décennale",
+    "stats": {
+      "experience": "Années d'expérience",
+      "experienceDesc": "Plus d'une décennie au service de nos clients",
+      "projects": "Projets réalisés",
+      "projectsDesc": "Des centaines de clients satisfaits",
+      "satisfaction": "Satisfaction client",
+      "satisfactionDesc": "Notre priorité absolue",
+      "warranty": "Garantie décennale",
+      "warrantyDesc": "Votre sérénité assurée"
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent nos clients",
+    "subtitle": "La satisfaction de nos clients est notre plus belle récompense"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Parlons de votre projet ! Devis gratuit sous 24h",
+    "coordinates": "Nos coordonnées",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "clickToCall": "Cliquez pour appeler",
+    "email": "Email",
+    "hours": "Horaires",
+    "hoursValue": "Lun - Ven: 8h00 - 18h00\nSam: 9h00 - 17h00",
+    "serviceArea": "Zone d'intervention",
+    "serviceAreaDesc": "Nous intervenons dans tout le département des Hauts-de-Seine et Paris : Issy-les-Moulineaux, Boulogne-Billancourt, Meudon, Sèvres, Vanves, Clamart et communes limitrophes."
+  },
+  "footer": {
+    "description": "Votre expert en rénovation à Issy-les-Moulineaux. Plus de 10 ans d'expérience dans la peinture, électricité, salles de bains et bien plus encore.",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "serviceArea": "Zone d'intervention",
+    "serviceAreaValue": "Île-de-France : Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94)",
+    "decennalGuarantee": "Garantie décennale",
+    "insuredCompany": "Entreprise assurée",
+    "allRightsReserved": "Atouts Services. Tous droits réservés.",
+    "legalLinks": "Informations légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "legalMentions": "Mentions légales",
+    "termsOfUse": "Conditions générales",
+    "servicesTitle": "Nos services",
+    "companyTitle": "Entreprise",
+    "areasTitle": "Zones d'intervention",
+    "cookies": "Gestion des cookies"
+  },
+  "cookie": {
+    "message": "Ce site utilise des outils d'analyse respectueux de votre vie privée pour améliorer votre expérience. Aucun cookie publicitaire n'est utilisé.",
+    "decline": "Refuser",
+    "accept": "Accepter"
+  },
+  "mobileCTA": {
+    "freeQuote": "Devis gratuit"
+  },
+  "offline": {
+    "title": "Hors connexion",
+    "message": "Vous n'avez pas de connexion internet. Veuillez vérifier votre réseau et réessayer.",
+    "retry": "Réessayer",
+    "callUs": "Nous appeler"
+  }
+}

@@ -208,3 +208,120 @@ export interface EstimationStats {
   conversionRate: number;
   avgEstimate: number;
 }
+
+export interface Project {
+  id: number;
+  reference_number: string;
+  client_id: number;
+  client?: User;
+  quote_request_id?: number;
+  title: string;
+  description?: string;
+  status: string;
+  total_amount?: number;
+  deposit_amount?: number;
+  deposit_percentage: number;
+  estimated_start_date?: string;
+  estimated_end_date?: string;
+  notes?: string;
+  documents?: ProjectDocument[];
+  updates?: ProjectUpdate[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectDocument {
+  id: number;
+  project_id: number;
+  name: string;
+  file_url: string;
+  document_type: string;
+  uploaded_by_role: string;
+  created_at: string;
+}
+
+export interface ProjectUpdate {
+  id: number;
+  project_id: number;
+  title: string;
+  message?: string;
+  is_visible_to_client: boolean;
+  created_at: string;
+}
+
+export interface ClientRegisterData {
+  email: string;
+  password: string;
+  full_name: string;
+  phone?: string;
+}
+
+export interface ProjectStats {
+  total: number;
+  byStatus: Array<{ status: string; count: string }>;
+  totalRevenue: number;
+}
+
+export interface Payment {
+  id: number;
+  project_id: number;
+  project?: Project;
+  stripe_session_id?: string;
+  stripe_payment_intent_id?: string;
+  amount: number;
+  status: 'pending' | 'completed' | 'failed' | 'refunded';
+  payment_type: 'deposit' | 'final';
+  description?: string;
+  receipt_url?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PaymentStats {
+  total: number;
+  completedCount: number;
+  completedAmount: number;
+  pendingCount: number;
+}
+
+export interface DashboardAnalytics {
+  quotes: { total: number; thisMonth: number };
+  projects: { total: number; active: number };
+  payments: { totalRevenue: number; thisMonth: number };
+  estimations: { total: number; withContact: number };
+}
+
+export interface RevenueData {
+  month: string;
+  revenue: number;
+}
+
+export interface ConversionData {
+  estimations: number;
+  quotes: number;
+  projects: number;
+  payments: number;
+}
+
+export interface QuoteTrendData {
+  month: string;
+  count: number;
+  conversion_rate: number;
+}
+
+export interface SourceData {
+  source: string;
+  count: number;
+}
+
+export interface PopularServiceData {
+  service: string;
+  count: number;
+}
+
+export interface NewsletterSubscriber {
+  id: number;
+  email: string;
+  subscribedAt: string;
+  isActive: boolean;
+}

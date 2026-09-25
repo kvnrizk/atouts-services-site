@@ -5,7 +5,9 @@ export const APP_NAME = 'Atouts Services';
 export const COMPANY_INFO = {
   name: 'Atouts Services',
   email: 'contact@atouts-services.fr',
-  phone: '01 XX XX XX XX',
+  phone: '06 34 02 61 80',
+  /** International format for tel: links — one format everywhere (consistent NAP for local SEO). */
+  phoneHref: 'tel:+33634026180',
   address: 'Issy-les-Moulineaux, Hauts-de-Seine (92)',
   hours: {
     weekday: 'Lun - Ven: 8h00 - 18h00',
@@ -38,3 +40,18 @@ export const SERVICE_AREAS = [
   'Clamart',
   'Paris',
 ];
+
+export const GOOGLE_MAPS_CENTER = {
+  lat: 48.8235,
+  lng: 2.2735,
+} as const;
+
+export const CITY_COORDINATES: Record<string, { lat: number; lng: number }> = {
+  'issy-les-moulineaux': { lat: 48.8235, lng: 2.2735 },
+  'boulogne-billancourt': { lat: 48.8397, lng: 2.2399 },
+  'meudon': { lat: 48.8122, lng: 2.2356 },
+  'sevres': { lat: 48.8236, lng: 2.2105 },
+  'vanves': { lat: 48.8208, lng: 2.2893 },
+  'clamart': { lat: 48.8027, lng: 2.2636 },
+  'paris': { lat: 48.8566, lng: 2.3522 },
+};

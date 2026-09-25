@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { apiClient, endpoints, API_URL } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -195,7 +196,7 @@ function BeforeAfterContent() {
                     {isUploadingBefore && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />Téléchargement...</p>)}
                     {formData.beforeImageUrl && (
                       <div className="relative">
-                        <img src={formData.beforeImageUrl} alt="Avant" className="w-full h-48 object-cover rounded-md" />
+                        <Image src={formData.beforeImageUrl} alt="Avant" width={400} height={192} className="w-full h-48 object-cover rounded-md" />
                         <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold">AVANT</div>
                       </div>
                     )}
@@ -208,7 +209,7 @@ function BeforeAfterContent() {
                     {isUploadingAfter && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />Téléchargement...</p>)}
                     {formData.afterImageUrl && (
                       <div className="relative">
-                        <img src={formData.afterImageUrl} alt="Après" className="w-full h-48 object-cover rounded-md" />
+                        <Image src={formData.afterImageUrl} alt="Après" width={400} height={192} className="w-full h-48 object-cover rounded-md" />
                         <div className="absolute top-2 left-2 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold">APRÈS</div>
                       </div>
                     )}
@@ -238,11 +239,11 @@ function BeforeAfterContent() {
             <Card key={item.id} className="overflow-hidden hover-lift">
               <div className="grid grid-cols-2 gap-px bg-gray-200">
                 <div className="relative">
-                  <img src={item.beforeImageUrl} alt="Avant" className="w-full h-48 object-cover" />
+                  <Image src={item.beforeImageUrl} alt="Avant" width={400} height={192} className="w-full h-48 object-cover" />
                   <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold">AVANT</div>
                 </div>
                 <div className="relative">
-                  <img src={item.afterImageUrl} alt="Après" className="w-full h-48 object-cover" />
+                  <Image src={item.afterImageUrl} alt="Après" width={400} height={192} className="w-full h-48 object-cover" />
                   <div className="absolute top-2 left-2 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold">APRÈS</div>
                 </div>
               </div>

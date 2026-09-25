@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 import { apiClient, endpoints } from "@/lib/api";
 import type { Testimonial } from "@/types/api";
+import { Reveal } from "@/components/Reveal";
 
 const fallbackTestimonials = [
   {
@@ -40,7 +41,7 @@ export async function Testimonials() {
   const items = testimonials.length > 0 ? testimonials : fallbackTestimonials;
 
   return (
-    <section id="testimonials" className="py-20 bg-blue-50">
+    <section id="testimonials" className="py-20 bg-stone-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Ce que disent nos clients</h2>
@@ -51,27 +52,29 @@ export async function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.slice(0, 3).map((testimonial, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
+            <Reveal key={index} delay={index * 120}>
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex space-x-1" role="img" aria-label={`Note : ${testimonial.rating} sur 5`}>
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-sky-400 fill-current" aria-hidden="true" />
+                      ))}
+                    </div>
+                    <Quote className="h-8 w-8 text-sky-100" aria-hidden="true" />
                   </div>
-                  <Quote className="h-8 w-8 text-blue-200" />
-                </div>
 
-                <p className="text-gray-700 mb-6 italic">&ldquo;{testimonial.comment}&rdquo;</p>
+                  <p className="text-gray-700 mb-6 italic">&ldquo;{testimonial.comment}&rdquo;</p>
 
-                <div className="border-t pt-4">
-                  <div className="font-semibold text-gray-900">{testimonial.clientName}</div>
-                  {testimonial.clientCity && (
-                    <div className="text-sm text-gray-600">{testimonial.clientCity}</div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="border-t pt-4">
+                    <div className="font-semibold text-gray-900">{testimonial.clientName}</div>
+                    {testimonial.clientCity && (
+                      <div className="text-sm text-gray-600">{testimonial.clientCity}</div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>

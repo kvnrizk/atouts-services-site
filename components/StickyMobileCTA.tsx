@@ -3,8 +3,11 @@
 import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { COMPANY_INFO } from '@/lib/constants';
+import { useTranslations } from 'next-intl';
 
 export function StickyMobileCTA() {
+  const t = useTranslations('mobileCTA');
+
   const handleClick = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -19,11 +22,11 @@ export function StickyMobileCTA() {
           onClick={handleClick}
           className="flex-1 gradient-primary text-white font-semibold"
         >
-          Devis gratuit
+          {t('freeQuote')}
         </Button>
-        <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}>
-          <Button variant="outline" size="icon" className="shrink-0">
-            <Phone className="h-5 w-5" />
+        <a href={COMPANY_INFO.phoneHref}>
+          <Button variant="outline" size="icon" className="shrink-0" aria-label="Appeler">
+            <Phone className="h-5 w-5" aria-hidden="true" />
           </Button>
         </a>
       </div>
