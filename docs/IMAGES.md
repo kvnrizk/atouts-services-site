@@ -44,6 +44,6 @@ Update this file whenever an image is added, replaced or removed.
 | `public/main.png` | Current logo | Atouts Services |
 | `public/models/hex-nut.glb` | 3D hex nut (generated with Three.js GLTFExporter) | Atouts Services |
 | `public/icons/*.svg` | App / PWA icons | Atouts Services |
-| `public/ats.png`, `public/lovable-uploads/8384bd8b-….png` | **Old logo** (identical copies), unused on the site | Atouts Services — decision pending: archive one copy, delete duplicate |
+| `../brand-archive/logo-ancien-atouts-services.png` (outside the site) | **Old logo**, archived 2026-09-25 (was `public/ats.png` + an identical Lovable copy, both removed) | Atouts Services |
 
-Unused Next.js template files (`public/file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`): pending deletion.
+Unused Next.js template SVGs removed 2026-09-25.
