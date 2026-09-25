@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -148,6 +149,7 @@ export default function RegisterClient() {
                 <UserPlus className="h-4 w-4 mr-2" />
                 {isSubmitting ? 'Inscription...' : "S'inscrire"}
               </Button>
+              <PrivacyNotice kind="account" className="text-gray-500" />
             </form>
 
             <div className="mt-6 text-center text-sm">

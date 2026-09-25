@@ -3,6 +3,8 @@
 import { GoogleMap as GMap, LoadScript, Marker } from "@react-google-maps/api";
 import { GOOGLE_MAPS_CENTER, COMPANY_INFO } from "@/lib/constants";
 import { MapPin, ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useConsent, hasConsent, readConsent, saveConsent } from "@/lib/consent";
 
 interface GoogleMapProps {
   center?: { lat: number; lng: number };
@@ -21,10 +23,13 @@ export function GoogleMap({
   className = "h-[300px] rounded-lg overflow-hidden",
 }: GoogleMapProps) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const consent = useConsent();
+  const t = useTranslations("cookie");
 
-  if (!apiKey) {
+  // Google Maps sets cookies and receives the visitor's IP: load it only after "Contenus tiers" consent.
+  if (!apiKey || !hasConsent(consent, "thirdParty")) {
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${center.lat},${center.lng}`;
-    return (
+    const link = (
       <a
         href={mapsUrl}
         target="_blank"
@@ -42,6 +47,20 @@ export function GoogleMap({
           </p>
         </div>
       </a>
+    );
+    if (!apiKey) return link;
+    return (
+      <div className={`${className} relative`}>
+        {link}
+        <button
+          type="button"
+          onClick={() => saveConsent({ ...(readConsent()?.choices ?? { ads: false }), thirdParty: true })}
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-md bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-white/20"
+          title={t("mapBlocked")}
+        >
+          {t("showMap")}
+        </button>
+      </div>
     );
   }
 

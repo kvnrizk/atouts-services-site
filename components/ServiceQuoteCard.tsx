@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuoteRequests } from "@/hooks/useQuoteRequests";
@@ -60,6 +61,7 @@ export function ServiceQuoteCard({ serviceTitle, apiCategory }: { serviceTitle: 
             >
               {isSubmitting ? "Envoi…" : "Être rappelé"}
             </Button>
+            <PrivacyNotice className="text-neutral-500" />
           </form>
         </>
       )}

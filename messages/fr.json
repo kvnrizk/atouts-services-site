@@ -114,9 +114,26 @@
     "cookies": "Gestion des cookies"
   },
   "cookie": {
-    "message": "Ce site utilise des outils d'analyse respectueux de votre vie privée pour améliorer votre expérience. Aucun cookie publicitaire n'est utilisé.",
-    "decline": "Refuser",
-    "accept": "Accepter"
+    "title": "Vos choix en matière de cookies",
+    "message": "Nous mesurons l'audience du site de façon anonyme, sans cookie. Avec votre accord, nous pouvons aussi afficher des contenus tiers (carte Google Maps) et mesurer l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gestion des cookies » en bas de page.",
+    "acceptAll": "Tout accepter",
+    "refuseAll": "Tout refuser",
+    "customize": "Personnaliser",
+    "save": "Enregistrer mes choix",
+    "close": "Fermer",
+    "learnMore": "En savoir plus",
+    "necessaryTitle": "Strictement nécessaires",
+    "necessaryDesc": "Mémorisation de vos choix de cookies et de langue. Toujours actifs.",
+    "analyticsTitle": "Mesure d'audience anonyme",
+    "analyticsDesc": "Plausible Analytics : pages vues, pays, source de visite. Sans cookie, sans adresse IP conservée. Exemptée de consentement (CNIL).",
+    "thirdPartyTitle": "Contenus tiers",
+    "thirdPartyDesc": "Carte interactive Google Maps. Google peut déposer des cookies et collecter votre adresse IP.",
+    "adsTitle": "Publicité",
+    "adsDesc": "Mesure de l'efficacité de nos annonces Google Ads (conversions). Aucune publicité n'est affichée sur ce site.",
+    "alwaysOn": "Toujours actif",
+    "settings": "Gestion des cookies",
+    "mapBlocked": "La carte Google Maps est désactivée tant que vous n'avez pas accepté les contenus tiers.",
+    "showMap": "Afficher la carte"
   },
   "mobileCTA": {
     "freeQuote": "Devis gratuit"
@@ -126,5 +143,11 @@
     "message": "Vous n'avez pas de connexion internet. Veuillez vérifier votre réseau et réessayer.",
     "retry": "Réessayer",
     "callUs": "Nous appeler"
+  },
+  "privacyNotice": {
+    "quote": "Vos données servent uniquement à traiter votre demande et à vous recontacter. Elles sont conservées 3 ans après notre dernier échange, puis supprimées. Vous pouvez y accéder, les rectifier ou les faire effacer à tout moment.",
+    "account": "Vos données servent à gérer votre espace client et le suivi de vos chantiers. Elles sont conservées pendant la relation contractuelle puis 5 ans (prescription). Vous pouvez y accéder, les rectifier ou les faire effacer.",
+    "newsletterConsent": "J'accepte de recevoir la newsletter d'Atouts Services (1 à 2 e-mails par mois). Désinscription en un clic à tout moment.",
+    "link": "Politique de confidentialité"
   }
 }

@@ -3,15 +3,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { apiClient, endpoints } from "@/lib/api";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export function NewsletterCard() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  // Newsletter = marketing: RGPD requires a free, explicit, unticked opt-in
+  const [consent, setConsent] = useState(false);
+  const t = useTranslations("privacyNotice");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !consent) return;
 
     setStatus("loading");
     try {
@@ -46,10 +51,23 @@ export function NewsletterCard() {
             className="w-full px-4 py-3 rounded-lg mb-3 text-gray-900 text-sm"
             required
           />
+          <label className="flex items-start gap-2 text-xs text-white/90 mb-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              required
+              className="mt-0.5 h-4 w-4 shrink-0"
+            />
+            <span>
+              {t("newsletterConsent")}{" "}
+              <Link href="/politique-de-confidentialite" className="underline">{t("link")}</Link>
+            </span>
+          </label>
           <Button
             type="submit"
             className="w-full bg-white text-blue-600 hover:bg-gray-100 font-medium"
-            disabled={status === "loading"}
+            disabled={status === "loading" || !consent}
           >
             {status === "loading" ? "Inscription..." : "S'abonner"}
           </Button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -378,6 +379,8 @@ export function MultiStepQuoteForm() {
               </div>
             </div>
           )}
+
+          {step === 4 && <PrivacyNotice className="mt-6 text-gray-500" />}
 
           {/* Navigation */}
           <div className="flex justify-between mt-8 pt-6 border-t">

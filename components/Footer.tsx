@@ -6,6 +6,7 @@ import { servicesData } from "@/lib/services-data";
 import { apiClient, endpoints } from "@/lib/api";
 import { COMPANY_INFO } from "@/lib/constants";
 import type { CityPage } from "@/types/api";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 
 const heading = "text-sm font-semibold uppercase tracking-wider text-white mb-4";
 const footerLink = "text-neutral-400 hover:text-white transition-colors";
@@ -94,6 +95,8 @@ export async function Footer() {
             <Link href="/mentions-legales" className={footerLink}>{t("legalMentions")}</Link>
             <Link href="/politique-de-confidentialite" className={footerLink}>{t("privacyPolicy")}</Link>
             <Link href="/conditions-generales" className={footerLink}>{t("termsOfUse")}</Link>
+            <Link href="/cookies" className={footerLink}>Cookies</Link>
+            <CookieSettingsLink className={footerLink} />
           </nav>
         </div>
       </div>

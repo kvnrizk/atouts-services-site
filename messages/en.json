@@ -114,9 +114,26 @@
     "cookies": "Cookie settings"
   },
   "cookie": {
-    "message": "This site uses privacy-friendly analytics tools to improve your experience. No advertising cookies are used.",
-    "decline": "Decline",
-    "accept": "Accept"
+    "title": "Your cookie choices",
+    "message": "We measure site traffic anonymously, without cookies. With your consent, we can also show third-party content (Google Maps) and measure how well our ads perform. You can change your mind at any time via \"Cookie settings\" at the bottom of the page.",
+    "acceptAll": "Accept all",
+    "refuseAll": "Refuse all",
+    "customize": "Customize",
+    "save": "Save my choices",
+    "close": "Close",
+    "learnMore": "Learn more",
+    "necessaryTitle": "Strictly necessary",
+    "necessaryDesc": "Remembers your cookie and language choices. Always on.",
+    "analyticsTitle": "Anonymous audience measurement",
+    "analyticsDesc": "Plausible Analytics: page views, country, traffic source. No cookies, no IP address stored. Exempt from consent (CNIL).",
+    "thirdPartyTitle": "Third-party content",
+    "thirdPartyDesc": "Interactive Google Maps. Google may set cookies and collect your IP address.",
+    "adsTitle": "Advertising",
+    "adsDesc": "Measures the effectiveness of our Google Ads campaigns (conversions). No ads are shown on this site.",
+    "alwaysOn": "Always on",
+    "settings": "Cookie settings",
+    "mapBlocked": "Google Maps is disabled until you accept third-party content.",
+    "showMap": "Show the map"
   },
   "mobileCTA": {
     "freeQuote": "Free quote"
@@ -126,5 +143,11 @@
     "message": "You don't have an internet connection. Please check your network and try again.",
     "retry": "Retry",
     "callUs": "Call us"
+  },
+  "privacyNotice": {
+    "quote": "Your data is only used to handle your request and get back to you. It is kept for 3 years after our last exchange, then deleted. You can access, correct or delete it at any time.",
+    "account": "Your data is used to manage your client account and follow up on your projects. It is kept for the duration of the contract, then 5 years (limitation period). You can access, correct or delete it.",
+    "newsletterConsent": "I agree to receive the Atouts Services newsletter (1–2 emails per month). Unsubscribe in one click at any time.",
+    "link": "Privacy policy"
   }
 }
