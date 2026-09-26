@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Phone, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -11,9 +11,9 @@ import { COMPANY_INFO } from "@/lib/constants";
 import { serviceLinks as services } from "@/lib/service-links";
 import { cn } from "@/lib/utils";
 
-const navLink = "relative font-medium text-neutral-700 transition-colors hover:text-neutral-950";
-// Current page: dark text + a short sky underline
-const navActive = "text-neutral-950 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-sky-400";
+// Menu links are pills: grey on hover, the current page sits in a soft grey pill
+const pill = "rounded-full px-3.5 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-950";
+const pillActive = "bg-neutral-100 text-neutral-950";
 
 // Every menu entry is a real <Link> (not a scroll button) so Google can follow it,
 // visitors can open it in a new tab, and it works the same on every page.
@@ -61,76 +61,90 @@ export const Header = () => {
 
   return (
     <>
-      <header
-        className={cn(
-          "sticky top-0 z-50 border-b transition-[background-color,box-shadow] duration-300 ease-out motion-reduce:transition-none",
-          scrolled ? "border-neutral-200/70 bg-white/90 shadow-sm backdrop-blur-md" : "border-transparent bg-white/75 backdrop-blur-md",
-        )}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center" aria-label="Atouts Services — accueil">
-              <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={150} height={51} sizes="150px" className="h-11 w-auto" priority />
-            </Link>
+      {/* Floating capsule: the outer <header> keeps the historic 65px height (8px gap + 57px bar)
+          so every page hero that slides under it (-mt-[65px]) stays aligned */}
+      <header className="pointer-events-none sticky top-0 z-50 h-[65px] px-3 pt-2 md:px-4">
+        <div
+          className={cn(
+            "pointer-events-auto mx-auto flex h-[57px] max-w-6xl items-center justify-between gap-3 rounded-full border bg-white/80 pl-4 pr-2 backdrop-blur-xl transition-[box-shadow,background-color,border-color] duration-300 motion-reduce:transition-none md:pl-5",
+            scrolled
+              ? "border-neutral-200/80 bg-white/90 shadow-[0_10px_30px_-12px_rgba(10,10,10,0.25)]"
+              : "border-white/60 shadow-[0_6px_20px_-12px_rgba(10,10,10,0.18)]",
+          )}
+        >
+          <Link href="/" className="flex shrink-0 items-center" aria-label="Atouts Services — accueil">
+            <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={120} height={41} sizes="120px" className="h-9 w-auto" priority />
+          </Link>
 
-            <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
-              {/* Services dropdown: opens on hover and on keyboard focus, no JS needed */}
-              <div className="group relative">
-                <Link
-                  href="/#services"
-                  className={cn(navLink, "inline-flex items-center gap-1", pathname.startsWith("/services/") && navActive)}
-                  aria-haspopup="true"
-                >
-                  {t("services")}
-                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
-                </Link>
-                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition duration-200 ease-out group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <ul className="w-64 rounded-2xl bg-white p-2 shadow-xl ring-1 ring-black/5">
-                    {services.map((s) => (
-                      <li key={s.slug}>
-                        <Link
-                          href={`/services/${s.slug}`}
-                          aria-current={pathname === `/services/${s.slug}` ? "page" : undefined}
-                          className={cn(
-                            "block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-sky-50 hover:text-sky-700",
-                            pathname === `/services/${s.slug}` ? "font-semibold text-sky-700" : "text-neutral-700",
-                          )}
-                        >
-                          {s.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+            {/* Services dropdown: opens on hover and on keyboard focus, no JS needed */}
+            <div className="group relative">
+              <Link
+                href="/#services"
+                className={cn(pill, "inline-flex items-center gap-1", pathname.startsWith("/services/") && pillActive)}
+                aria-haspopup="true"
+              >
+                {t("services")}
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+              </Link>
+              <div className="invisible absolute left-1/2 top-full -translate-x-1/2 translate-y-1 pt-4 opacity-0 transition duration-200 ease-out group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <ul className="w-64 rounded-2xl border border-neutral-200/80 bg-white p-1.5 shadow-[0_18px_40px_-16px_rgba(10,10,10,0.3)]">
+                  {services.map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={`/services/${s.slug}`}
+                        aria-current={pathname === `/services/${s.slug}` ? "page" : undefined}
+                        className={cn(
+                          "flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition-colors hover:bg-neutral-100",
+                          pathname === `/services/${s.slug}` ? "font-semibold text-neutral-950" : "text-neutral-700",
+                        )}
+                      >
+                        {s.title}
+                        <ChevronRight className="h-3.5 w-3.5 text-neutral-400" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <Link href="/realisations" aria-current={isActive("/realisations") ? "page" : undefined} className={cn(navLink, isActive("/realisations") && navActive)}>
-                {t("portfolio")}
-              </Link>
-              <Link href="/blog" aria-current={isActive("/blog") ? "page" : undefined} className={cn(navLink, isActive("/blog") && navActive)}>
-                {t("blog")}
-              </Link>
-              <Link href={contactHref} onClick={onContactClick} className={navLink}>{t("contact")}</Link>
-              <LanguageSwitcher />
-            </nav>
+            </div>
+            <Link href="/realisations" aria-current={isActive("/realisations") ? "page" : undefined} className={cn(pill, isActive("/realisations") && pillActive)}>
+              {t("portfolio")}
+            </Link>
+            <Link href="/blog" aria-current={isActive("/blog") ? "page" : undefined} className={cn(pill, isActive("/blog") && pillActive)}>
+              {t("blog")}
+            </Link>
+            <Link href={contactHref} onClick={onContactClick} className={pill}>{t("contact")}</Link>
+          </nav>
 
+          <div className="flex items-center gap-2">
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
+            <TrackedPhoneLink
+              location="header"
+              aria-label={`Appeler le ${COMPANY_INFO.phone}`}
+              title={COMPANY_INFO.phone}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-800 transition hover:border-neutral-950 hover:bg-neutral-950 hover:text-white active:scale-95"
+            >
+              <Phone className="h-4 w-4" />
+            </TrackedPhoneLink>
             <Link
               href={contactHref}
               onClick={onContactClick}
-              className="hidden items-center rounded-md bg-neutral-950 px-4 py-2 text-sm font-medium text-white shadow-elegant transition hover:bg-neutral-800 active:scale-[0.98] md:inline-flex"
+              className="group hidden h-10 items-center gap-1.5 rounded-full bg-neutral-950 pl-4 pr-3 text-sm font-semibold text-white transition hover:bg-sky-400 hover:text-neutral-950 active:scale-[0.98] md:inline-flex"
             >
-              <Phone className="mr-2 h-4 w-4" />
               {t("freeQuote")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
-
             <button
               type="button"
               onClick={() => setIsMenuOpen(true)}
-              className="-mr-2 rounded-md p-2 text-neutral-900 active:scale-95 md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-950 text-white active:scale-95 md:hidden"
               aria-label="Ouvrir le menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5" />
             </button>
           </div>
         </div>
