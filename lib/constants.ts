@@ -4,7 +4,7 @@ export const APP_NAME = 'Atouts Services';
 
 export const COMPANY_INFO = {
   name: 'Atouts Services',
-  email: 'contact@atouts-services.fr',
+  email: 'atouts.services92@gmail.com',
   phone: '06 34 02 61 80',
   /** International format for tel: links — one format everywhere (consistent NAP for local SEO). */
   phoneHref: 'tel:+33634026180',

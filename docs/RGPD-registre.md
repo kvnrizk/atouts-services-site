@@ -6,7 +6,7 @@ Article 30 du RGPD. À tenir à jour à chaque nouveau traitement, nouveau prest
 - **Responsable du traitement :** ATOUTS SERVICES, SARL — SIRET 490 173 697 00049 —
   20 rue d'Estienne d'Orves, 92130 Issy-les-Moulineaux
 - **Représentant légal :** Maroun ABI ATMI, gérant
-- **Contact données personnelles :** contact@atouts-services.fr
+- **Contact données personnelles :** atouts.services92@gmail.com
 - **Délégué à la protection des données (DPO) :** non désigné (non obligatoire : pas de traitement à grande
   échelle ni de données sensibles)
 - **Dernière mise à jour :** 25 septembre 2026

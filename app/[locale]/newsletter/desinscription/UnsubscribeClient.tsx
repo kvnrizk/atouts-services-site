@@ -23,7 +23,7 @@ export function UnsubscribeClient({ token }: { token: string }) {
   };
 
   if (!token) {
-    return <p className="text-neutral-600">Lien de désinscription invalide. Utilisez le lien présent en bas de nos e-mails, ou écrivez-nous à contact@atouts-services.fr.</p>;
+    return <p className="text-neutral-600">Lien de désinscription invalide. Utilisez le lien présent en bas de nos e-mails, ou écrivez-nous à atouts.services92@gmail.com.</p>;
   }
 
   return (
@@ -43,7 +43,7 @@ export function UnsubscribeClient({ token }: { token: string }) {
             {state === "loading" ? "…" : "Confirmer la désinscription"}
           </button>
           {state === "error" && (
-            <p className="mt-4 text-sm text-red-600">Une erreur est survenue. Réessayez ou écrivez-nous à contact@atouts-services.fr.</p>
+            <p className="mt-4 text-sm text-red-600">Une erreur est survenue. Réessayez ou écrivez-nous à atouts.services92@gmail.com.</p>
           )}
         </>
       )}

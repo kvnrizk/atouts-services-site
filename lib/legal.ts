@@ -21,7 +21,7 @@ export const LEGAL = {
   rmNumber: null as string | null,
   nafCode: "43.21A — Travaux d'installation électrique dans tous locaux",
   address: "20 rue d'Estienne d'Orves, 92130 Issy-les-Moulineaux, France",
-  email: "contact@atouts-services.fr",
+  email: "atouts.services92@gmail.com",
   phone: "06 34 02 61 80",
   /** Directeur de la publication (LCEN art. 6): the gérant, per the SIRENE registry. */
   publicationDirector: "Maroun ABI ATMI, gérant",
