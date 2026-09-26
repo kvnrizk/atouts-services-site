@@ -30,11 +30,12 @@ export async function Testimonials() {
   const label = (type?: string) => PROJECT_TYPES.find((p) => p.value === type)?.label;
 
   return (
-    <section id="testimonials" className="bg-stone-50 py-20" aria-labelledby="testimonials-title">
+    <section id="testimonials" className="bg-neutral-50 py-24" aria-labelledby="testimonials-title">
       <div className="container mx-auto px-4">
         <Reveal>
-          <div className="mb-14 text-center">
-            <h2 id="testimonials-title" className="mb-4 text-4xl font-bold text-gray-900">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">Avis clients</p>
+            <h2 id="testimonials-title" className="mb-6 mt-2 text-4xl font-bold text-neutral-950 md:text-5xl">
               Ce que disent nos clients
             </h2>
             <div className="inline-flex items-center gap-3 rounded-full bg-white px-5 py-2 shadow-sm ring-1 ring-neutral-200">
