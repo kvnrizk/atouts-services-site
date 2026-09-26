@@ -34,38 +34,40 @@ export function SocialShareButtons({ title }: SocialShareButtonsProps) {
   };
 
   return (
-    <div className="border-t border-gray-200 pt-6">
-      <p className="text-sm font-semibold text-gray-600 mb-3">
-        Partager cet article :
-      </p>
-      <div className="flex gap-3">
+    <div className="flex items-center gap-4">
+      <p className="text-sm font-medium text-neutral-500">Partager</p>
+      <div className="flex gap-2">
         <button
+          type="button"
           onClick={() => share("facebook")}
-          className="w-10 h-10 bg-[#3b5998] text-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-600 ring-1 ring-neutral-200 transition hover:text-sky-700 hover:ring-sky-300 active:scale-95"
           aria-label="Partager sur Facebook"
         >
           <Facebook className="h-4 w-4" />
         </button>
         <button
+          type="button"
           onClick={() => share("twitter")}
-          className="w-10 h-10 bg-[#1da1f2] text-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-600 ring-1 ring-neutral-200 transition hover:text-sky-700 hover:ring-sky-300 active:scale-95"
           aria-label="Partager sur Twitter"
         >
           <Twitter className="h-4 w-4" />
         </button>
         <button
+          type="button"
           onClick={() => share("linkedin")}
-          className="w-10 h-10 bg-[#0077b5] text-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-600 ring-1 ring-neutral-200 transition hover:text-sky-700 hover:ring-sky-300 active:scale-95"
           aria-label="Partager sur LinkedIn"
         >
           <Linkedin className="h-4 w-4" />
         </button>
         <button
+          type="button"
           onClick={copyLink}
-          className="w-10 h-10 bg-gray-200 text-gray-700 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-600 ring-1 ring-neutral-200 transition hover:text-sky-700 hover:ring-sky-300 active:scale-95"
           aria-label="Copier le lien"
         >
-          {copied ? <Check className="h-4 w-4 text-green-600" /> : <LinkIcon className="h-4 w-4" />}
+          {copied ? <Check className="h-4 w-4 text-sky-600" /> : <LinkIcon className="h-4 w-4" />}
         </button>
       </div>
     </div>

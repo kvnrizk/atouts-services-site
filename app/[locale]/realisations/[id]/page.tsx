@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Phone } from "lucide-react";
+import { PageHero } from "@/components/PageHero";
+import { ClosingCta } from "@/components/ClosingCta";
+import { projectTypeLabel as categoryLabel } from "@/lib/constants";
 import { apiClient, endpoints } from "@/lib/api";
 import type { BeforeAfter } from "@/types/api";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
@@ -42,88 +44,56 @@ export default async function RealisationDetailPage({
     notFound();
   }
 
+  const label = categoryLabel(item.category);
+
   return (
     <>
       <Header />
-      <main id="main-content" className="pt-20">
-        <section className="py-12">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <Link
-              href="/realisations"
-              className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour aux r&eacute;alisations
+      <main id="main-content">
+        <PageHero
+          eyebrow={label ? `Réalisation · ${label}` : "Réalisation"}
+          title={item.title}
+          intro={item.description}
+          top={
+            <nav aria-label="Fil d'Ariane" className="mb-6 flex items-center gap-1 text-xs text-neutral-400">
+              <Link href="/" className="hover:text-white">Accueil</Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link href="/realisations" className="hover:text-white">Réalisations</Link>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-neutral-200">{item.title}</span>
+            </nav>
+          }
+        />
+
+        <section className="bg-neutral-50 py-16 md:py-20">
+          <div className="container mx-auto max-w-5xl px-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">Faites glisser</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-950">Avant / après</h2>
+            <div className="mt-8 overflow-hidden rounded-2xl ring-1 ring-neutral-200">
+              <BeforeAfterSlider beforeImage={item.beforeImageUrl} afterImage={item.afterImageUrl} title={item.title} />
+            </div>
+
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+              {[
+                { src: item.beforeImageUrl, text: "Avant" },
+                { src: item.afterImageUrl, text: "Après" },
+              ].map((img) => (
+                <figure key={img.text}>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200">
+                    <Image src={img.src} alt={`${item.title} — ${img.text.toLowerCase()}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+                  </div>
+                  <figcaption className="mt-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">{img.text}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <Link href="/realisations" className="mt-12 inline-flex items-center text-sm font-semibold text-neutral-950 hover:text-sky-700">
+              ← Toutes nos réalisations
             </Link>
-
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {item.title}
-            </h1>
-            {item.description && (
-              <p className="text-lg text-gray-600 mb-2">{item.description}</p>
-            )}
-            {item.category && (
-              <span className="inline-block text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-full mb-8">
-                {item.category}
-              </span>
-            )}
-
-            {/* Before/After Slider */}
-            <div className="my-8">
-              <BeforeAfterSlider
-                beforeImage={item.beforeImageUrl}
-                afterImage={item.afterImageUrl}
-                title={item.title}
-              />
-            </div>
-
-            {/* Side by side */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div>
-                <p className="text-sm font-bold text-red-600 mb-2">AVANT</p>
-                <Image
-                  src={item.beforeImageUrl}
-                  alt={`${item.title} - Avant`}
-                  width={600}
-                  height={400}
-                  className="w-full rounded-lg shadow-md"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-green-600 mb-2">APR&Egrave;S</p>
-                <Image
-                  src={item.afterImageUrl}
-                  alt={`${item.title} - Après`}
-                  width={600}
-                  height={400}
-                  className="w-full rounded-lg shadow-md"
-                />
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 bg-blue-50">
-          <div className="container mx-auto px-4 text-center max-w-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Envie d&apos;un r&eacute;sultat similaire ?
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Contactez-nous pour un devis gratuit et sans engagement
-            </p>
-            <Button
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
-              asChild
-            >
-              <a href="/#contact">
-                <Phone className="h-5 w-5 mr-2" />
-                Demander un Devis Gratuit
-              </a>
-            </Button>
-          </div>
-        </section>
+        <ClosingCta title="Envie d’un résultat similaire ?" trackingLocation="realisation-closing-cta" />
       </main>
       <Footer />
     </>

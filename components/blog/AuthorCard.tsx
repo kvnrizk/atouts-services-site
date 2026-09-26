@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
 interface AuthorCardProps {
   authorName: string;
@@ -14,22 +13,28 @@ export function AuthorCard({ authorName }: AuthorCardProps) {
     .slice(0, 2);
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
-      <div className="text-center">
-        <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4">
-          {initials}
-        </div>
-        <h3 className="font-bold text-gray-900 text-lg mb-2">{authorName}</h3>
-        <p className="text-sm text-gray-600 mb-6">
-          Expert en rénovation depuis 2015
-        </p>
-        <Button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-          asChild
+    <div className="rounded-2xl bg-neutral-950 p-6 text-white">
+      <div className="flex items-center gap-4">
+        <span
+          aria-hidden="true"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 text-lg font-bold"
         >
-          <Link href="/#contact">Demander un devis</Link>
-        </Button>
+          {initials}
+        </span>
+        <div>
+          <p className="font-bold">{authorName}</p>
+          <p className="text-sm text-neutral-400">Expert en rénovation depuis 2015</p>
+        </div>
       </div>
+      <p className="mt-5 text-sm text-neutral-300">
+        Une question sur votre projet ? Visite et devis gratuits, réponse sous 24 h.
+      </p>
+      <Link
+        href="/#contact"
+        className="mt-5 flex w-full items-center justify-center rounded-md bg-sky-400 px-4 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-sky-300 active:scale-[0.98]"
+      >
+        Demander un devis
+      </Link>
     </div>
   );
 }

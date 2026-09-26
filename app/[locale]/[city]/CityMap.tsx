@@ -14,7 +14,7 @@ export function CityMap({ slug }: CityMapProps) {
     <GoogleMap
       center={center}
       zoom={14}
-      className="h-[350px] rounded-xl overflow-hidden shadow-lg"
+      className="h-[350px] overflow-hidden rounded-2xl ring-1 ring-neutral-200"
     />
   );
 }

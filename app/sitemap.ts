@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { allServiceSlugs } from "@/lib/services-data";
 import { apiClient, endpoints } from "@/lib/api";
 import type { BlogPost, CityPage, BeforeAfter } from "@/types/api";
+import { BLOG_LIST_LIMIT } from "@/lib/blog";
 
 const BASE_URL = "https://www.atouts-services.fr";
 
@@ -20,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const [blogData, cityData, baData] = await Promise.all([
-      apiClient.get(endpoints.blog.getAll),
+      apiClient.get(`${endpoints.blog.getAll}?limit=${BLOG_LIST_LIMIT}`),
       apiClient.get(endpoints.cityPages.getAll),
       apiClient.get(`${endpoints.beforeAfter.getAll}?published=true`),
     ]);

@@ -26,7 +26,7 @@ const initials = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-function Stars({ rating, className }: { rating: number; className?: string }) {
+export function Stars({ rating, className }: { rating: number; className?: string }) {
   return (
     <div className={cn("flex gap-0.5", className)} role="img" aria-label={`Note : ${rating} sur 5`}>
       {Array.from({ length: 5 }, (_, i) => (

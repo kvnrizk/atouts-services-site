@@ -24,6 +24,12 @@ export const PROJECT_TYPES = [
   { value: 'autre', label: 'Autre' },
 ];
 
+/** Readable label for a project type slug ("salles-de-bains" -> "Salle de bain"); unknown values are capitalised */
+export function projectTypeLabel(value?: string | null): string | undefined {
+  if (!value) return undefined;
+  return PROJECT_TYPES.find((p) => p.value === value)?.label ?? value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 export const QUOTE_REQUEST_STATUS = {
   nouveau: 'Nouveau',
   en_cours: 'En cours',
