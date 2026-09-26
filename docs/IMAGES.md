@@ -49,19 +49,11 @@ no recognisable person. Checked as free Unsplash License photos (Unsplash+ photo
 Service pages no longer use a before/after slider as hero; the Avant/Après gallery only shows real projects
 added from the admin.
 
-### Service icons (added 2026-09-26)
+### Service icons
 
-`public/images/icons/services/<slug>.png` (256 px, transparent) — **Microsoft Fluent Emoji 3D**,
-MIT licence (commercial use OK, no on-site credit; the licence text must travel with the files:
-`LICENSE-fluentui-emoji.txt` in the same folder). Source: github.com/microsoft/fluentui-emoji.
-
-| Service | File | Fluent emoji |
-|---|---|---|
-| Peinture | `peinture.png` | Paintbrush |
-| Rénovation | `renovation.png` | House |
-| Électricité | `electricite.png` | High voltage |
-| Salles de bains | `salles-de-bains.png` | Bathtub |
-| Revêtements de sol | `revetements-sol.png` | Wood |
+"Nos services" uses **Phosphor Icons** (duotone weight) from the `@phosphor-icons/react` package, MIT
+licence (licence text ships with the npm package). No image files. Fluent Emoji 3D icons were tried
+on 2026-09-26 and dropped (too playful for the brand).
 
 ## Own assets
 

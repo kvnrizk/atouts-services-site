@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Bathtub, GridFour, HouseLine, Lightning, PaintRoller, type Icon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { LazyHexNut3D } from "@/components/LazyHexNut3D";
 import { Reveal } from "@/components/Reveal";
@@ -36,26 +37,27 @@ const services = [
 /** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
 const LOGO_SRC = "/images/brand/logo-mark-large.png";
 
-/** 3D-style icon per service (Microsoft Fluent Emoji 3D, MIT — licence file next to the images) */
-const iconOf = (link: string) => `/images/icons/services/${link.replace("/services/", "")}.png`;
+/** One Phosphor duotone icon per service (MIT): clean outline + light sky fill, professional and on-brand */
+const ICONS: Record<string, Icon> = {
+  "/services/peinture": PaintRoller,
+  "/services/renovation": HouseLine,
+  "/services/electricite": Lightning,
+  "/services/salles-de-bains": Bathtub,
+  "/services/revetements-sol": GridFour,
+};
 
 const iconHoverBorder = "group-hover:border-sky-400";
 const iconHoverText = "group-hover:text-sky-600";
 
-/** White disc holding the 3D icon; lifts and tilts slightly on hover */
+/** White disc with the duotone icon; the disc turns dark and the icon sky on hover */
 function ServiceIcon({ link, size }: { link: string; size: number }) {
+  const Glyph = ICONS[link];
   return (
     <span
-      className="relative flex shrink-0 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-neutral-200 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg group-hover:ring-sky-300"
+      className="relative flex shrink-0 items-center justify-center rounded-full bg-white text-sky-700 shadow-md ring-1 ring-neutral-200 transition duration-300 group-hover:bg-neutral-950 group-hover:text-sky-400 group-hover:ring-neutral-950"
       style={{ width: size, height: size }}
     >
-      <Image
-        src={iconOf(link)}
-        alt=""
-        width={Math.round(size * 0.66)}
-        height={Math.round(size * 0.66)}
-        className="transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
-      />
+      {Glyph && <Glyph size={Math.round(size * 0.46)} weight="duotone" aria-hidden="true" />}
     </span>
   );
 }
