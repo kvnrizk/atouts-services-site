@@ -29,6 +29,23 @@ were removed on 2026-09-25.
 | 5 | `electricien-au-travail.jpg` | Electrician at work (**recognisable person**) | Électricité header | ⚠️ **NEVER USE IN ADS.** Site only. No model release. Replace with a photo of our own team when available. |
 | 6 | `salon-parquet.jpg` | Living room with parquet | Revêtements de sol header | OK decoration |
 
+### Blog cover photos (added 2026-09-26)
+
+Files in `public/images/blog/<article-slug>.jpg`, resized to 1600 px, self-hosted. Chosen for each article's topic;
+no recognisable person. Checked as free Unsplash License photos (Unsplash+ photos cannot be downloaded without a subscription).
+
+| # | File | Subject | Unsplash page | Status |
+|---|---|---|---|---|
+| 7 | `maprimerenov-2026-travaux-eligibles.jpg` | Outdoor heat pump | [4VCm8l6wLQY](https://unsplash.com/photos/4VCm8l6wLQY) | OK decoration (a brand name is visible on the unit — avoid in ads) |
+| 8 | `tva-10-ou-5-5-travaux.jpg` | Calculator, pen, paper | [I3HPUolh5hA](https://unsplash.com/photos/I3HPUolh5hA) | OK decoration |
+| 9 | `norme-nf-c-15-100-refaire-electricite.jpg` | Electrical panel | [ufo5IiRdqjc](https://unsplash.com/photos/ufo5IiRdqjc) | OK decoration |
+| 10 | `travaux-copropriete-autorisation.jpg` | Haussmannian building facade | [yyb5HOnHfus](https://unsplash.com/photos/yyb5HOnHfus) | OK decoration |
+| 11 | `douche-italienne-erreurs-a-eviter.jpg` | Glass walk-in shower | [Ies-rhvusTs](https://unsplash.com/photos/Ies-rhvusTs) | OK decoration — **never present it as our own work** |
+| 12 | `duree-renovation-salle-de-bains.jpg` | Renovated bathroom | [JUdaVudt_Ok](https://unsplash.com/photos/JUdaVudt_Ok) | OK decoration — **never present it as our own work** |
+| 13 | `parquet-ou-carrelage-cuisine.jpg` | White kitchen, wood-look floor | [UD0_vxdKYMg](https://unsplash.com/photos/UD0_vxdKYMg) | OK decoration |
+| 14 | `renover-appartement-ancien-boulogne-billancourt.jpg` | Herringbone parquet | [_e2Jw79ssKo](https://unsplash.com/photos/_e2Jw79ssKo) | OK decoration |
+
+
 Service pages no longer use a before/after slider as hero; the Avant/Après gallery only shows real projects
 added from the admin.
 
