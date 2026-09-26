@@ -20,6 +20,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const CATEGORIES = [
   { value: "peinture", label: "Peinture" },
@@ -46,6 +47,7 @@ function SimulatorAdminContent() {
   const [editingItem, setEditingItem] = useState<PriceReference | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     category: "peinture",
@@ -102,7 +104,12 @@ function SimulatorAdminContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Etes-vous sur de vouloir supprimer ce tarif ?")) return;
+    const priceRef = priceRefs.find((p) => p.id === id);
+    const ok = await confirm({
+      title: "Supprimer ce tarif ?",
+      description: <>« {priceRef?.label ?? "Tarif"} » sera définitivement supprimé du simulateur.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.priceReferences.delete(id));
       toast({ title: "Succes", description: "Tarif supprime" });

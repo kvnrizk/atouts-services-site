@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/table';
 import { Euro, CreditCard, Clock, RefreshCw, Loader2 } from 'lucide-react';
 import type { Payment, PaymentStats } from '@/types/api';
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const STATUS_COLORS: Record<string, string> = {
   completed: 'bg-green-100 text-green-800',
@@ -33,6 +34,7 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 function PaymentsContent() {
+  const confirm = useConfirm();
   const [payments, setPayments] = useState<Payment[]>([]);
   const [stats, setStats] = useState<PaymentStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +60,13 @@ function PaymentsContent() {
   }, []);
 
   const handleRefund = async (paymentId: number) => {
-    if (!confirm('Confirmer le remboursement de ce paiement ?')) return;
+    const payment = payments.find((p) => p.id === paymentId);
+    const ok = await confirm({
+      title: "Rembourser ce paiement ?",
+      description: <>{payment ? `${Number(payment.amount).toLocaleString("fr-FR")} € ` : ""}seront remboursés au client. Cette action ne peut pas être annulée.</>,
+      confirmLabel: "Rembourser",
+    });
+    if (!ok) return;
     setRefundingId(paymentId);
     try {
       await apiClient.post(endpoints.payments.refund(paymentId));

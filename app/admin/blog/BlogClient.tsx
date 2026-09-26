@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import type { BlogPost } from "@/types/api";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const categories = [
   { value: "renovation", label: "Rénovation" },
@@ -44,6 +45,7 @@ function BlogContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -135,7 +137,12 @@ function BlogContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) return;
+    const post = posts.find((p) => p.id === id);
+    const ok = await confirm({
+      title: "Supprimer cet article ?",
+      description: <>« {post?.title ?? "Article"} » sera définitivement supprimé du blog. Pour le retirer du site sans le perdre, masquez-le plutôt (icône œil).</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.blog.delete(id));
       toast({ title: "Succès", description: "Article supprimé" });

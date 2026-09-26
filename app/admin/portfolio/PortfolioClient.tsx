@@ -19,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import type { Portfolio } from '@/types/api';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { AdminLayout } from '@/components/admin/AdminLayout';
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const categories = [
   { value: 'peinture', label: 'Peinture' },
@@ -36,6 +37,7 @@ function PortfolioContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     title: '',
@@ -109,7 +111,12 @@ function PortfolioContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) return;
+    const item = portfolioItems.find((p) => p.id === id);
+    const ok = await confirm({
+      title: "Supprimer cette photo ?",
+      description: <>« {item?.title ?? "Photo"} » sera définitivement supprimée du portfolio.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.portfolio.delete(id));
       toast({ title: 'Succès', description: 'Élément supprimé' });

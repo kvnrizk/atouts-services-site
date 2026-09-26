@@ -19,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import type { BeforeAfter } from '@/types/api';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { AdminLayout } from '@/components/admin/AdminLayout';
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const categories = [
   { value: 'peinture', label: 'Peinture' },
@@ -37,6 +38,7 @@ function BeforeAfterContent() {
   const [isUploadingBefore, setIsUploadingBefore] = useState(false);
   const [isUploadingAfter, setIsUploadingAfter] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     title: '',
@@ -109,7 +111,12 @@ function BeforeAfterContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) return;
+    const item = items.find((i) => i.id === id);
+    const ok = await confirm({
+      title: "Supprimer cet avant / après ?",
+      description: <>« {item?.title ?? "Projet"} » sera définitivement supprimé, avec ses deux photos.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.beforeAfter.delete(id));
       toast({ title: 'Succès', description: 'Élément supprimé' });

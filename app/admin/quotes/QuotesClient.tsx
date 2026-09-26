@@ -13,6 +13,7 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { AdminLayout } from '@/components/admin/AdminLayout';
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const STATUS_OPTIONS = [
   { value: '', label: 'Tous' },
@@ -38,6 +39,7 @@ function QuoteRequestsContent() {
   const [statusFilter, setStatusFilter] = useState('');
   const [projectFilter, setProjectFilter] = useState('');
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   useEffect(() => {
     fetchRequests();
@@ -78,7 +80,12 @@ function QuoteRequestsContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer cette demande ?')) return;
+    const request = requests.find((r) => r.id === id);
+    const ok = await confirm({
+      title: "Supprimer cette demande de devis ?",
+      description: <>La demande de {request ? `${request.first_name} ${request.last_name}` : "ce client"} sera définitivement supprimée, avec ses coordonnées.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.quoteRequests.delete(id));
       toast({ title: 'Succès', description: 'Demande supprimée' });

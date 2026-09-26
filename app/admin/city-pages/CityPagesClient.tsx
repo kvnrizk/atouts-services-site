@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import type { CityPage } from "@/types/api";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 function slugify(text: string): string {
   return text
@@ -37,6 +38,7 @@ function CityPagesContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     cityName: "",
@@ -122,7 +124,12 @@ function CityPagesContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cette page ?")) return;
+    const page = pages.find((p) => p.id === id);
+    const ok = await confirm({
+      title: "Supprimer cette page ville ?",
+      description: <>La page « {page?.cityName ?? "ville"} » sera définitivement supprimée, et son adresse ne sera plus trouvée par Google.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.cityPages.delete(id));
       toast({ title: "Succès", description: "Page supprimée" });

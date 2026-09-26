@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import type { Testimonial } from "@/types/api";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { useConfirm } from "@/components/admin/ConfirmDialog";
 
 const projectTypes = [
   { value: "peinture", label: "Peinture" },
@@ -34,6 +35,7 @@ function TestimonialsContent() {
   const [editingItem, setEditingItem] = useState<Testimonial | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const confirm = useConfirm();
 
   const [formData, setFormData] = useState({
     clientName: "",
@@ -82,7 +84,12 @@ function TestimonialsContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cet avis ?")) return;
+    const testimonial = testimonials.find((t) => t.id === id);
+    const ok = await confirm({
+      title: "Supprimer cet avis ?",
+      description: <>L&apos;avis de {testimonial?.clientName ?? "ce client"} sera définitivement supprimé.</>,
+    });
+    if (!ok) return;
     try {
       await apiClient.delete(endpoints.testimonials.delete(id));
       toast({ title: "Succès", description: "Avis supprimé" });
