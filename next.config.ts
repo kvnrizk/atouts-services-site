@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.API_HOSTNAME || "api.atouts-services.fr",
+        hostname: process.env.API_HOSTNAME || "api.atoutservice92.fr",
       },
       ...(process.env.CDN_HOSTNAME
         ? [{ protocol: "https" as const, hostname: process.env.CDN_HOSTNAME }]

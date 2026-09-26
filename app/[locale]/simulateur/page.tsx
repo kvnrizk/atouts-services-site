@@ -43,7 +43,7 @@ export default function SimulateurPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "Simulateur de Prix - Atouts Services",
-            url: "https://www.atouts-services.fr/simulateur",
+            url: "https://www.atoutservice92.fr/simulateur",
             applicationCategory: "UtilityApplication",
             operatingSystem: "Web",
             description:

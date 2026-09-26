@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/espace-client/"],
     },
-    sitemap: "https://www.atouts-services.fr/sitemap.xml",
+    sitemap: "https://www.atoutservice92.fr/sitemap.xml",
   };
 }

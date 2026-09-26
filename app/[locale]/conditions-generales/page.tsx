@@ -20,7 +20,7 @@ export default function ConditionsGeneralesPage() {
       body: (
         <>
           <p>
-            Les présentes conditions régissent l&apos;utilisation du site atouts-services.fr, édité par {name} (voir les{" "}
+            Les présentes conditions régissent l&apos;utilisation du site atoutservice92.fr, édité par {name} (voir les{" "}
             <Link href="/mentions-legales">mentions légales</Link>). Le site présente nos services de rénovation et
             permet de :
           </p>

@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.atouts-services.fr"),
+  metadataBase: new URL("https://www.atoutservice92.fr"),
   title: {
     default: "Entreprise de rénovation Paris & Île-de-France | Atouts Services",
     template: "%s | Atouts Services",

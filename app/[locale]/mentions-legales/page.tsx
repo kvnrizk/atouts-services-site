@@ -14,7 +14,7 @@ export default function MentionsLegalesPage() {
   return (
     <LegalPage title="Mentions légales">
       <h2>1. Éditeur du site</h2>
-      <p>Le site <strong>atouts-services.fr</strong> est édité par :</p>
+      <p>Le site <strong>atoutservice92.fr</strong> est édité par :</p>
       <ul>
         <li><strong>{LEGAL.companyName}</strong>, {LEGAL.legalForm}</li>
         <li>Capital social : <Fill value={LEGAL.shareCapital} what="capital social (extrait Kbis)" /></li>

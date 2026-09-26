@@ -1,6 +1,6 @@
 import { COMPANY_INFO, SERVICE_AREAS, SERVICE_REGION } from "./constants";
 
-const BASE_URL = "https://www.atouts-services.fr";
+const BASE_URL = "https://www.atoutservice92.fr";
 
 /** Stable id of the company entity: every other page references it instead of re-declaring a business. */
 const BUSINESS_ID = `${BASE_URL}/#business`;

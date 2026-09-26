@@ -4,7 +4,7 @@ import { apiClient, endpoints } from "@/lib/api";
 import type { BlogPost, CityPage, BeforeAfter } from "@/types/api";
 import { BLOG_LIST_LIMIT } from "@/lib/blog";
 
-const BASE_URL = "https://www.atouts-services.fr";
+const BASE_URL = "https://www.atoutservice92.fr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const servicePages = allServiceSlugs.map((slug) => ({
