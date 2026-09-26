@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { LazyHexNut3D } from "@/components/LazyHexNut3D";
 import { Reveal } from "@/components/Reveal";
-import { servicesData } from "@/lib/services-data";
 
 const services = [
   {
@@ -37,23 +36,26 @@ const services = [
 /** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
 const LOGO_SRC = "/images/brand/logo-mark-large.png";
 
-/** Each service is illustrated by the photo of its own service page (single source: lib/services-data) */
-const photoOf = (link: string) => servicesData[link.replace("/services/", "")]?.heroImage;
+/** 3D-style icon per service (Microsoft Fluent Emoji 3D, MIT — licence file next to the images) */
+const iconOf = (link: string) => `/images/icons/services/${link.replace("/services/", "")}.png`;
 
 const iconHoverBorder = "group-hover:border-sky-400";
 const iconHoverText = "group-hover:text-sky-600";
 
-/** Round photo with a white ring that turns sky on hover */
-function ServicePhoto({ link, size }: { link: string; size: number }) {
-  const src = photoOf(link);
+/** White disc holding the 3D icon; lifts and tilts slightly on hover */
+function ServiceIcon({ link, size }: { link: string; size: number }) {
   return (
     <span
-      className="relative block shrink-0 overflow-hidden rounded-full bg-neutral-200 shadow-md ring-2 ring-white transition duration-300 group-hover:ring-sky-400"
+      className="relative flex shrink-0 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-neutral-200 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg group-hover:ring-sky-300"
       style={{ width: size, height: size }}
     >
-      {src && (
-        <Image src={src} alt="" fill sizes={`${size}px`} className="object-cover transition-transform duration-500 group-hover:scale-110" />
-      )}
+      <Image
+        src={iconOf(link)}
+        alt=""
+        width={Math.round(size * 0.66)}
+        height={Math.round(size * 0.66)}
+        className="transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+      />
     </span>
   );
 }
@@ -127,7 +129,7 @@ export const Services = () => {
                 <Reveal key={index} delay={index * 60}>
                   <Link href={service.link} className="block group">
                     <div className={`flex items-center gap-4 bg-white shadow-sm p-5 rounded-2xl border border-neutral-200 ${iconHoverBorder} hover:shadow-lg transition-all duration-300 active:scale-[0.98]`}>
-                      <ServicePhoto link={service.link} size={56} />
+                      <ServiceIcon link={service.link} size={56} />
                       <h3 className="text-neutral-900 font-semibold text-lg uppercase tracking-wide">
                         {service.title}
                       </h3>
@@ -147,7 +149,7 @@ export const Services = () => {
                     <Reveal delay={index * 60}>
                       <Link href={service.link} className="group inline-block">
                         <div className="flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300">
-                          <ServicePhoto link={service.link} size={72} />
+                          <ServiceIcon link={service.link} size={80} />
                           <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[200px]`}>
                             {service.title}
                           </h3>
