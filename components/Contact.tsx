@@ -2,7 +2,6 @@
 
 import { ArrowUpRight, Phone } from "lucide-react";
 import { EnvelopeSimple, MapPin, MapTrifold, type Icon } from "@phosphor-icons/react";
-import { GoogleMap } from "@/components/GoogleMap";
 import { Reveal } from "@/components/Reveal";
 import { ServiceQuoteCard } from "@/components/ServiceQuoteCard";
 import { TrackedPhoneLink } from "@/components/TrackedPhoneLink";
@@ -79,7 +78,6 @@ export const Contact = () => {
           <Reveal className="space-y-6" delay={120}>
             {/* The section already carries id="contact" (target of every "Devis gratuit" link) */}
             <ServiceQuoteCard anchorId={null} trackingLocation="contact-form" />
-            <GoogleMap className="h-[220px] overflow-hidden rounded-3xl ring-1 ring-neutral-200" zoom={13} />
           </Reveal>
         </div>
       </div>
