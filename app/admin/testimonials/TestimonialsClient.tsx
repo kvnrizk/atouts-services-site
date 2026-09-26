@@ -21,10 +21,10 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 
 const projectTypes = [
   { value: "peinture", label: "Peinture" },
-  { value: "renovation", label: "R\u00e9novation" },
-  { value: "electricite", label: "\u00c9lectricit\u00e9" },
+  { value: "renovation", label: "Rénovation" },
+  { value: "electricite", label: "Électricité" },
   { value: "salles-de-bains", label: "Salle de bain" },
-  { value: "revetements-sol", label: "Rev\u00eatement de sol" },
+  { value: "revetements-sol", label: "Revêtement de sol" },
 ];
 
 function TestimonialsContent() {
@@ -66,10 +66,10 @@ function TestimonialsContent() {
     try {
       if (editingItem) {
         await apiClient.patch(endpoints.testimonials.update(editingItem.id!), formData);
-        toast({ title: "Succ\u00e8s", description: "Avis mis \u00e0 jour" });
+        toast({ title: "Succès", description: "Avis mis à jour" });
       } else {
         await apiClient.post(endpoints.testimonials.create, formData);
-        toast({ title: "Succ\u00e8s", description: "Avis ajout\u00e9" });
+        toast({ title: "Succès", description: "Avis ajouté" });
       }
       setIsDialogOpen(false);
       resetForm();
@@ -82,20 +82,20 @@ function TestimonialsContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("\u00cates-vous s\u00fbr de vouloir supprimer cet avis ?")) return;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet avis ?")) return;
     try {
       await apiClient.delete(endpoints.testimonials.delete(id));
-      toast({ title: "Succ\u00e8s", description: "Avis supprim\u00e9" });
+      toast({ title: "Succès", description: "Avis supprimé" });
       fetchTestimonials();
     } catch {
-      toast({ title: "Erreur", description: "\u00c9chec de la suppression", variant: "destructive" });
+      toast({ title: "Erreur", description: "Échec de la suppression", variant: "destructive" });
     }
   };
 
   const handleTogglePublished = async (item: Testimonial) => {
     try {
       await apiClient.patch(endpoints.testimonials.update(item.id!), { published: !item.published });
-      toast({ title: "Succ\u00e8s", description: item.published ? "Avis masqu\u00e9" : "Avis publi\u00e9" });
+      toast({ title: "Succès", description: item.published ? "Avis masqué" : "Avis publié" });
       fetchTestimonials();
     } catch {
       toast({ title: "Erreur", description: "Une erreur est survenue", variant: "destructive" });
@@ -105,7 +105,7 @@ function TestimonialsContent() {
   const handleToggleFeatured = async (item: Testimonial) => {
     try {
       await apiClient.patch(endpoints.testimonials.update(item.id!), { featured: !item.featured });
-      toast({ title: "Succ\u00e8s", description: item.featured ? "Retir\u00e9 des favoris" : "Ajout\u00e9 aux favoris" });
+      toast({ title: "Succès", description: item.featured ? "Retiré des favoris" : "Ajouté aux favoris" });
       fetchTestimonials();
     } catch {
       toast({ title: "Erreur", description: "Une erreur est survenue", variant: "destructive" });
@@ -147,7 +147,7 @@ function TestimonialsContent() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Avis clients</h1>
-          <p className="text-gray-600 mt-2">G\u00e9rez les t\u00e9moignages clients</p>
+          <p className="text-gray-600 mt-2">Gérez les témoignages clients</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -158,7 +158,7 @@ function TestimonialsContent() {
           </DialogTrigger>
           <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>{editingItem ? "Modifier l\u2019avis" : "Nouvel avis"}</DialogTitle>
+              <DialogTitle>{editingItem ? "Modifier l’avis" : "Nouvel avis"}</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -188,7 +188,7 @@ function TestimonialsContent() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Commentaire *</label>
-                <Textarea value={formData.comment} onChange={(e) => setFormData({ ...formData, comment: e.target.value })} placeholder="T\u00e9moignage du client..." rows={4} required />
+                <Textarea value={formData.comment} onChange={(e) => setFormData({ ...formData, comment: e.target.value })} placeholder="Témoignage du client..." rows={4} required />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Type de projet</label>
@@ -199,7 +199,7 @@ function TestimonialsContent() {
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="pub" checked={formData.published} onChange={(e) => setFormData({ ...formData, published: e.target.checked })} className="rounded" />
-                  <label htmlFor="pub" className="text-sm font-medium">Publi\u00e9</label>
+                  <label htmlFor="pub" className="text-sm font-medium">Publié</label>
                 </div>
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="feat" checked={formData.featured} onChange={(e) => setFormData({ ...formData, featured: e.target.checked })} className="rounded" />
@@ -208,7 +208,7 @@ function TestimonialsContent() {
               </div>
               <div className="flex gap-3">
                 <Button type="submit" disabled={isSubmitting || !formData.clientName || !formData.comment} className="flex-1 gradient-primary text-white">
-                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre \u00e0 jour" : "Ajouter"}
+                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre à jour" : "Ajouter"}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }}>Annuler</Button>
               </div>
@@ -230,7 +230,7 @@ function TestimonialsContent() {
                     {item.clientCity && <p className="text-sm text-gray-500">{item.clientCity}</p>}
                   </div>
                   <div className="flex gap-1">
-                    {!item.published && (<span className="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Masqu\u00e9</span>)}
+                    {!item.published && (<span className="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Masqué</span>)}
                     {item.featured && (<span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Favori</span>)}
                   </div>
                 </div>

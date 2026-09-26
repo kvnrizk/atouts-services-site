@@ -10,9 +10,9 @@ import type { BeforeAfter, Portfolio } from "@/types/api";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Nos R\u00e9alisations",
+  title: "Nos Réalisations",
   description:
-    "D\u00e9couvrez nos r\u00e9alisations en peinture, r\u00e9novation, \u00e9lectricit\u00e9 et am\u00e9nagement. Photos avant/apr\u00e8s de nos projets \u00e0 Issy-les-Moulineaux et en Hauts-de-Seine.",
+    "Découvrez nos réalisations en peinture, rénovation, électricité et aménagement. Photos avant/après de nos projets à Issy-les-Moulineaux et en Hauts-de-Seine.",
   alternates: {
     canonical: "/realisations",
   },

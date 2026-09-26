@@ -69,7 +69,7 @@ function CityPagesContent() {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "Erreur", description: "L\u2019image ne doit pas d\u00e9passer 5MB", variant: "destructive" });
+      toast({ title: "Erreur", description: "L’image ne doit pas dépasser 5MB", variant: "destructive" });
       return;
     }
     setIsUploading(true);
@@ -84,9 +84,9 @@ function CityPagesContent() {
       if (!response.ok) throw new Error("Upload failed");
       const data = await response.json();
       setFormData((prev) => ({ ...prev, heroImageUrl: `${API_URL}${data.url}` }));
-      toast({ title: "Succ\u00e8s", description: "Image t\u00e9l\u00e9charg\u00e9e" });
+      toast({ title: "Succès", description: "Image téléchargée" });
     } catch {
-      toast({ title: "Erreur", description: "\u00c9chec du t\u00e9l\u00e9chargement", variant: "destructive" });
+      toast({ title: "Erreur", description: "Échec du téléchargement", variant: "destructive" });
     } finally {
       setIsUploading(false);
     }
@@ -106,10 +106,10 @@ function CityPagesContent() {
     try {
       if (editingItem) {
         await apiClient.patch(endpoints.cityPages.update(editingItem.id!), formData);
-        toast({ title: "Succ\u00e8s", description: "Page ville mise \u00e0 jour" });
+        toast({ title: "Succès", description: "Page ville mise à jour" });
       } else {
         await apiClient.post(endpoints.cityPages.create, formData);
-        toast({ title: "Succ\u00e8s", description: "Page ville cr\u00e9\u00e9e" });
+        toast({ title: "Succès", description: "Page ville créée" });
       }
       setIsDialogOpen(false);
       resetForm();
@@ -122,20 +122,20 @@ function CityPagesContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("\u00cates-vous s\u00fbr de vouloir supprimer cette page ?")) return;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette page ?")) return;
     try {
       await apiClient.delete(endpoints.cityPages.delete(id));
-      toast({ title: "Succ\u00e8s", description: "Page supprim\u00e9e" });
+      toast({ title: "Succès", description: "Page supprimée" });
       fetchPages();
     } catch {
-      toast({ title: "Erreur", description: "\u00c9chec de la suppression", variant: "destructive" });
+      toast({ title: "Erreur", description: "Échec de la suppression", variant: "destructive" });
     }
   };
 
   const handleTogglePublished = async (item: CityPage) => {
     try {
       await apiClient.patch(endpoints.cityPages.update(item.id!), { published: !item.published });
-      toast({ title: "Succ\u00e8s", description: item.published ? "Page masqu\u00e9e" : "Page publi\u00e9e" });
+      toast({ title: "Succès", description: item.published ? "Page masquée" : "Page publiée" });
       fetchPages();
     } catch {
       toast({ title: "Erreur", description: "Une erreur est survenue", variant: "destructive" });
@@ -179,7 +179,7 @@ function CityPagesContent() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Pages villes</h1>
-          <p className="text-gray-600 mt-2">G\u00e9rez vos pages de r\u00e9f\u00e9rencement local</p>
+          <p className="text-gray-600 mt-2">Gérez vos pages de référencement local</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -205,7 +205,7 @@ function CityPagesContent() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">D\u00e9partement</label>
+                  <label className="block text-sm font-medium mb-2">Département</label>
                   <Input value={formData.department} onChange={(e) => setFormData({ ...formData, department: e.target.value })} placeholder="Hauts-de-Seine" />
                 </div>
                 <div>
@@ -221,14 +221,14 @@ function CityPagesContent() {
                 <label className="block text-sm font-medium mb-2">Image hero</label>
                 <div className="space-y-2">
                   <Input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
-                  {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />T\u00e9l\u00e9chargement...</p>)}
+                  {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />Téléchargement...</p>)}
                   {formData.heroImageUrl && (<Image src={formData.heroImageUrl} alt="Preview" width={800} height={192} className="w-full h-48 object-cover rounded-md" />)}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Meta titre (SEO)</label>
-                  <Input value={formData.metaTitle} onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })} placeholder="R\u00e9novation \u00e0 Issy-les-Moulineaux" />
+                  <Input value={formData.metaTitle} onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })} placeholder="Rénovation à Issy-les-Moulineaux" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Meta description (SEO)</label>
@@ -241,7 +241,7 @@ function CityPagesContent() {
               </div>
               <div className="flex gap-3">
                 <Button type="submit" disabled={isSubmitting || !formData.cityName || !formData.content} className="flex-1 gradient-primary text-white">
-                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre \u00e0 jour" : "Cr\u00e9er"}
+                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre à jour" : "Créer"}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }}>Annuler</Button>
               </div>

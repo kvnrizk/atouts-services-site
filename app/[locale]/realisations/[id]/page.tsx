@@ -20,7 +20,7 @@ export async function generateMetadata({
     const item = (await apiClient.get(endpoints.beforeAfter.getOne(+id))) as BeforeAfter;
     return {
       title: item.title,
-      description: item.description || `R\u00e9alisation avant/apr\u00e8s : ${item.title}`,
+      description: item.description || `Réalisation avant/après : ${item.title}`,
       alternates: { canonical: `/realisations/${id}` },
     };
   } catch {

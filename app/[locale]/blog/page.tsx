@@ -10,9 +10,9 @@ import type { BlogPost, PaginatedResponse } from "@/types/api";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Blog - Conseils R\u00e9novation & Travaux",
+  title: "Blog - Conseils Rénovation & Travaux",
   description:
-    "D\u00e9couvrez nos articles et guides sur la r\u00e9novation, la peinture, l\u2019\u00e9lectricit\u00e9 et l\u2019am\u00e9nagement int\u00e9rieur. Conseils d\u2019experts pour vos projets.",
+    "Découvrez nos articles et guides sur la rénovation, la peinture, l’électricité et l’aménagement intérieur. Conseils d’experts pour vos projets.",
   alternates: {
     canonical: "/blog",
   },

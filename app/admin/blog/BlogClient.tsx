@@ -78,7 +78,7 @@ function BlogContent() {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "Erreur", description: "L\u2019image ne doit pas d\u00e9passer 5MB", variant: "destructive" });
+      toast({ title: "Erreur", description: "L’image ne doit pas dépasser 5MB", variant: "destructive" });
       return;
     }
     setIsUploading(true);
@@ -93,9 +93,9 @@ function BlogContent() {
       if (!response.ok) throw new Error("Upload failed");
       const data = await response.json();
       setFormData((prev) => ({ ...prev, coverImageUrl: `${API_URL}${data.url}` }));
-      toast({ title: "Succ\u00e8s", description: "Image t\u00e9l\u00e9charg\u00e9e avec succ\u00e8s" });
+      toast({ title: "Succès", description: "Image téléchargée avec succès" });
     } catch {
-      toast({ title: "Erreur", description: "\u00c9chec du t\u00e9l\u00e9chargement de l\u2019image", variant: "destructive" });
+      toast({ title: "Erreur", description: "Échec du téléchargement de l’image", variant: "destructive" });
     } finally {
       setIsUploading(false);
     }
@@ -119,10 +119,10 @@ function BlogContent() {
       };
       if (editingItem) {
         await apiClient.patch(endpoints.blog.update(editingItem.id!), payload);
-        toast({ title: "Succ\u00e8s", description: "Article mis \u00e0 jour" });
+        toast({ title: "Succès", description: "Article mis à jour" });
       } else {
         await apiClient.post(endpoints.blog.create, payload);
-        toast({ title: "Succ\u00e8s", description: "Article cr\u00e9\u00e9" });
+        toast({ title: "Succès", description: "Article créé" });
       }
       setIsDialogOpen(false);
       resetForm();
@@ -135,20 +135,20 @@ function BlogContent() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("\u00cates-vous s\u00fbr de vouloir supprimer cet article ?")) return;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) return;
     try {
       await apiClient.delete(endpoints.blog.delete(id));
-      toast({ title: "Succ\u00e8s", description: "Article supprim\u00e9" });
+      toast({ title: "Succès", description: "Article supprimé" });
       fetchPosts();
     } catch {
-      toast({ title: "Erreur", description: "\u00c9chec de la suppression", variant: "destructive" });
+      toast({ title: "Erreur", description: "Échec de la suppression", variant: "destructive" });
     }
   };
 
   const handleTogglePublished = async (item: BlogPost) => {
     try {
       await apiClient.patch(endpoints.blog.update(item.id!), { published: !item.published });
-      toast({ title: "Succ\u00e8s", description: item.published ? "Article masqu\u00e9" : "Article publi\u00e9" });
+      toast({ title: "Succès", description: item.published ? "Article masqué" : "Article publié" });
       fetchPosts();
     } catch {
       toast({ title: "Erreur", description: "Une erreur est survenue", variant: "destructive" });
@@ -195,7 +195,7 @@ function BlogContent() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Blog</h1>
-          <p className="text-gray-600 mt-2">G\u00e9rez vos articles de blog</p>
+          <p className="text-gray-600 mt-2">Gérez vos articles de blog</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -206,7 +206,7 @@ function BlogContent() {
           </DialogTrigger>
           <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>{editingItem ? "Modifier l\u2019article" : "Nouvel article"}</DialogTitle>
+              <DialogTitle>{editingItem ? "Modifier l’article" : "Nouvel article"}</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -221,21 +221,21 @@ function BlogContent() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Extrait</label>
-                <Textarea value={formData.excerpt} onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })} placeholder="R\u00e9sum\u00e9 court de l'article..." rows={2} />
+                <Textarea value={formData.excerpt} onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })} placeholder="Résumé court de l'article..." rows={2} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Contenu (Markdown) *</label>
-                <Textarea value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} placeholder="R\u00e9digez votre article en Markdown..." rows={12} className="font-mono text-sm" required />
+                <Textarea value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} placeholder="Rédigez votre article en Markdown..." rows={12} className="font-mono text-sm" required />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Cat\u00e9gorie</label>
+                  <label className="block text-sm font-medium mb-2">Catégorie</label>
                   <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="w-full p-2 border rounded-md">
                     {categories.map((cat) => (<option key={cat.value} value={cat.value}>{cat.label}</option>))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Tags (s\u00e9par\u00e9s par des virgules)</label>
+                  <label className="block text-sm font-medium mb-2">Tags (séparés par des virgules)</label>
                   <Input value={formData.tags} onChange={(e) => setFormData({ ...formData, tags: e.target.value })} placeholder="renovation, cuisine, moderne" />
                 </div>
               </div>
@@ -243,8 +243,8 @@ function BlogContent() {
                 <label className="block text-sm font-medium mb-2">Image de couverture</label>
                 <div className="space-y-2">
                   <Input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
-                  {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />T\u00e9l\u00e9chargement en cours...</p>)}
-                  {formData.coverImageUrl && (<Image src={formData.coverImageUrl} alt="Preview" width={800} height={192} className="w-full h-48 object-cover rounded-md" />)}
+                  {isUploading && (<p className="text-sm text-gray-500 flex items-center gap-2"><Upload className="h-4 w-4 animate-pulse" />Téléchargement en cours...</p>)}
+                  {isImageSrc(formData.coverImageUrl) && (<Image src={formData.coverImageUrl} alt="Preview" width={800} height={192} className="w-full h-48 object-cover rounded-md" />)}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -263,7 +263,7 @@ function BlogContent() {
               </div>
               <div className="flex gap-3">
                 <Button type="submit" disabled={isSubmitting || !formData.title || !formData.content} className="flex-1 gradient-primary text-white">
-                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre \u00e0 jour" : "Cr\u00e9er"}
+                  {isSubmitting ? "Enregistrement..." : editingItem ? "Mettre à jour" : "Créer"}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }}>Annuler</Button>
               </div>
@@ -279,7 +279,7 @@ function BlogContent() {
           {posts.map((item) => (
             <Card key={item.id} className="overflow-hidden hover-lift">
               <CardContent className="p-4 flex gap-4">
-                {item.coverImageUrl && (
+                {isImageSrc(item.coverImageUrl) && (
                   <Image src={item.coverImageUrl} alt={item.title} width={128} height={96} className="w-32 h-24 object-cover rounded-md flex-shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
@@ -307,6 +307,11 @@ function BlogContent() {
       )}
     </div>
   );
+}
+
+/** next/image throws on anything that isn't a "/path" or an http(s) URL — skip the preview instead of crashing the page. */
+function isImageSrc(src?: string | null): src is string {
+  return !!src && (src.startsWith("/") || /^https?:\/\//.test(src));
 }
 
 export default function BlogAdminPage() {
