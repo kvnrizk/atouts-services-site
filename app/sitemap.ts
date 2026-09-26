@@ -6,6 +6,9 @@ import { BLOG_LIST_LIMIT } from "@/lib/blog";
 
 const BASE_URL = "https://www.atoutservice92.fr";
 
+// Rebuilt every hour so new blog articles and city pages appear without a redeploy
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const servicePages = allServiceSlugs.map((slug) => ({
     url: `${BASE_URL}/services/${slug}`,
