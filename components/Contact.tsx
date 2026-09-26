@@ -1,102 +1,86 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
+import { EnvelopeSimple, MapPin, MapTrifold, type Icon } from "@phosphor-icons/react";
 import { GoogleMap } from "@/components/GoogleMap";
-import { trackPhoneClick } from "@/lib/analytics";
 import { Reveal } from "@/components/Reveal";
 import { ServiceQuoteCard } from "@/components/ServiceQuoteCard";
+import { TrackedPhoneLink } from "@/components/TrackedPhoneLink";
+import { COMPANY_INFO } from "@/lib/constants";
+
+/** One contact line: duotone icon in a white disc (same language as "Nos services") */
+function ContactRow({ icon: Glyph, label, children }: { icon: Icon; label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-4 py-5">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-sky-700 shadow-sm ring-1 ring-neutral-200">
+        <Glyph size={22} weight="duotone" aria-hidden="true" />
+      </span>
+      <div className="min-w-0">
+        <p className="text-sm text-neutral-500">{label}</p>
+        <div className="mt-0.5 font-medium text-neutral-950">{children}</div>
+      </div>
+    </div>
+  );
+}
 
 export const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="bg-white py-24 md:py-28" aria-labelledby="contact-title">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-950 mb-4">Contactez-nous</h2>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            Parlons de votre projet ! Laissez-nous vos coordonnées ou appelez-nous, réponse le jour même.
-          </p>
-        </div>
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+          <div>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">Contact</p>
+              <h2 id="contact-title" className="mt-4 text-4xl font-bold tracking-tight text-neutral-950 [text-wrap:balance] md:text-5xl">
+                Parlons de votre projet.
+              </h2>
+              <p className="mt-5 max-w-lg text-lg text-neutral-600">
+                Visite et devis gratuits. Appelez-nous ou laissez vos coordonnées : nous vous répondons le jour même.
+              </p>
+            </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <Reveal className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-neutral-950 mb-6">Nos coordonnées</h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-sky-400/10 rounded-lg flex items-center justify-center">
-                    <MapPin className="h-6 w-6 text-sky-600" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-950">Adresse</h4>
-                    <p className="text-neutral-600">Issy-les-Moulineaux<br />Hauts-de-Seine (92)</p>
-                  </div>
+            {/* The phone brings most leads: the whole card is the call link */}
+            <Reveal delay={80}>
+              <TrackedPhoneLink
+                location="contact"
+                className="group mt-10 flex items-center justify-between gap-6 rounded-3xl bg-neutral-950 p-6 text-white transition hover:bg-neutral-900 active:scale-[0.99] md:p-8"
+              >
+                <div>
+                  <p className="text-sm text-neutral-400">Appelez-nous</p>
+                  <p className="mt-1 text-3xl font-bold tracking-tight md:text-4xl">{COMPANY_INFO.phone}</p>
+                  <p className="mt-2 text-sm text-neutral-400">
+                    {COMPANY_INFO.hours.weekday} · {COMPANY_INFO.hours.saturday}
+                  </p>
                 </div>
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sky-400 text-neutral-950 transition group-hover:scale-105">
+                  <Phone className="h-6 w-6" aria-hidden="true" />
+                </span>
+              </TrackedPhoneLink>
+            </Reveal>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-sky-400/10 rounded-lg flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-sky-600" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-950">Téléphone</h4>
-                    <a
-                      href="tel:+33634026180"
-                      onClick={() => trackPhoneClick("contact")}
-                      className="text-sky-600 hover:text-sky-700 font-medium transition-colors"
-                    >
-                      06 34 02 61 80
-                    </a>
-                    <p className="text-xs text-neutral-500 mt-1">Cliquez pour appeler</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-sky-400/10 rounded-lg flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-sky-600" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-950">Email</h4>
-                    <a
-                      href="mailto:contact@atouts-services.fr"
-                      className="text-sky-600 hover:text-sky-700 transition-colors"
-                    >
-                      contact@atouts-services.fr
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-sky-400/10 rounded-lg flex items-center justify-center">
-                    <Clock className="h-6 w-6 text-sky-600" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-950">Horaires</h4>
-                    <p className="text-neutral-600">
-                      Lun - Ven: 8h00 - 18h00<br />
-                      Sam: 9h00 - 17h00
-                    </p>
-                  </div>
-                </div>
+            <Reveal delay={160}>
+              <div className="mt-6 divide-y divide-neutral-200 border-b border-neutral-200">
+                <ContactRow icon={EnvelopeSimple} label="Email">
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="inline-flex items-center gap-1 transition-colors hover:text-sky-700">
+                    {COMPANY_INFO.email}
+                    <ArrowUpRight className="h-4 w-4 text-neutral-400" aria-hidden="true" />
+                  </a>
+                </ContactRow>
+                <ContactRow icon={MapPin} label="Adresse">
+                  {COMPANY_INFO.address}
+                </ContactRow>
+                <ContactRow icon={MapTrifold} label="Zone d'intervention">
+                  Paris et toute l&apos;Île-de-France, en priorité Issy, Boulogne, Vanves, Meudon, Sèvres et Clamart.
+                  <span className="block text-sm font-normal text-neutral-500">Partout en France sur projet.</span>
+                </ContactRow>
               </div>
-            </div>
+            </Reveal>
+          </div>
 
-            <Card className="bg-neutral-950 text-white border-0 shadow-elegant">
-              <CardContent className="p-6">
-                <h4 className="text-xl font-bold mb-2">Zone d&apos;intervention</h4>
-                <p className="text-neutral-300">
-                  Basés à Issy-les-Moulineaux, nous intervenons en priorité à Issy,
-                  Boulogne-Billancourt, Vanves, Meudon, Sèvres et Clamart, ainsi qu&apos;à
-                  Paris et dans toute l&apos;Île-de-France. Partout en France sur projet.
-                </p>
-              </CardContent>
-            </Card>
-          </Reveal>
-
-          <Reveal className="space-y-6" delay={150}>
+          <Reveal className="space-y-6" delay={120}>
             {/* The section already carries id="contact" (target of every "Devis gratuit" link) */}
             <ServiceQuoteCard anchorId={null} trackingLocation="contact-form" />
-
-            <GoogleMap className="h-[250px] rounded-lg overflow-hidden shadow-md" zoom={13} />
+            <GoogleMap className="h-[220px] overflow-hidden rounded-3xl ring-1 ring-neutral-200" zoom={13} />
           </Reveal>
         </div>
       </div>
