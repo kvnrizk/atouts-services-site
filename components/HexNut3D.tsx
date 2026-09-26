@@ -61,6 +61,15 @@ export function HexNut3D() {
     loader.load("/models/hex-nut.glb", (gltf) => {
       if (disposed) return;
       model = gltf.scene;
+      // The model plugs the bore with a thin dark disc (the only dark material). Hide it so the
+      // hole is see-through: the page background shows through the thread.
+      model.traverse((obj) => {
+        const mesh = obj as THREE.Mesh;
+        const material = mesh.isMesh ? (mesh.material as THREE.MeshStandardMaterial) : null;
+        if (material?.color && material.color.r + material.color.g + material.color.b < 0.6) {
+          mesh.visible = false;
+        }
+      });
       tiltGroup.add(model);
     });
 
