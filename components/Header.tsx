@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Phone, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -19,9 +19,7 @@ const navActive = "text-neutral-950 after:absolute after:inset-x-0 after:-bottom
 // visitors can open it in a new tab, and it works the same on every page.
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const lastY = useRef(0);
   const pathname = usePathname();
   const t = useTranslations("nav");
 
@@ -36,21 +34,11 @@ export const Header = () => {
     form.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Hide while scrolling down, show again as soon as the visitor scrolls up (one rAF per frame max)
+  // The header always stays visible (sticky); once the page is scrolled it just gets a more
+  // opaque background and a shadow. (Hide-on-scroll was removed: it made the menu disappear.)
   useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        setScrolled(y > 8);
-        setHidden(y > 160 && y > lastY.current + 4);
-        if (y < lastY.current - 4 || y <= 160) setHidden(false);
-        lastY.current = y;
-        ticking = false;
-      });
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -75,9 +63,8 @@ export const Header = () => {
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 border-b transition-[transform,background-color,box-shadow] duration-300 ease-out motion-reduce:transition-none",
+          "sticky top-0 z-50 border-b transition-[background-color,box-shadow] duration-300 ease-out motion-reduce:transition-none",
           scrolled ? "border-neutral-200/70 bg-white/90 shadow-sm backdrop-blur-md" : "border-transparent bg-white/75 backdrop-blur-md",
-          hidden && !isMenuOpen && "-translate-y-full",
         )}
       >
         <div className="container mx-auto px-4">
