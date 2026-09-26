@@ -2,7 +2,7 @@
 
 import { Paintbrush, Home, Zap, Bath, Layers } from "lucide-react";
 import Link from "next/link";
-import { HexNut3D } from "@/components/HexNut3D";
+import { LazyHexNut3D } from "@/components/LazyHexNut3D";
 import { Reveal } from "@/components/Reveal";
 
 const services = [
@@ -73,7 +73,7 @@ export const Services = () => {
           {/* Central Circle - 3D Hex Nut */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
-              <HexNut3D />
+              <LazyHexNut3D />
             </div>
           </div>
 

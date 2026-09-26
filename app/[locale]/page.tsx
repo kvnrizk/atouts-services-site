@@ -9,6 +9,11 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { getLocalBusinessJsonLd } from "@/lib/structured-data";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export const revalidate = 3600;
 

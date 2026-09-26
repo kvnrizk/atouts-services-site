@@ -15,10 +15,10 @@ export const revalidate = 3600;
 
 const services = [
   { icon: Paintbrush, title: "Peinture", slug: "peinture" },
-  { icon: Hammer, title: "R\u00e9novation", slug: "renovation" },
-  { icon: Zap, title: "\u00c9lectricit\u00e9", slug: "electricite" },
+  { icon: Hammer, title: "Rénovation", slug: "renovation" },
+  { icon: Zap, title: "Électricité", slug: "electricite" },
   { icon: Bath, title: "Salles de bains", slug: "salles-de-bains" },
-  { icon: Layers, title: "Rev\u00eatements de sol", slug: "revetements-sol" },
+  { icon: Layers, title: "Revêtements de sol", slug: "revetements-sol" },
 ];
 
 export async function generateStaticParams() {
@@ -39,8 +39,8 @@ export async function generateMetadata({
   try {
     const page = (await apiClient.get(endpoints.cityPages.getBySlug(city))) as CityPage;
     return {
-      title: page.metaTitle || `R\u00e9novation \u00e0 ${page.cityName} | Atouts Services`,
-      description: page.metaDescription || `Entreprise de r\u00e9novation \u00e0 ${page.cityName}. Peinture, \u00e9lectricit\u00e9, salles de bains. Devis gratuit.`,
+      title: page.metaTitle || `Rénovation à ${page.cityName}`,
+      description: page.metaDescription || `Entreprise de rénovation à ${page.cityName}. Peinture, électricité, salles de bains. Devis gratuit.`,
       alternates: { canonical: `/${city}` },
     };
   } catch {

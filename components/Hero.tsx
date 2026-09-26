@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { trackPhoneClick } from "@/lib/analytics";
@@ -28,12 +29,19 @@ export const Hero = () => {
   return (
     <section className="relative -mt-[65px] h-svh min-h-[520px] w-full overflow-hidden bg-neutral-950" aria-label="Présentation">
       <div className="absolute inset-0">
+        {/* next/image serves AVIF/WebP at the screen's width; only the first slide is
+            preloaded (LCP), the others load lazily before their turn comes */}
         {heroImages.map((src, index) => (
-          <div
+          <Image
             key={src}
-            className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
-            style={{ backgroundImage: `url(${src})`, opacity: index === activeIndex ? 1 : 0 }}
-            aria-hidden={index !== activeIndex}
+            src={src}
+            alt=""
+            fill
+            sizes="100vw"
+            priority={index === 0}
+            className="object-cover transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: index === activeIndex ? 1 : 0 }}
+            aria-hidden
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/30" />
@@ -42,11 +50,14 @@ export const Hero = () => {
       <div className="relative h-full flex flex-col justify-end">
         <div className="container mx-auto px-4 pt-[calc(65px+3svh)] pb-[6svh]">
           <div className="max-w-3xl">
-            <div className="text-xs md:text-sm font-medium tracking-[0.2em] text-sky-400 uppercase mb-[3svh]">
-              Rénovation à Issy-les-Moulineaux · Hauts-de-Seine
-            </div>
-            <h1 className="text-[clamp(2.25rem,min(9vw,8.5svh),4.5rem)] font-bold text-white leading-[1.05] mb-[3svh]">
-              Tous vos travaux,<br />une seule équipe.
+            {/* The eyebrow is inside the H1 so the heading carries the "rénovation + city" keyword */}
+            <h1 className="mb-[3svh]">
+              <span className="block text-xs md:text-sm font-medium tracking-[0.2em] text-sky-400 uppercase mb-[3svh]">
+                Rénovation à Issy-les-Moulineaux · Hauts-de-Seine
+              </span>
+              <span className="block text-[clamp(2.25rem,min(9vw,8.5svh),4.5rem)] font-bold text-white leading-[1.05]">
+                Tous vos travaux,<br />une seule équipe.
+              </span>
             </h1>
             <p className="text-[clamp(1rem,2.5svh,1.25rem)] text-neutral-300 max-w-xl mb-[4svh]">
               Peinture, rénovation, électricité, salle de bains, revêtements de sol —

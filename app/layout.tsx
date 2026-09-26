@@ -14,7 +14,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.atouts-services.fr"),
   title: {
-    default: "Atouts Services | Rénovation & Travaux à Issy-les-Moulineaux",
+    default: "Entreprise de rénovation à Issy-les-Moulineaux | Atouts Services",
     template: "%s | Atouts Services",
   },
   description:
@@ -30,9 +30,6 @@ export const metadata: Metadata = {
     "travaux",
     "artisan",
   ],
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "fr_FR",

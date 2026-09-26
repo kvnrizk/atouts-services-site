@@ -154,7 +154,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Peinture Intérieure & Extérieure | Atouts Services Issy-les-Moulineaux",
+      title: "Peintre à Issy-les-Moulineaux (92)",
       description: "Services de peinture professionnels à Issy-les-Moulineaux et Hauts-de-Seine. Peinture intérieure, extérieure, ravalement. Devis gratuit.",
       keywords: ["peinture", "peinture intérieure", "peinture extérieure", "ravalement façade", "Issy-les-Moulineaux", "92"],
     },
@@ -223,7 +223,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Rénovation Appartement & Maison | Atouts Services Issy-les-Moulineaux",
+      title: "Rénovation appartement Issy-les-Moulineaux",
       description: "Rénovation complète d'appartements et maisons à Issy-les-Moulineaux. Clé en main, tous corps d'état. Devis gratuit.",
       keywords: ["rénovation", "rénovation appartement", "rénovation maison", "clé en main", "Issy-les-Moulineaux", "92"],
     },
@@ -292,7 +292,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos installations",
     },
     seo: {
-      title: "Électricité & Domotique | Atouts Services Issy-les-Moulineaux",
+      title: "Électricien à Issy-les-Moulineaux (92)",
       description: "Installation électrique, mise aux normes NFC 15-100, domotique à Issy-les-Moulineaux. Électriciens qualifiés. Devis gratuit.",
       keywords: ["électricité", "mise aux normes", "NFC 15-100", "domotique", "éclairage LED", "Issy-les-Moulineaux", "92"],
     },
@@ -361,7 +361,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Salle de Bains | Rénovation & Création | Atouts Services Issy-les-Moulineaux",
+      title: "Rénovation salle de bains Issy-les-Moulineaux",
       description: "Création et rénovation de salles de bains à Issy-les-Moulineaux. Design sur mesure, plomberie, carrelage. Devis gratuit.",
       keywords: ["salle de bains", "rénovation salle de bains", "création salle d'eau", "plomberie", "carrelage", "Issy-les-Moulineaux", "92"],
     },
@@ -430,7 +430,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos réalisations",
     },
     seo: {
-      title: "Revêtements de Sol | Parquet, Carrelage, PVC | Atouts Services Issy-les-Moulineaux",
+      title: "Parquet & carrelage à Issy-les-Moulineaux",
       description: "Pose de parquet, carrelage, PVC et moquette à Issy-les-Moulineaux. Poseurs professionnels, finitions soignées. Devis gratuit.",
       keywords: ["revêtement sol", "parquet", "carrelage", "PVC", "moquette", "pose sol", "Issy-les-Moulineaux", "92"],
     },

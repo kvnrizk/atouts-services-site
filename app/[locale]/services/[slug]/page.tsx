@@ -14,7 +14,7 @@ import { Check, ChevronDown, ChevronRight, Phone, Star } from "lucide-react";
 import { servicesData, allServiceSlugs } from "@/lib/services-data";
 import { apiClient, endpoints } from "@/lib/api";
 import type { BeforeAfter, Testimonial } from "@/types/api";
-import { getServiceJsonLd } from "@/lib/structured-data";
+import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
 
@@ -81,11 +81,18 @@ export default async function ServicePage({
     : service.testimonials.items;
 
 
-  const jsonLd = getServiceJsonLd({
-    title: service.title,
-    description: service.description,
-    slug: service.slug,
-  });
+  const jsonLd = [
+    getServiceJsonLd({
+      title: service.title,
+      description: service.description,
+      slug: service.slug,
+    }),
+    getBreadcrumbJsonLd([
+      ["Accueil", "/"],
+      ["Services", "/#services"],
+      [service.title, `/services/${service.slug}`],
+    ]),
+  ];
 
   const trustItems = [
     { value: "10+ ans", label: "d'expérience" },
