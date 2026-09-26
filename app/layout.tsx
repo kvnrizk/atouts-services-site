@@ -48,8 +48,7 @@ export default function RootLayout({
     <html lang="fr">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#2563eb" />
-        <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+        <meta name="theme-color" content="#0a0a0a" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <a

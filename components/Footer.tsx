@@ -30,7 +30,7 @@ export async function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand + contact */}
           <div>
-            <Image src="/main.png" alt="Atouts Services" width={48} height={48} className="h-12 w-auto mb-4" />
+            <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={190} height={65} sizes="190px" className="mb-5 h-16 w-auto" />
             <p className="text-neutral-400 text-sm mb-6 max-w-sm">{t("description")}</p>
             <ul className="space-y-3 text-sm">
               <li>

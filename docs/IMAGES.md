@@ -53,7 +53,9 @@ added from the admin.
 
 | File | What | Owner |
 |---|---|---|
-| `public/main.png` | Current logo | Atouts Services |
+| `public/images/brand/logo-atouts-services.png` | **Current logo** (2026-09-26), transparent PNG 1400 px, made from the owner's `public/new logo.png`. Used in header, footer, 404, client area, JSON-LD and as the "Nos services" backdrop | Atouts Services |
+| `public/images/brand/logo-mark.png`, `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico`, `public/icons/icon-*.png` | Roof + house mark cut from the new logo (letters removed) for favicon / app icons | Atouts Services |
+| `public/main.png` | Previous logo (white background), no longer referenced | Atouts Services |
 | `public/models/hex-nut.glb` | 3D hex nut (generated with Three.js GLTFExporter) | Atouts Services |
 | `public/icons/*.svg` | App / PWA icons | Atouts Services |
 | `../brand-archive/logo-ancien-atouts-services.png` (outside the site) | **Old logo**, archived 2026-09-25 (was `public/ats.png` + an identical Lovable copy, both removed) | Atouts Services |

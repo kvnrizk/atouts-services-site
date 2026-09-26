@@ -13,8 +13,8 @@ export default function NotFound() {
   return (
     <main id="main-content" className="min-h-svh bg-neutral-950">
       <div className="container mx-auto flex h-16 items-center px-4">
-        <Link href="/" aria-label="Atouts Services — accueil" className="rounded bg-white px-1">
-          <Image src="/main.png" alt="Atouts Services" width={48} height={48} className="h-10 w-auto" />
+        <Link href="/" aria-label="Atouts Services — accueil">
+          <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={150} height={51} sizes="150px" className="h-11 w-auto" />
         </Link>
       </div>
       <NotFoundContent />

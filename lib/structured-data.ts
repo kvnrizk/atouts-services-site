@@ -4,7 +4,7 @@ const BASE_URL = "https://www.atouts-services.fr";
 
 /** Stable id of the company entity: every other page references it instead of re-declaring a business. */
 const BUSINESS_ID = `${BASE_URL}/#business`;
-const LOGO_URL = `${BASE_URL}/main.png`;
+const LOGO_URL = `${BASE_URL}/images/brand/logo-atouts-services.png`;
 
 /** Real registered address (SIRENE) — the only address the site may declare (NAP consistency). */
 const BUSINESS_ADDRESS = {

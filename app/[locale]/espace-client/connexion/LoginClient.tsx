@@ -45,7 +45,7 @@ export default function LoginClient() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <Image src="/main.png" alt="Atouts Services" width={64} height={64} className="h-16 w-auto mx-auto mb-4" />
+            <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={220} height={75} sizes="220px" className="h-16 w-auto mx-auto mb-4" />
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Espace Client</h1>
           <p className="text-gray-500 mt-1">Connectez-vous pour suivre vos projets</p>

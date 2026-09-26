@@ -83,7 +83,7 @@ export const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center" aria-label="Atouts Services — accueil">
-              <Image src="/main.png" alt="Atouts Services" width={48} height={48} className="h-12 w-auto" priority />
+              <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={150} height={51} sizes="150px" className="h-11 w-auto" priority />
             </Link>
 
             <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
