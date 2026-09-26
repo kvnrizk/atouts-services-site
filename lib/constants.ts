@@ -48,7 +48,7 @@ export const SERVICE_AREAS = [
   'Paris',
 ];
 
-/** Whole region served; the rest of France is "sur projet" and deliberately not declared to Google. */
+/** Whole region served (Paris & Île-de-France). */
 export const SERVICE_REGION = 'Île-de-France';
 
 export const GOOGLE_MAPS_CENTER = {
