@@ -1,6 +1,6 @@
 # Deploying atoutservice92.fr
 
-Architecture: **Vercel** (Next.js site, `atousservice-next`) → **Render, Frankfurt** (NestJS API + PostgreSQL, `atousservice_backend`) → **OVH Object Storage** (photos uploaded from the admin). Domain and DNS at **OVH**.
+Architecture (free plans): **Vercel** (Next.js site, repo `atouts-services-site`) → **Render, Frankfurt, Free** (NestJS API, repo `atouts-services-api`) → **Neon, Frankfurt** (PostgreSQL, created from Vercel → Storage) + **Cloudinary** (photos uploaded from the admin). Domain and DNS at **OVH**.
 
 Do the steps in this order: the site build reads the API, so the API must be online first.
 
@@ -15,51 +15,45 @@ git push -u origin redesign
 
 Deploy from the `redesign` branch, or merge it into `master` first and deploy `master`.
 
-## 1. Photo storage: OVH Object Storage
+## 1. Photo storage: Cloudinary (free plan)
 
-Render's disk is wiped at every deploy, so photos uploaded from the admin must live in a bucket.
+Render's disk is wiped at every deploy, so photos uploaded from the admin go to Cloudinary.
 
-1. OVH Control Panel → **Public Cloud** → create a project (billed per use).
-2. **Object Storage** → **Create a container** → S3 API, **Standard**, region **Gravelines (GRA)**. Name: `atouts-services-photos`.
-3. **Users** → create an S3 user with the ObjectStore operator role → note the **access key** and **secret key** (shown once).
+1. Sign up at cloudinary.com (free plan, no payment method).
+2. Dashboard → **API Keys** (or "Product environment settings") → copy the **API environment variable**: `cloudinary://<api_key>:<api_secret>@<cloud_name>`.
+3. Photos are stored in the `atouts-services` folder of the Media Library.
 
-The photos are made public one by one when uploaded (`S3_OBJECT_ACL=public-read`); the bucket itself stays private (nobody can list it).
+## 2. Database (Neon) + API (Render, Frankfurt)
 
-## 2. Database + API on Render (region Frankfurt)
-
-1. **New → PostgreSQL**: name `atouts-db`, region Frankfurt, plan **Basic** (the free plan is deleted after 30 days).
-2. **New → Web Service** from the `atousservice_backend` repo: region Frankfurt, runtime **Docker** (the repo has a Dockerfile), plan **Starter** (the free plan sleeps: the admin and new pages would take ~1 min to wake up).
+1. Vercel → **Storage** → **Create Database** → **Neon** → region Frankfurt, Free plan, name `atouts-db` → **Skip** the "Connect a Project" step. Copy `DATABASE_URL_UNPOOLED` (direct connection, needed for the migrations).
+2. Render → **+ New → Web Service** from `atouts-services-api`: region Frankfurt, runtime **Docker**, plan **Free**.
 3. Environment variables:
 
 | Variable | Value |
 |---|---|
 | `NODE_ENV` | `production` |
-| `DATABASE_URL` | the database's **Internal** URL (Render → atouts-db → Connect) |
-| `DATABASE_SSL` | `no-verify` (if the logs say "server does not support SSL", use `disable`) |
+| `DATABASE_URL` | Neon `DATABASE_URL_UNPOOLED` |
+| `DATABASE_SSL` | `verify` |
 | `JWT_SECRET` | 64+ random characters: `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` |
 | `JWT_EXPIRATION` | `7d` |
 | `FRONTEND_URL` | `https://www.atoutservice92.fr,https://atoutservice92.fr` (first one = used in email links) |
 | `ADMIN_EMAIL` | `atouts.services92@gmail.com` |
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `SMTP_FROM` | from the email provider (step 5); leave empty until then |
 | `ANALYTICS_INGEST_KEY` | random secret, **same value on Vercel** |
-| `S3_ACCESS_KEY_ID` / `S3_SECRET_ACCESS_KEY` | OVH S3 user (step 1) |
-| `S3_BUCKET` | `atouts-services-photos` |
-| `S3_REGION` | `gra` |
-| `S3_ENDPOINT` | `https://s3.gra.io.cloud.ovh.net` |
-| `S3_OBJECT_ACL` | `public-read` |
-| `S3_CDN_URL` | `https://atouts-services-photos.s3.gra.io.cloud.ovh.net` |
+| `CLOUDINARY_URL` | the Cloudinary API environment variable (step 1) |
 
 Do **not** set `TYPEORM_SYNCHRONIZE`: at startup the API runs `src/migrations`, which creates every table.
 
 4. Deploy. Check `https://<service>.onrender.com/blog` answers `{"data":[]...}`.
-5. Custom domain: Render → Settings → Custom Domains → `api.atoutservice92.fr` (DNS in step 4).
+5. The free plan sleeps after 15 min without requests. Keep it awake with a free job on **cron-job.org** calling `https://<service>.onrender.com/` every 10 minutes.
+6. Custom domain: Render → Settings → Custom Domains → `api.atoutservice92.fr` (DNS in step 4).
 
 ## 3. Copy today's content to production
 
-From `atousservice_backend/`, with Docker running (uses the **External** database URL from Render):
+From `atousservice_backend/`, with Docker running (uses the Neon `DATABASE_URL_UNPOOLED`):
 
 ```
-.\scripts\copy-content-to-prod.ps1 -ProdUrl "<External Database URL>"
+.\scripts\copy-content-to-prod.ps1 -ProdUrl "<Neon DATABASE_URL_UNPOOLED>"
 ```
 
 Copies blog articles, city pages, reviews and replaced site photos (published/draft state kept). Quotes, analytics and users are not copied. Safe to run twice.
@@ -67,14 +61,14 @@ Copies blog articles, city pages, reviews and replaced site photos (published/dr
 Create the admin account on production (choose a **new** password):
 
 ```
-$env:DATABASE_URL="<External Database URL>"; $env:DATABASE_SSL="no-verify"; $env:TYPEORM_SYNCHRONIZE="false"; npm run create:admin
+$env:DATABASE_URL="<Neon DATABASE_URL_UNPOOLED>"; $env:DATABASE_SSL="verify"; $env:TYPEORM_SYNCHRONIZE="false"; npm run create:admin
 ```
 
 Then close that PowerShell window (it holds the production URL).
 
 Photos (blog covers, site photos, logo) are files in `public/` and ship with the site. Nothing to upload.
 
-## 4. Site on Vercel (plan Pro: the Hobby plan is for non-commercial use)
+## 4. Site on Vercel (note: the free Hobby plan is officially for non-commercial use; Pro is $20/month)
 
 1. **Add New → Project** from the `atousservice-next` repo (Framework: Next.js, detected).
 2. Environment variables (Production):
@@ -84,7 +78,6 @@ Photos (blog covers, site photos, logo) are files in `public/` and ship with the
 | `NEXT_PUBLIC_API_URL` | `https://api.atoutservice92.fr` |
 | `API_URL` | `https://api.atoutservice92.fr` |
 | `API_HOSTNAME` | `api.atoutservice92.fr` |
-| `CDN_HOSTNAME` | `atouts-services-photos.s3.gra.io.cloud.ovh.net` |
 | `ANALYTICS_INGEST_KEY` | same as Render |
 | `ANALYTICS_SALT_SECRET` | another random secret |
 | `NEXT_PUBLIC_GOOGLE_ADS_ID` | later, when Google Ads is set up |
@@ -107,7 +100,7 @@ Until the domain is live, the API can be tested with the `onrender.com` address:
 
 ## 6. After launch
 
-- Log in at `https://www.atoutservice92.fr/admin`, then check the blog, city pages, a quote form (does the email arrive?), and a photo upload in Portfolio (the photo URL must start with `https://atouts-services-photos…`).
+- Log in at `https://www.atoutservice92.fr/admin`, then check the blog, city pages, a quote form (does the email arrive?), and a photo upload in Portfolio (the photo URL must start with `https://res.cloudinary.com/`).
 - Google Search Console: add the domain, submit `https://www.atoutservice92.fr/sitemap.xml`.
 - Still to fill in `lib/legal.ts`: AXA address and policy number, share capital, RM number, host addresses.
-- Render database backups: the paid plan keeps daily backups. Check they are enabled.
+- Database backups: Neon free keeps a short restore window. Before big changes, run a manual `pg_dump` of the Neon database.

@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: process.env.API_HOSTNAME || "api.atoutservice92.fr",
       },
+      // Photos uploaded from the admin (stored on Cloudinary in production)
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
       ...(process.env.CDN_HOSTNAME
         ? [{ protocol: "https" as const, hostname: process.env.CDN_HOSTNAME }]
         : []),
