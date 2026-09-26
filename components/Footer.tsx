@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { EnvelopeSimple, MapPin, MapTrifold, Phone } from "@phosphor-icons/react/dist/ssr";
+import { EnvelopeSimple, MapTrifold, Phone } from "@phosphor-icons/react/dist/ssr";
 import type { Icon } from "@phosphor-icons/react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -25,12 +25,12 @@ function LinkArrow() {
   );
 }
 
-/** Contact line: duotone icon in a dark disc (same language as the contact section) */
+/** Compact contact line: small duotone icon in a dark disc (same language as the contact section) */
 function ContactLine({ icon: Glyph, children }: { icon: Icon; children: React.ReactNode }) {
   return (
-    <li className="flex items-center gap-3">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5 text-sky-400 ring-1 ring-white/10">
-        <Glyph size={18} weight="duotone" aria-hidden="true" />
+    <li className="flex items-center gap-2.5">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/5 text-sky-400 ring-1 ring-white/10">
+        <Glyph size={14} weight="duotone" aria-hidden="true" />
       </span>
       {children}
     </li>
@@ -60,22 +60,7 @@ export async function Footer() {
             <Link href="/" aria-label="Atouts Services — accueil" className="inline-flex rounded-2xl bg-white px-4 py-3 transition hover:shadow-[0_0_0_4px_rgba(56,189,248,0.25)]">
               <Image src="/images/brand/logo-atouts-services.png" alt="Atouts Services" width={170} height={58} sizes="170px" className="h-12 w-auto" />
             </Link>
-            <p className="mb-7 mt-6 max-w-sm text-sm text-neutral-400">{t("description")}</p>
-            <ul className="space-y-3 text-sm">
-              <ContactLine icon={Phone}>
-                <a href={COMPANY_INFO.phoneHref} className="font-semibold text-white transition-colors hover:text-sky-300">
-                  {COMPANY_INFO.phone}
-                </a>
-              </ContactLine>
-              <ContactLine icon={EnvelopeSimple}>
-                <a href={`mailto:${COMPANY_INFO.email}`} className="break-all text-neutral-300 transition-colors hover:text-white">
-                  {COMPANY_INFO.email}
-                </a>
-              </ContactLine>
-              <ContactLine icon={MapPin}>
-                <span className="text-neutral-300">{COMPANY_INFO.address}</span>
-              </ContactLine>
-            </ul>
+            <p className="mt-6 max-w-sm text-sm text-neutral-400">{t("description")}</p>
           </div>
 
           <nav aria-label={t("servicesTitle")}>
@@ -118,9 +103,22 @@ export async function Footer() {
               </span>
               <div className="text-sm">
                 <p className="font-semibold text-white">{t("serviceAreaValue")}</p>
-                <p className="mt-1 text-neutral-500">{t("serviceAreaBase")}</p>
+                {/* The office address doubles as "where we're based" — no separate address line */}
+                <p className="mt-1 text-neutral-500">{COMPANY_INFO.address}</p>
               </div>
             </div>
+            <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5 text-sm">
+              <ContactLine icon={Phone}>
+                <a href={COMPANY_INFO.phoneHref} className="font-semibold text-white transition-colors hover:text-sky-300">
+                  {COMPANY_INFO.phone}
+                </a>
+              </ContactLine>
+              <ContactLine icon={EnvelopeSimple}>
+                <a href={`mailto:${COMPANY_INFO.email}`} className="break-all text-neutral-300 transition-colors hover:text-white">
+                  {COMPANY_INFO.email}
+                </a>
+              </ContactLine>
+            </ul>
             {cities.length > 0 && (
               <ul className="mt-5 space-y-3 text-sm">
                 {cities.map((c) => (
