@@ -97,7 +97,7 @@ export default async function CityLandingPage({
     page.heroImageUrl && /^(\/|https?:\/\/)/.test(page.heroImageUrl) ? page.heroImageUrl : SITE_IMAGES.maison.src;
 
   const trustItems = [
-    { value: "10+ ans", label: "d'expérience" },
+    { value: "20 ans", label: "d'expérience" },
     { value: "Décennale", label: "garantie 10 ans" },
     { value: "24 h", label: "pour votre devis" },
     { value: page.postalCode ?? page.department ?? "", label: page.postalCode ? page.cityName : "" },

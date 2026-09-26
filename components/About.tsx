@@ -31,7 +31,7 @@ const commitments = [
 const proofs = [
   { value: "Depuis 2006", label: "Entreprise fondée à Issy-les-Moulineaux" },
   { value: "SARL", label: "SIRET 490 173 697 00049" },
-  { value: "Décennale", label: "Assurance sur tous nos travaux" },
+  { value: "Décennale AXA", label: "Assurance sur tous nos travaux" },
   { value: "Paris & IDF", label: "Zone d'intervention" },
 ];
 
@@ -102,7 +102,7 @@ export const About = () => {
                 </span>
                 <div>
                   <p className="font-semibold">Garantie décennale</p>
-                  <p className="text-sm text-neutral-500">Tous nos travaux sont assurés 10 ans</p>
+                  <p className="text-sm text-neutral-500">Assureur : AXA · tous nos travaux couverts 10 ans</p>
                 </div>
               </div>
             </div>

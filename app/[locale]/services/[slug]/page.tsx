@@ -94,7 +94,7 @@ export default async function ServicePage({
   ];
 
   const trustItems = [
-    { value: "10+ ans", label: "d'expérience" },
+    { value: "20 ans", label: "d'expérience" },
     { value: "500+", label: "projets réalisés" },
     { value: "Décennale", label: "garantie 10 ans" },
     ...(service.duration ? [{ value: service.duration, label: "durée moyenne" }] : []),

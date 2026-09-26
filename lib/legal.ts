@@ -28,7 +28,8 @@ export const LEGAL = {
 
   /** Garantie décennale — on the insurance certificate (attestation d'assurance). */
   insurer: {
-    name: null as string | null,
+    /** Confirmed by the owner 2026-09-26; exact entity (e.g. AXA France IARD), address and policy number: see the certificate */
+    name: "AXA" as string | null,
     address: null as string | null,
     policyNumber: null as string | null,
     coverage: null as string | null,

@@ -94,7 +94,7 @@ export const Hero = () => {
 
             <div className="flex flex-wrap gap-x-10 gap-y-3 text-sm text-neutral-400 border-t border-white/10 pt-[3svh]">
               <div>
-                <span className="text-2xl font-bold text-white">10+</span> ans d&apos;expérience
+                <span className="text-2xl font-bold text-white">20</span> ans d&apos;expérience
               </div>
               <div>
                 <span className="text-2xl font-bold text-white">500+</span> projets réalisés
