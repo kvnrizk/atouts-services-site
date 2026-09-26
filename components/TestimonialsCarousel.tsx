@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Autoplay from "embla-carousel-autoplay";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { useMemo } from "react";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { Quote, Star } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { PROJECT_TYPES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +16,15 @@ export interface TestimonialCard {
 }
 
 const projectLabel = (value?: string) => PROJECT_TYPES.find((p) => p.value === value)?.label;
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join("")
+    .replace(/[^A-Za-zÀ-ÿ]/g, "")
+    .slice(0, 2)
+    .toUpperCase();
 
 function Stars({ rating, className }: { rating: number; className?: string }) {
   return (
@@ -32,52 +41,37 @@ function Stars({ rating, className }: { rating: number; className?: string }) {
 }
 
 export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
-  const [api, setApi] = useState<CarouselApi>();
-  const [selected, setSelected] = useState(0);
-  const [snapCount, setSnapCount] = useState(0);
-
-  // Autoplay every 5 s, paused while hovered; never for visitors who asked for reduced motion
+  // Continuous "wheel" scroll, paused while hovered or touched; static for visitors who asked for reduced motion
   const plugins = useMemo(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return [];
-    return [Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })];
+    return [AutoScroll({ speed: 0.8, startDelay: 0, stopOnMouseEnter: true, stopOnInteraction: false })];
   }, []);
 
-  useEffect(() => {
-    if (!api) return;
-    const update = () => {
-      setSnapCount(api.scrollSnapList().length);
-      setSelected(api.selectedScrollSnap());
-    };
-    update();
-    api.on("select", update);
-    api.on("reInit", update);
-    return () => {
-      api.off("select", update);
-      api.off("reInit", update);
-    };
-  }, [api]);
-
   return (
-    <div>
-      <Carousel
-        setApi={setApi}
-        plugins={plugins}
-        opts={{ align: "start", loop: items.length > 3 }}
-        aria-label="Avis de nos clients"
-      >
-        <CarouselContent className="-ml-6">
+    // Edges fade out so the cards appear to come from and go back into the sides
+    <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <Carousel plugins={plugins} opts={{ align: "start", loop: true, dragFree: true }} aria-label="Avis de nos clients">
+        <CarouselContent className="-ml-6 py-4">
           {items.map((t, i) => (
-            <CarouselItem key={`${t.clientName}-${i}`} className="pl-6 md:basis-1/2 lg:basis-1/3">
-              <figure className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-neutral-200">
+            <CarouselItem key={`${t.clientName}-${i}`} className="basis-[85%] pl-6 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+              <figure className="group flex h-full flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-neutral-200 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-sky-200">
                 <div className="flex items-center justify-between">
                   <Stars rating={t.rating} />
-                  <Quote className="h-7 w-7 text-sky-100" aria-hidden="true" />
+                  <Quote className="h-8 w-8 text-sky-100 transition-colors group-hover:text-sky-200" aria-hidden="true" />
                 </div>
-                <blockquote className="mt-5 flex-1 text-neutral-700">&ldquo;{t.comment}&rdquo;</blockquote>
-                <figcaption className="mt-6 border-t border-neutral-100 pt-4 text-sm">
-                  <span className="block font-semibold text-neutral-950">{t.clientName}</span>
-                  <span className="text-neutral-500">
-                    {[t.clientCity, projectLabel(t.projectType)].filter(Boolean).join(" · ")}
+                <blockquote className="mt-5 flex-1 leading-relaxed text-neutral-700">&ldquo;{t.comment}&rdquo;</blockquote>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-sm font-semibold text-white"
+                  >
+                    {initials(t.clientName)}
+                  </span>
+                  <span className="min-w-0 text-sm">
+                    <span className="block font-semibold text-neutral-950">{t.clientName}</span>
+                    <span className="block truncate text-neutral-500">
+                      {[t.clientCity, projectLabel(t.projectType)].filter(Boolean).join(" · ")}
+                    </span>
                   </span>
                 </figcaption>
               </figure>
@@ -85,47 +79,11 @@ export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
           ))}
         </CarouselContent>
       </Carousel>
-
-      {snapCount > 1 && (
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => api?.scrollPrev()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
-            aria-label="Avis précédent"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <div className="flex gap-2">
-            {Array.from({ length: snapCount }, (_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => api?.scrollTo(i)}
-                className={cn(
-                  "h-2 rounded-full transition-all",
-                  i === selected ? "w-6 bg-sky-500" : "w-2 bg-neutral-300 hover:bg-neutral-400",
-                )}
-                aria-label={`Aller à l'avis ${i + 1}`}
-                aria-current={i === selected}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={() => api?.scrollNext()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
-            aria-label="Avis suivant"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
-      )}
     </div>
   );
 }
 
-/** Average of the real reviews, shown above the carousel ("4,9/5 · 12 avis"). */
+/** Average of the real reviews, shown above the carousel ("4,8/5 · 15 avis"). */
 export function RatingSummary({ items }: { items: TestimonialCard[] }) {
   const average = items.reduce((sum, t) => sum + t.rating, 0) / items.length;
   const rounded = Math.round(average * 10) / 10;
