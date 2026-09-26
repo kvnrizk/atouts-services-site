@@ -67,6 +67,6 @@ Une installation entièrement refaite peut nécessiter une **attestation de conf
 
 ## Un doute sur votre installation ?
 
-Nos électriciens interviennent à Issy-les-Moulineaux et dans les Hauts-de-Seine pour la mise en sécurité, la mise aux normes et la rénovation complète d'installations électriques.
+Nos électriciens interviennent à Paris et dans toute l'Île-de-France pour la mise en sécurité, la mise aux normes et la rénovation complète d'installations électriques.
 
 👉 [Découvrir notre service électricité](/services/electricite) ou [demander un devis gratuit](/#contact).

@@ -84,9 +84,9 @@ export const Contact = () => {
               <CardContent className="p-6">
                 <h4 className="text-xl font-bold mb-2">Zone d&apos;intervention</h4>
                 <p className="text-neutral-300">
-                  Nous intervenons dans tout le département des Hauts-de-Seine et Paris :
-                  Issy-les-Moulineaux, Boulogne-Billancourt, Meudon, Sèvres, Vanves,
-                  Clamart et communes limitrophes.
+                  Basés à Issy-les-Moulineaux, nous intervenons en priorité à Issy,
+                  Boulogne-Billancourt, Vanves, Meudon, Sèvres et Clamart, ainsi qu&apos;à
+                  Paris et dans toute l&apos;Île-de-France. Partout en France sur projet.
                 </p>
               </CardContent>
             </Card>

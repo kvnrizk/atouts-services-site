@@ -66,7 +66,7 @@ L'autorisation de la copropriété ne remplace pas les règles d'**urbanisme**. 
 
 ## Un projet de rénovation en appartement ?
 
-Nous intervenons en copropriété à Issy-les-Moulineaux, Boulogne-Billancourt, Vanves et dans les Hauts-de-Seine. Nous vous aidons à identifier, dès la visite, les travaux qui nécessitent un accord de la copropriété.
+Nous intervenons en copropriété à Paris et dans toute l'Île-de-France, en particulier à Issy-les-Moulineaux, Boulogne-Billancourt et Vanves. Nous vous aidons à identifier, dès la visite, les travaux qui nécessitent un accord de la copropriété.
 
 👉 [Découvrir nos rénovations d'appartement](/services/renovation) ou [demander un devis gratuit](/#contact).
 

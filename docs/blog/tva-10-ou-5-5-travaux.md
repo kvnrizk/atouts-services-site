@@ -59,7 +59,7 @@ Le taux de 5,5 % concerne les travaux qui améliorent la performance énergétiq
 
 ## Un devis clair, avec le bon taux de TVA
 
-Nos devis de rénovation à Issy-les-Moulineaux et dans les Hauts-de-Seine détaillent **chaque poste et le taux de TVA qui s'y applique**. Les fournitures que nous posons bénéficient du taux réduit.
+Nos devis de rénovation à Paris et en Île-de-France détaillent **chaque poste et le taux de TVA qui s'y applique**. Les fournitures que nous posons bénéficient du taux réduit.
 
 👉 [Voir nos rénovations clé en main](/services/renovation) ou [demander un devis gratuit](/#contact).
 

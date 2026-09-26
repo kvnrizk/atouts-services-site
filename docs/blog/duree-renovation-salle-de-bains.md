@@ -91,8 +91,8 @@ Si c'est votre seule salle de bains, elle sera inutilisable pendant presque tout
 - Ajoutez **1 à 4 semaines** de délai de commande avant le démarrage.
 - Les temps de séchage sont incompressibles : c'est la garantie d'une douche qui ne fuira pas.
 
-## Un projet de salle de bains à Issy-les-Moulineaux ou alentour ?
+## Un projet de salle de bains à Paris ou en Île-de-France ?
 
-Nous rénovons des salles de bains à Issy-les-Moulineaux, Boulogne-Billancourt, Vanves, Meudon et dans tout le sud des Hauts-de-Seine. Après une visite gratuite, vous recevez un devis détaillé **avec un planning jour par jour**, pour savoir exactement combien de temps vous serez sans salle de bains.
+Basés à Issy-les-Moulineaux, nous rénovons des salles de bains à Paris et dans toute l'Île-de-France, en particulier à Issy, Boulogne-Billancourt, Vanves et Meudon. Après une visite gratuite, vous recevez un devis détaillé **avec un planning jour par jour**, pour savoir exactement combien de temps vous serez sans salle de bains.
 
 👉 [Découvrir notre service de rénovation de salle de bains](/services/salles-de-bains) ou [demander un devis gratuit](/#contact).

@@ -12,7 +12,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Nos Réalisations",
   description:
-    "Découvrez nos réalisations en peinture, rénovation, électricité et aménagement. Photos avant/après de nos projets à Issy-les-Moulineaux et en Hauts-de-Seine.",
+    "Découvrez nos réalisations en peinture, rénovation, électricité et aménagement. Photos avant/après de nos projets à Paris et en Île-de-France.",
   alternates: {
     canonical: "/realisations",
   },

@@ -31,15 +31,19 @@ export const QUOTE_REQUEST_STATUS = {
   archive: 'Archivé',
 } as const;
 
+/** Priority towns around the Issy base, then Paris. The wider region is SERVICE_REGION. */
 export const SERVICE_AREAS = [
   'Issy-les-Moulineaux',
   'Boulogne-Billancourt',
+  'Vanves',
   'Meudon',
   'Sèvres',
-  'Vanves',
   'Clamart',
   'Paris',
 ];
+
+/** Whole region served; the rest of France is "sur projet" and deliberately not declared to Google. */
+export const SERVICE_REGION = 'Île-de-France';
 
 export const GOOGLE_MAPS_CENTER = {
   lat: 48.8235,

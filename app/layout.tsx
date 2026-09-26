@@ -14,17 +14,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.atouts-services.fr"),
   title: {
-    default: "Entreprise de rénovation à Issy-les-Moulineaux | Atouts Services",
+    default: "Entreprise de rénovation Paris & Île-de-France | Atouts Services",
     template: "%s | Atouts Services",
   },
   description:
-    "Entreprise de rénovation à Issy-les-Moulineaux (92). Peinture, électricité, salles de bains, revêtements de sol. Devis gratuit, garantie décennale.",
+    "Entreprise de rénovation à Paris et en Île-de-France, basée à Issy-les-Moulineaux. Peinture, électricité, salles de bains, sols. Devis gratuit, garantie décennale.",
   keywords: [
     "rénovation",
     "peinture",
     "électricité",
     "salle de bains",
     "Issy-les-Moulineaux",
+    "Paris",
+    "Île-de-France",
     "Hauts-de-Seine",
     "92",
     "travaux",

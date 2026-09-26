@@ -53,7 +53,7 @@ export const Hero = () => {
             {/* The eyebrow is inside the H1 so the heading carries the "rénovation + city" keyword */}
             <h1 className="mb-[3svh]">
               <span className="block text-xs md:text-sm font-medium tracking-[0.2em] text-sky-400 uppercase mb-[3svh]">
-                Rénovation à Issy-les-Moulineaux · Hauts-de-Seine
+                Rénovation à Paris · Île-de-France
               </span>
               <span className="block text-[clamp(2.25rem,min(9vw,8.5svh),4.5rem)] font-bold text-white leading-[1.05]">
                 Tous vos travaux,<br />une seule équipe.

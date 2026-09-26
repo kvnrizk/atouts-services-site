@@ -60,6 +60,6 @@ Changer de sol en copropriété impose de **ne pas dégrader l'isolation phoniqu
 
 ## Besoin d'un conseil pour votre sol ?
 
-Nous posons carrelage, parquet et vinyle à Issy-les-Moulineaux et dans les Hauts-de-Seine, avec préparation du support et sous-couche adaptée.
+Nous posons carrelage, parquet et vinyle à Paris et en Île-de-France, avec préparation du support et sous-couche adaptée.
 
 👉 [Découvrir notre service revêtements de sol](/services/revetements-sol) ou [demander un devis gratuit](/#contact).

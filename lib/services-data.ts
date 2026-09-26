@@ -154,9 +154,9 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Peintre à Issy-les-Moulineaux (92)",
-      description: "Services de peinture professionnels à Issy-les-Moulineaux et Hauts-de-Seine. Peinture intérieure, extérieure, ravalement. Devis gratuit.",
-      keywords: ["peinture", "peinture intérieure", "peinture extérieure", "ravalement façade", "Issy-les-Moulineaux", "92"],
+      title: "Peintre à Paris & Île-de-France",
+      description: "Peintre à Paris et en Île-de-France, basé à Issy-les-Moulineaux. Peinture intérieure, extérieure, ravalement. Devis gratuit.",
+      keywords: ["peinture", "peinture intérieure", "peinture extérieure", "ravalement façade", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
   },
 
@@ -223,9 +223,9 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Rénovation appartement Issy-les-Moulineaux",
-      description: "Rénovation complète d'appartements et maisons à Issy-les-Moulineaux. Clé en main, tous corps d'état. Devis gratuit.",
-      keywords: ["rénovation", "rénovation appartement", "rénovation maison", "clé en main", "Issy-les-Moulineaux", "92"],
+      title: "Rénovation appartement Paris & IDF",
+      description: "Rénovation complète d'appartements et maisons à Paris et en Île-de-France. Clé en main, tous corps d'état. Devis gratuit.",
+      keywords: ["rénovation", "rénovation appartement", "rénovation maison", "clé en main", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
   },
 
@@ -292,9 +292,9 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos installations",
     },
     seo: {
-      title: "Électricien à Issy-les-Moulineaux (92)",
-      description: "Installation électrique, mise aux normes NFC 15-100, domotique à Issy-les-Moulineaux. Électriciens qualifiés. Devis gratuit.",
-      keywords: ["électricité", "mise aux normes", "NFC 15-100", "domotique", "éclairage LED", "Issy-les-Moulineaux", "92"],
+      title: "Électricien à Paris & Île-de-France",
+      description: "Installation électrique, mise aux normes NF C 15-100, domotique à Paris et en Île-de-France. Électriciens qualifiés. Devis gratuit.",
+      keywords: ["électricité", "mise aux normes", "NFC 15-100", "domotique", "éclairage LED", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
   },
 
@@ -361,9 +361,9 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Rénovation salle de bains Issy-les-Moulineaux",
-      description: "Création et rénovation de salles de bains à Issy-les-Moulineaux. Design sur mesure, plomberie, carrelage. Devis gratuit.",
-      keywords: ["salle de bains", "rénovation salle de bains", "création salle d'eau", "plomberie", "carrelage", "Issy-les-Moulineaux", "92"],
+      title: "Rénovation salle de bains Paris & IDF",
+      description: "Création et rénovation de salles de bains à Paris et en Île-de-France. Design sur mesure, plomberie, carrelage. Devis gratuit.",
+      keywords: ["salle de bains", "rénovation salle de bains", "création salle d'eau", "plomberie", "carrelage", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
   },
 
@@ -430,9 +430,9 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos réalisations",
     },
     seo: {
-      title: "Parquet & carrelage à Issy-les-Moulineaux",
-      description: "Pose de parquet, carrelage, PVC et moquette à Issy-les-Moulineaux. Poseurs professionnels, finitions soignées. Devis gratuit.",
-      keywords: ["revêtement sol", "parquet", "carrelage", "PVC", "moquette", "pose sol", "Issy-les-Moulineaux", "92"],
+      title: "Parquet & carrelage à Paris & IDF",
+      description: "Pose de parquet, carrelage, PVC et moquette à Paris et en Île-de-France. Poseurs professionnels, finitions soignées. Devis gratuit.",
+      keywords: ["revêtement sol", "parquet", "carrelage", "PVC", "moquette", "pose sol", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
   },
 };

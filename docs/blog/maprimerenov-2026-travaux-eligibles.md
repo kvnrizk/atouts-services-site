@@ -69,8 +69,8 @@ MaPrimeRénov' ne finance que la **performance énergétique**. Une salle de bai
 - Salle de bains, sols, peinture : **pas de MaPrimeRénov'**, mais TVA à 10 % et, selon les cas, MaPrimeAdapt'.
 - Toujours **déposer la demande avant de signer**.
 
-## Vous préparez une rénovation dans les Hauts-de-Seine ?
+## Vous préparez une rénovation à Paris ou en Île-de-France ?
 
-Nous réalisons les travaux de rénovation intérieure (salle de bains, électricité, sols, peinture) à Issy-les-Moulineaux et alentour. Nos devis détaillent chaque poste et le **taux de TVA applicable**, pour que vous sachiez exactement ce que vous payez.
+Nous réalisons les travaux de rénovation intérieure (salle de bains, électricité, sols, peinture) à Paris et dans toute l'Île-de-France, depuis Issy-les-Moulineaux. Nos devis détaillent chaque poste et le **taux de TVA applicable**, pour que vous sachiez exactement ce que vous payez.
 
 👉 [Découvrir nos rénovations clé en main](/services/renovation) ou [demander un devis gratuit](/#contact).

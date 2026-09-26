@@ -66,6 +66,6 @@ Restaurer le parquet **après** les travaux salissants évite de l'abîmer à no
 
 ## Votre projet de rénovation à Boulogne-Billancourt
 
-Depuis Issy-les-Moulineaux, nous rénovons des appartements anciens à Boulogne-Billancourt et dans les Hauts-de-Seine : électricité, plomberie, salle de bains, sols et peintures, avec un seul interlocuteur qui coordonne l'ensemble du chantier.
+Depuis Issy-les-Moulineaux, nous rénovons des appartements anciens à Boulogne-Billancourt, à Paris et dans toute l'Île-de-France : électricité, plomberie, salle de bains, sols et peintures, avec un seul interlocuteur qui coordonne l'ensemble du chantier.
 
 👉 [Découvrir nos rénovations d'appartement](/services/renovation) ou [demander un devis gratuit](/#contact).

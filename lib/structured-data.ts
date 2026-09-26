@@ -1,4 +1,4 @@
-import { COMPANY_INFO, SERVICE_AREAS } from "./constants";
+import { COMPANY_INFO, SERVICE_AREAS, SERVICE_REGION } from "./constants";
 
 const BASE_URL = "https://www.atouts-services.fr";
 
@@ -19,6 +19,11 @@ const BUSINESS_ADDRESS = {
 /** From api-adresse.data.gouv.fr for the address above. */
 const BUSINESS_GEO = { "@type": "GeoCoordinates", latitude: 48.823498, longitude: 2.266302 };
 
+const areaServed = [
+  ...SERVICE_AREAS.map((area) => ({ "@type": "City", name: area })),
+  { "@type": "AdministrativeArea", name: SERVICE_REGION },
+];
+
 const providerRef = { "@type": "HomeAndConstructionBusiness", "@id": BUSINESS_ID, name: COMPANY_INFO.name };
 
 export function getLocalBusinessJsonLd() {
@@ -34,10 +39,7 @@ export function getLocalBusinessJsonLd() {
     telephone: COMPANY_INFO.phoneHref.replace("tel:", ""),
     address: BUSINESS_ADDRESS,
     geo: BUSINESS_GEO,
-    areaServed: SERVICE_AREAS.map((area) => ({
-      "@type": "City",
-      name: area,
-    })),
+    areaServed,
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -54,7 +56,7 @@ export function getLocalBusinessJsonLd() {
     ],
     image: LOGO_URL,
     description:
-      "Entreprise de rénovation à Issy-les-Moulineaux (92). Peinture, électricité, salles de bains, revêtements de sol. Devis gratuit, garantie décennale.",
+      "Entreprise de rénovation à Paris et en Île-de-France, basée à Issy-les-Moulineaux. Peinture, électricité, salles de bains, revêtements de sol. Devis gratuit, garantie décennale.",
   };
 }
 
@@ -127,10 +129,7 @@ export function getServiceJsonLd(service: {
     description: service.description,
     url: `${BASE_URL}/services/${service.slug}`,
     provider: providerRef,
-    areaServed: SERVICE_AREAS.map((area) => ({
-      "@type": "City",
-      name: area,
-    })),
+    areaServed,
   };
 }
 

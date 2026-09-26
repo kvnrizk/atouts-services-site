@@ -41,9 +41,9 @@ export const About = () => {
               Une équipe, tous vos travaux.
             </h2>
             <p className="text-lg text-neutral-400 mb-8">
-              Implantée à Issy-les-Moulineaux dans le département des Hauts-de-Seine,
-              notre entreprise forte de plus de 10 ans d&apos;expérience s&apos;est spécialisée
-              dans la rénovation complète et les services du bâtiment.
+              Implantée à Issy-les-Moulineaux, aux portes de Paris, notre entreprise forte
+              de plus de 10 ans d&apos;expérience s&apos;est spécialisée dans la rénovation complète
+              et les services du bâtiment, à Paris et dans toute l&apos;Île-de-France.
             </p>
 
             <div className="space-y-6">

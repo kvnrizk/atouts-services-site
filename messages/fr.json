@@ -16,7 +16,7 @@
       "1": {
         "title": "Rénovation Complète",
         "subtitle": "Transformez votre espace de vie",
-        "description": "Expertise en rénovation d'appartements et maisons à Issy-les-Moulineaux"
+        "description": "Expertise en rénovation d'appartements et maisons à Paris et en Île-de-France"
       },
       "2": {
         "title": "Peinture Intérieure",
@@ -60,7 +60,7 @@
   },
   "about": {
     "title": "Pourquoi choisir A Touts Services ?",
-    "description": "Implantée à Issy-les-Moulineaux dans le département des Hauts-de-Seine, notre entreprise forte de plus de 10 ans d'expérience s'est spécialisée dans la rénovation complète et les services du bâtiment.",
+    "description": "Implantée à Issy-les-Moulineaux, aux portes de Paris, notre entreprise forte de plus de 10 ans d'expérience s'est spécialisée dans la rénovation complète et les services du bâtiment, à Paris et dans toute l'Île-de-France.",
     "expertise": "Expertise reconnue",
     "expertiseDesc": "Des artisans qualifiés et certifiés pour tous vos travaux",
     "support": "Accompagnement personnalisé",
@@ -93,14 +93,14 @@
     "hours": "Horaires",
     "hoursValue": "Lun - Ven: 8h00 - 18h00\nSam: 9h00 - 17h00",
     "serviceArea": "Zone d'intervention",
-    "serviceAreaDesc": "Nous intervenons dans tout le département des Hauts-de-Seine et Paris : Issy-les-Moulineaux, Boulogne-Billancourt, Meudon, Sèvres, Vanves, Clamart et communes limitrophes."
+    "serviceAreaDesc": "Basés à Issy-les-Moulineaux, nous intervenons en priorité à Issy, Boulogne-Billancourt, Vanves, Meudon, Sèvres et Clamart, ainsi qu'à Paris et dans toute l'Île-de-France. Partout en France sur projet."
   },
   "footer": {
-    "description": "Votre expert en rénovation à Issy-les-Moulineaux. Plus de 10 ans d'expérience dans la peinture, électricité, salles de bains et bien plus encore.",
+    "description": "Votre expert en rénovation à Paris et en Île-de-France, basé à Issy-les-Moulineaux. Plus de 10 ans d'expérience dans la peinture, l'électricité, les salles de bains et bien plus encore.",
     "quickLinks": "Liens rapides",
     "contact": "Contact",
     "serviceArea": "Zone d'intervention",
-    "serviceAreaValue": "Île-de-France : Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94)",
+    "serviceAreaValue": "Paris (75) et toute l'Île-de-France : Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78), Essonne (91), Val-d'Oise (95), Seine-et-Marne (77). Partout en France sur projet.",
     "decennalGuarantee": "Garantie décennale",
     "insuredCompany": "Entreprise assurée",
     "allRightsReserved": "Atouts Services. Tous droits réservés.",

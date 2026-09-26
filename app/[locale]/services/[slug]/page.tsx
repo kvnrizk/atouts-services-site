@@ -134,7 +134,7 @@ export default async function ServicePage({
               </nav>
               <h1 className="max-w-3xl">
                 <span className="mb-4 block text-xs font-medium uppercase tracking-[0.2em] text-sky-400 md:text-sm">
-                  {service.title} à Issy-les-Moulineaux · Hauts-de-Seine
+                  {service.title} à Paris · Île-de-France
                 </span>
                 <span className="block text-4xl font-bold leading-[1.05] md:text-6xl">{service.tagline}</span>
               </h1>

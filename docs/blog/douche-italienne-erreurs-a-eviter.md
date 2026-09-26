@@ -67,8 +67,8 @@ Pour une personne âgée ou en situation de handicap, remplacer une baignoire pa
 4. La **hauteur disponible** vérifiée avant de choisir le modèle.
 5. Un **sol antidérapant**, une paroi suffisante et une bonne ventilation.
 
-## Votre douche à l'italienne à Issy-les-Moulineaux
+## Votre douche à l'italienne à Paris et en Île-de-France
 
-Nous créons des douches à l'italienne et des salles de bains complètes à Issy-les-Moulineaux et dans les Hauts-de-Seine : plomberie, étanchéité, carrelage et électricité, avec un seul interlocuteur.
+Nous créons des douches à l'italienne et des salles de bains complètes à Paris et en Île-de-France, depuis Issy-les-Moulineaux : plomberie, étanchéité, carrelage et électricité, avec un seul interlocuteur.
 
 👉 [Découvrir notre service salle de bains](/services/salles-de-bains) ou [demander un devis gratuit](/#contact).
