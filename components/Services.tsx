@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Bathtub, GridFour, HouseLine, Lightning, PaintRoller, type Icon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { LazyHexNut3D } from "@/components/LazyHexNut3D";
@@ -33,9 +32,6 @@ const services = [
     angle: 270,
   }
 ];
-
-/** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
-const LOGO_SRC = "/images/brand/logo-mark-large.png";
 
 /** One Phosphor duotone icon per service (MIT): clean outline + light sky fill, professional and on-brand */
 const ICONS: Record<string, Icon> = {
@@ -70,37 +66,25 @@ const getPositionFromAngle = (angle: number, radius: number = 320) => {
   return {
     left: `calc(50% + ${x}px)`,
     top: `calc(50% + ${y}px)`,
-    transform: 'translate(-50%, -50%)'
+    // the icon disc (80px) is centred on the orbit, the label hangs below it
+    transform: 'translate(-50%, -40px)'
   };
 };
 
 export const Services = () => {
   return (
     <section id="services" className="py-20 bg-neutral-50 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-200 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-300 rounded-full blur-3xl"></div>
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">Nos Services</h2>
         </div>
 
         <div className="relative flex items-center justify-center md:min-h-[700px]">
-          {/* Central 3D hex nut — desktop only here: it sits in the middle of the circle of services,
-              under the faded logo mark (the 3D canvas is transparent) */}
+          {/* Central 3D hex nut — desktop only here: it sits in the middle of the orbit of services,
+              on a soft sky glow (the 3D canvas is transparent) */}
           <div className="absolute top-1/2 left-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block">
             <div className="relative h-[420px] w-[420px]">
-              <Image
-                src={LOGO_SRC}
-                alt=""
-                aria-hidden="true"
-                width={760}
-                height={601}
-                sizes="760px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[760px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
-              />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 scale-125 rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.22),transparent)]" />
               <div className="relative h-full w-full">
                 <LazyHexNut3D />
               </div>
@@ -113,15 +97,7 @@ export const Services = () => {
             <div className="md:hidden">
               {/* Mobile: the 3D nut sits above the list, in the flow, so it never covers a card */}
               <div className="relative mx-auto -mt-8 mb-6 h-56 w-56">
-                <Image
-                src={LOGO_SRC}
-                alt=""
-                aria-hidden="true"
-                width={400}
-                height={317}
-                sizes="400px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[400px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
-              />
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 scale-125 rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.22),transparent)]" />
                 <div className="relative h-full w-full">
                   <LazyHexNut3D />
                 </div>
@@ -144,6 +120,11 @@ export const Services = () => {
 
             {/* Desktop: Circular layout */}
             <div className="hidden md:block relative h-[700px] w-full">
+              {/* Orbit through the centre of the 5 icons (radius 320px) + a sky dot circling slowly */}
+              <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-300/70" />
+              <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 animate-[spin_40s_linear_infinite] motion-reduce:animate-none">
+                <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400 shadow-[0_0_12px_3px_rgba(56,189,248,0.55)]" />
+              </div>
               {services.map((service, index) => {
                 const position = getPositionFromAngle(service.angle);
                 return (
@@ -152,7 +133,7 @@ export const Services = () => {
                       <Link href={service.link} className="group inline-block">
                         <div className="flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300">
                           <ServiceIcon link={service.link} size={80} />
-                          <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[200px]`}>
+                          <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[220px] rounded-md bg-neutral-50 px-2`}>
                             {service.title}
                           </h3>
                         </div>
