@@ -69,7 +69,7 @@ export const Contact = () => {
                   {COMPANY_INFO.address}
                 </ContactRow>
                 <ContactRow icon={MapTrifold} label="Zone d'intervention">
-                  Paris et toute l&apos;Île-de-France, en priorité Issy, Boulogne, Vanves, Meudon, Sèvres et Clamart.
+                  Paris et toute l&apos;Île-de-France.
                 </ContactRow>
               </div>
             </Reveal>
