@@ -1,119 +1,83 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { MapPin, Quote, Star } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { useEffect, useMemo, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { PROJECT_TYPES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export interface TestimonialCard {
-  id?: number;
   clientName: string;
   clientCity?: string;
   rating: number;
   comment: string;
-  projectLabel?: string;
+  projectType?: string;
 }
 
-const AUTOPLAY_MS = 5000;
+const projectLabel = (value?: string) => PROJECT_TYPES.find((p) => p.value === value)?.label;
 
-/** "Marie D." -> "MD", "Jean-Paul" -> "JP" */
-function initials(name: string): string {
-  return name
-    .split(/[\s-]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]!.toUpperCase())
-    .join("");
+function Stars({ rating, className }: { rating: number; className?: string }) {
+  return (
+    <div className={cn("flex gap-0.5", className)} role="img" aria-label={`Note : ${rating} sur 5`}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star
+          key={i}
+          aria-hidden="true"
+          className={cn("h-4 w-4", i < rating ? "fill-sky-400 text-sky-400" : "fill-neutral-200 text-neutral-200")}
+        />
+      ))}
+    </div>
+  );
 }
 
 export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [selected, setSelected] = useState(0);
   const [snapCount, setSnapCount] = useState(0);
-  const [paused, setPaused] = useState(false);
 
-  // Dots follow the carousel (the number of snaps changes with the screen width)
+  // Autoplay every 5 s, paused while hovered; never for visitors who asked for reduced motion
+  const plugins = useMemo(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return [];
+    return [Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })];
+  }, []);
+
   useEffect(() => {
     if (!api) return;
-    const sync = () => {
+    const update = () => {
       setSnapCount(api.scrollSnapList().length);
       setSelected(api.selectedScrollSnap());
     };
-    sync();
-    api.on("select", sync);
-    api.on("reInit", sync);
+    update();
+    api.on("select", update);
+    api.on("reInit", update);
     return () => {
-      api.off("select", sync);
-      api.off("reInit", sync);
+      api.off("select", update);
+      api.off("reInit", update);
     };
   }, [api]);
 
-  // Autoplay: paused while hovered or focused, and off for users who ask for reduced motion
-  useEffect(() => {
-    if (!api || paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => api.scrollNext(), AUTOPLAY_MS);
-    return () => window.clearInterval(timer);
-  }, [api, paused]);
-
   return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-    >
+    <div>
       <Carousel
         setApi={setApi}
-        opts={{ loop: true, align: "start" }}
+        plugins={plugins}
+        opts={{ align: "start", loop: items.length > 3 }}
         aria-label="Avis de nos clients"
-        // Soft fade on the left/right edges (desktop) so cards slide in and out instead of being cut
-        className="md:[mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]"
       >
-        <CarouselContent className="-ml-6 py-4">
+        <CarouselContent className="-ml-6">
           {items.map((t, i) => (
-            <CarouselItem key={t.id ?? i} className="pl-6 md:basis-1/2 lg:basis-1/3">
-              <figure className="group flex h-full flex-col rounded-3xl bg-white p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_40px_-20px_rgba(0,0,0,0.18)] ring-1 ring-neutral-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_24px_48px_-20px_rgba(14,165,233,0.35)]">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex gap-0.5" role="img" aria-label={`Note : ${t.rating} sur 5`}>
-                    {[1, 2, 3, 4, 5].map((n) => (
-                      <Star
-                        key={n}
-                        aria-hidden="true"
-                        className={cn("h-4 w-4", n <= t.rating ? "fill-sky-400 text-sky-400" : "fill-neutral-200 text-neutral-200")}
-                      />
-                    ))}
-                  </div>
-                  {t.projectLabel && (
-                    <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700">{t.projectLabel}</span>
-                  )}
+            <CarouselItem key={`${t.clientName}-${i}`} className="pl-6 md:basis-1/2 lg:basis-1/3">
+              <figure className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-neutral-200">
+                <div className="flex items-center justify-between">
+                  <Stars rating={t.rating} />
+                  <Quote className="h-7 w-7 text-sky-100" aria-hidden="true" />
                 </div>
-
-                <Quote className="mt-6 h-7 w-7 fill-sky-400/15 text-sky-400/40" aria-hidden="true" />
-                <blockquote className="mt-3 line-clamp-6 flex-1 text-[1.05rem] leading-relaxed text-neutral-800">
-                  {t.comment}
-                </blockquote>
-
-                <figcaption className="mt-8 flex items-center gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-semibold text-sky-300"
-                  >
-                    {initials(t.clientName)}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block truncate font-semibold text-neutral-950">{t.clientName}</span>
-                    {t.clientCity && (
-                      <span className="flex items-center gap-1 text-sm text-neutral-500">
-                        <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                        {t.clientCity}
-                      </span>
-                    )}
+                <blockquote className="mt-5 flex-1 text-neutral-700">&ldquo;{t.comment}&rdquo;</blockquote>
+                <figcaption className="mt-6 border-t border-neutral-100 pt-4 text-sm">
+                  <span className="block font-semibold text-neutral-950">{t.clientName}</span>
+                  <span className="text-neutral-500">
+                    {[t.clientCity, projectLabel(t.projectType)].filter(Boolean).join(" · ")}
                   </span>
                 </figcaption>
               </figure>
@@ -123,22 +87,54 @@ export function TestimonialsCarousel({ items }: { items: TestimonialCard[] }) {
       </Carousel>
 
       {snapCount > 1 && (
-        <div className="mt-6 flex justify-center gap-2">
-          {Array.from({ length: snapCount }, (_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => api?.scrollTo(i)}
-              aria-label={`Aller à l'avis ${i + 1}`}
-              aria-current={i === selected}
-              className={cn(
-                "h-2 rounded-full transition-all",
-                i === selected ? "w-8 bg-sky-500" : "w-2 bg-neutral-300 hover:bg-neutral-400",
-              )}
-            />
-          ))}
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => api?.scrollPrev()}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+            aria-label="Avis précédent"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <div className="flex gap-2">
+            {Array.from({ length: snapCount }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => api?.scrollTo(i)}
+                className={cn(
+                  "h-2 rounded-full transition-all",
+                  i === selected ? "w-6 bg-sky-500" : "w-2 bg-neutral-300 hover:bg-neutral-400",
+                )}
+                aria-label={`Aller à l'avis ${i + 1}`}
+                aria-current={i === selected}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => api?.scrollNext()}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+            aria-label="Avis suivant"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       )}
+    </div>
+  );
+}
+
+/** Average of the real reviews, shown above the carousel ("4,9/5 · 12 avis"). */
+export function RatingSummary({ items }: { items: TestimonialCard[] }) {
+  const average = items.reduce((sum, t) => sum + t.rating, 0) / items.length;
+  const rounded = Math.round(average * 10) / 10;
+  return (
+    <div className="mt-6 inline-flex items-center gap-3 rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-neutral-200">
+      <Stars rating={Math.round(average)} />
+      <span className="text-sm text-neutral-700">
+        <strong className="text-neutral-950">{rounded.toLocaleString("fr-FR")}/5</strong> · {items.length} avis client{items.length > 1 ? "s" : ""}
+      </span>
     </div>
   );
 }
