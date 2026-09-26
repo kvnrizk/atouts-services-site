@@ -7,7 +7,7 @@ import { SITE_IMAGES } from "@/lib/site-images";
 /**
  * "Pourquoi Atouts Services" — concrete commitments confirmed by the owner (2026-09-26),
  * a photo, and a proof bar of verifiable facts only (no figures repeated from the hero,
- * no "100 % satisfaction").
+ * no "100 % satisfaction"). The SIRET stays in the legal notices only (owner request).
  */
 const commitments = [
   {
@@ -30,7 +30,7 @@ const commitments = [
 
 const proofs = [
   { value: "Depuis 2006", label: "Entreprise fondée à Issy-les-Moulineaux" },
-  { value: "SARL", label: "SIRET 490 173 697 00049" },
+  { value: "Artisans certifiés", label: "Dans chaque métier" },
   { value: "Décennale AXA", label: "Assurance sur tous nos travaux" },
   { value: "Paris & IDF", label: "Zone d'intervention" },
 ];
