@@ -1,38 +1,33 @@
 "use client";
 
-import { Paintbrush, Home, Zap, Bath, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { LazyHexNut3D } from "@/components/LazyHexNut3D";
 import { Reveal } from "@/components/Reveal";
+import { servicesData } from "@/lib/services-data";
 
 const services = [
   {
-    icon: Paintbrush,
     title: "Entreprise de Peinture",
     link: "/services/peinture",
     angle: -18,
   },
   {
-    icon: Home,
     title: "Rénovation Immobilière",
     link: "/services/renovation",
     angle: 54,
   },
   {
-    icon: Zap,
     title: "Électricité",
     link: "/services/electricite",
     angle: 126,
   },
   {
-    icon: Layers,
     title: "Revêtements de Sols",
     link: "/services/revetements-sol",
     angle: 198,
   },
   {
-    icon: Bath,
     title: "Salle de Bains",
     link: "/services/salles-de-bains",
     angle: 270,
@@ -42,11 +37,26 @@ const services = [
 /** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
 const LOGO_SRC = "/images/brand/logo-mark-large.png";
 
-// One consistent color for every service icon — dark steel to match the
-// bolt centerpiece, with the sky accent reserved for the hover state only.
-const iconBg = "bg-neutral-900";
+/** Each service is illustrated by the photo of its own service page (single source: lib/services-data) */
+const photoOf = (link: string) => servicesData[link.replace("/services/", "")]?.heroImage;
+
 const iconHoverBorder = "group-hover:border-sky-400";
 const iconHoverText = "group-hover:text-sky-600";
+
+/** Round photo with a white ring that turns sky on hover */
+function ServicePhoto({ link, size }: { link: string; size: number }) {
+  const src = photoOf(link);
+  return (
+    <span
+      className="relative block shrink-0 overflow-hidden rounded-full bg-neutral-200 shadow-md ring-2 ring-white transition duration-300 group-hover:ring-sky-400"
+      style={{ width: size, height: size }}
+    >
+      {src && (
+        <Image src={src} alt="" fill sizes={`${size}px`} className="object-cover transition-transform duration-500 group-hover:scale-110" />
+      )}
+    </span>
+  );
+}
 
 const getPositionFromAngle = (angle: number, radius: number = 320) => {
   const radian = (angle * Math.PI) / 180;
@@ -117,9 +127,7 @@ export const Services = () => {
                 <Reveal key={index} delay={index * 60}>
                   <Link href={service.link} className="block group">
                     <div className={`flex items-center gap-4 bg-white shadow-sm p-5 rounded-2xl border border-neutral-200 ${iconHoverBorder} hover:shadow-lg transition-all duration-300 active:scale-[0.98]`}>
-                      <div className={`${iconBg} w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                        <service.icon className="h-6 w-6 text-white" />
-                      </div>
+                      <ServicePhoto link={service.link} size={56} />
                       <h3 className="text-neutral-900 font-semibold text-lg uppercase tracking-wide">
                         {service.title}
                       </h3>
@@ -139,9 +147,7 @@ export const Services = () => {
                     <Reveal delay={index * 60}>
                       <Link href={service.link} className="group inline-block">
                         <div className="flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300">
-                          <div className={`${iconBg} w-14 h-14 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform shadow-md border-2 border-transparent ${iconHoverBorder}`}>
-                            <service.icon className="h-7 w-7 text-white" />
-                          </div>
+                          <ServicePhoto link={service.link} size={72} />
                           <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[200px]`}>
                             {service.title}
                           </h3>
