@@ -12,8 +12,8 @@ export const Contact = () => {
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Contactez-nous</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-neutral-950 mb-4">Contactez-nous</h2>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             Parlons de votre projet ! Laissez-nous vos coordonnées ou appelez-nous, réponse le jour même.
           </p>
         </div>
@@ -21,15 +21,15 @@ export const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           <Reveal className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Nos coordonnées</h3>
+              <h3 className="text-2xl font-bold text-neutral-950 mb-6">Nos coordonnées</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-sky-400/10 rounded-lg flex items-center justify-center">
                     <MapPin className="h-6 w-6 text-sky-600" aria-hidden="true" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Adresse</h4>
-                    <p className="text-gray-600">Issy-les-Moulineaux<br />Hauts-de-Seine (92)</p>
+                    <h4 className="font-semibold text-neutral-950">Adresse</h4>
+                    <p className="text-neutral-600">Issy-les-Moulineaux<br />Hauts-de-Seine (92)</p>
                   </div>
                 </div>
 
@@ -38,7 +38,7 @@ export const Contact = () => {
                     <Phone className="h-6 w-6 text-sky-600" aria-hidden="true" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Téléphone</h4>
+                    <h4 className="font-semibold text-neutral-950">Téléphone</h4>
                     <a
                       href="tel:+33634026180"
                       onClick={() => trackPhoneClick("contact")}
@@ -46,7 +46,7 @@ export const Contact = () => {
                     >
                       06 34 02 61 80
                     </a>
-                    <p className="text-xs text-gray-500 mt-1">Cliquez pour appeler</p>
+                    <p className="text-xs text-neutral-500 mt-1">Cliquez pour appeler</p>
                   </div>
                 </div>
 
@@ -55,7 +55,7 @@ export const Contact = () => {
                     <Mail className="h-6 w-6 text-sky-600" aria-hidden="true" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Email</h4>
+                    <h4 className="font-semibold text-neutral-950">Email</h4>
                     <a
                       href="mailto:contact@atouts-services.fr"
                       className="text-sky-600 hover:text-sky-700 transition-colors"
@@ -70,8 +70,8 @@ export const Contact = () => {
                     <Clock className="h-6 w-6 text-sky-600" aria-hidden="true" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Horaires</h4>
-                    <p className="text-gray-600">
+                    <h4 className="font-semibold text-neutral-950">Horaires</h4>
+                    <p className="text-neutral-600">
                       Lun - Ven: 8h00 - 18h00<br />
                       Sam: 9h00 - 17h00
                     </p>

@@ -24,7 +24,8 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      // Start slightly before the block enters the screen, so content is already there when the eye arrives
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -33,8 +34,8 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      className={`transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:transition-none ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
       } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >

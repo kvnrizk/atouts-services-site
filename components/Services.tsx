@@ -65,14 +65,14 @@ export const Services = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">Nos Services</h2>
         </div>
 
-        <div className="relative min-h-[800px] md:min-h-[700px] flex items-center justify-center">
-          {/* Central Circle - 3D Hex Nut */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
+        <div className="relative flex items-center justify-center md:min-h-[700px]">
+          {/* Central 3D hex nut — desktop only here: it sits in the middle of the circle of services */}
+          <div className="absolute top-1/2 left-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+            <div className="relative h-[420px] w-[420px]">
               <LazyHexNut3D />
             </div>
           </div>
@@ -80,11 +80,16 @@ export const Services = () => {
           {/* Services positioned around the circle */}
           <div className="w-full">
             {/* Mobile: Stack layout */}
-            <div className="md:hidden space-y-8">
+            <div className="md:hidden">
+              {/* Mobile: the 3D nut sits above the list, in the flow, so it never covers a card */}
+              <div className="relative mx-auto -mt-8 mb-6 h-56 w-56">
+                <LazyHexNut3D />
+              </div>
+              <div className="space-y-4">
               {services.map((service, index) => (
-                <Reveal key={index} delay={index * 100}>
+                <Reveal key={index} delay={index * 60}>
                   <Link href={service.link} className="block group">
-                    <div className={`flex items-center gap-4 bg-white shadow-md p-6 rounded-xl border-2 border-neutral-200 ${iconHoverBorder} hover:shadow-lg transition-all duration-300`}>
+                    <div className={`flex items-center gap-4 bg-white shadow-sm p-5 rounded-2xl border border-neutral-200 ${iconHoverBorder} hover:shadow-lg transition-all duration-300 active:scale-[0.98]`}>
                       <div className={`${iconBg} w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
                         <service.icon className="h-6 w-6 text-white" />
                       </div>
@@ -95,6 +100,7 @@ export const Services = () => {
                   </Link>
                 </Reveal>
               ))}
+              </div>
             </div>
 
             {/* Desktop: Circular layout */}
@@ -103,7 +109,7 @@ export const Services = () => {
                 const position = getPositionFromAngle(service.angle);
                 return (
                   <div key={index} className="absolute transition-all duration-300" style={position}>
-                    <Reveal delay={index * 100}>
+                    <Reveal delay={index * 60}>
                       <Link href={service.link} className="group inline-block">
                         <div className="flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300">
                           <div className={`${iconBg} w-14 h-14 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform shadow-md border-2 border-transparent ${iconHoverBorder}`}>
@@ -128,7 +134,7 @@ export const Services = () => {
           </p>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-block bg-sky-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-sky-400 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block rounded-md bg-sky-400 px-8 py-4 text-lg font-semibold text-neutral-950 shadow-lg transition hover:bg-sky-300 hover:shadow-xl active:scale-[0.98]"
           >
             Demander un devis gratuit
           </button>

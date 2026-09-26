@@ -168,3 +168,29 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Page change: short fade, replayed by app/[locale]/template.tsx on every navigation.
+   Opacity only: a transform on this wrapper would break position:fixed children (mobile CTA). */
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.page-enter {
+  animation: page-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* FAQ (<details>): answers slide open instead of popping — progressive enhancement, browsers
+   without ::details-content / interpolate-size simply open instantly as before */
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.3s cubic-bezier(0.22, 1, 0.36, 1), content-visibility 0.3s allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
+}

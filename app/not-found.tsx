@@ -1,25 +1,23 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
+import { NotFoundContent } from "@/components/NotFoundContent";
 
+export const metadata: Metadata = {
+  title: "Page introuvable",
+  robots: { index: false },
+};
+
+/** Fallback 404 outside the [locale] segment (no i18n context, so no full header). */
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center px-4">
-        <h1 className="text-9xl font-bold text-primary/20">404</h1>
-        <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
-          Oups ! Page introuvable
-        </h2>
-        <p className="text-gray-600 mb-8 max-w-md mx-auto">
-          La page que vous recherchez n&apos;existe pas ou a été déplacée.
-        </p>
-        <Link href="/">
-          <Button size="lg" className="gradient-primary text-white">
-            <Home className="h-5 w-5 mr-2" />
-            Retour à l&apos;accueil
-          </Button>
+    <main id="main-content" className="min-h-svh bg-neutral-950">
+      <div className="container mx-auto flex h-16 items-center px-4">
+        <Link href="/" aria-label="Atouts Services — accueil" className="rounded bg-white px-1">
+          <Image src="/main.png" alt="Atouts Services" width={48} height={48} className="h-10 w-auto" />
         </Link>
       </div>
-    </div>
+      <NotFoundContent />
+    </main>
   );
 }

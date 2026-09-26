@@ -1,25 +1,21 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 import { trackPhoneClick } from "@/lib/analytics";
 import { COMPANY_INFO } from "@/lib/constants";
 
-/** tel: link that records a "Phone Click" event, usable from server components. */
+/** tel: link that records a "Phone Click" event, usable from server components.
+ *  Other <a> attributes (aria-label, tabIndex…) are passed through. */
 export function TrackedPhoneLink({
   location,
-  className,
   children,
+  ...rest
 }: {
   location: string;
-  className?: string;
   children: ReactNode;
-}) {
+} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick" | "children">) {
   return (
-    <a
-      href={COMPANY_INFO.phoneHref}
-      onClick={() => trackPhoneClick(location)}
-      className={className}
-    >
+    <a {...rest} href={COMPANY_INFO.phoneHref} onClick={() => trackPhoneClick(location)}>
       {children}
     </a>
   );
