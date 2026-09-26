@@ -99,7 +99,6 @@ export async function Footer() {
                 { href: "/realisations", label: nav("portfolio") },
                 { href: "/blog", label: nav("blog") },
                 { href: "/#contact", label: nav("contact") },
-                { href: "/espace-client/connexion", label: nav("clientPortal") },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className={footerLink}>
