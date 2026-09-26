@@ -15,6 +15,7 @@ import { servicesData, allServiceSlugs } from "@/lib/services-data";
 import { apiClient, endpoints } from "@/lib/api";
 import type { BeforeAfter, Testimonial } from "@/types/api";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/structured-data";
+import { getSiteImageOverrides, siteImageSrc } from "@/lib/site-image-overrides";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({
     openGraph: {
       title: service.seo.title,
       description: service.seo.description,
-      images: [{ url: service.heroImage, width: 1920, height: 1080 }],
+      images: [{ url: siteImageSrc(service.heroImage, await getSiteImageOverrides()), width: 1920, height: 1080 }],
     },
   };
 }
@@ -57,6 +58,7 @@ export default async function ServicePage({
   const { slug } = await params;
   const service = servicesData[slug];
   if (!service) notFound();
+  const overrides = await getSiteImageOverrides();
 
   let beforeAfterProjects: BeforeAfter[] = [];
   let apiTestimonials: Testimonial[] = [];
@@ -112,7 +114,7 @@ export default async function ServicePage({
             Pulled up under the sticky header (65px) so the image fills the viewport. */}
         <section className="relative -mt-[65px] h-[88svh] min-h-[560px] bg-neutral-950 text-white" aria-label={service.title}>
           <Image
-            src={service.heroImage}
+            src={siteImageSrc(service.heroImage, overrides)}
             alt={service.title}
             fill
             priority
@@ -329,7 +331,7 @@ export default async function ServicePage({
                     className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900"
                   >
                     <Image
-                      src={s.heroImage}
+                      src={siteImageSrc(s.heroImage, overrides)}
                       alt=""
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

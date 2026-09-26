@@ -82,6 +82,21 @@ export const apiClient = {
     return handleResponse(response);
   },
 
+  async put(endpoint: string, data?: unknown, options?: RequestInit) {
+    const response = await fetch(`${getApiUrl()}${endpoint}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+      credentials: 'include',
+      body: data ? JSON.stringify(data) : undefined,
+      ...options,
+    });
+
+    return handleResponse(response);
+  },
+
   async delete(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${getApiUrl()}${endpoint}`, {
       method: 'DELETE',
@@ -124,6 +139,7 @@ export const endpoints = {
   upload: {
     image: '/upload/image',
   },
+  siteImages: '/site-images',
   beforeAfter: {
     create: '/before-after',
     getAll: '/before-after',

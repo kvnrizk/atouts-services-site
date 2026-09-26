@@ -18,6 +18,7 @@ import { servicesData } from "@/lib/services-data";
 import { SITE_IMAGES } from "@/lib/site-images";
 import type { CityPage, Testimonial } from "@/types/api";
 import { getCityLocalBusinessJsonLd } from "@/lib/structured-data";
+import { getSiteImageOverrides, siteImageSrc } from "@/lib/site-image-overrides";
 import { CityContent } from "./CityContent";
 import { CityMap } from "./CityMap";
 
@@ -72,6 +73,7 @@ export default async function CityLandingPage({
   }
 
   // Reviews from this town and the other published towns: nice to have, never blocking
+  const overrides = await getSiteImageOverrides();
   let townReviews: Testimonial[] = [];
   let otherTowns: CityPage[] = [];
   try {
@@ -94,7 +96,7 @@ export default async function CityLandingPage({
 
   // Uploaded photo if it is a usable URL, otherwise the site's house photo
   const heroImage =
-    page.heroImageUrl && /^(\/|https?:\/\/)/.test(page.heroImageUrl) ? page.heroImageUrl : SITE_IMAGES.maison.src;
+    page.heroImageUrl && /^(\/|https?:\/\/)/.test(page.heroImageUrl) ? page.heroImageUrl : siteImageSrc(SITE_IMAGES.maison.src, overrides);
 
   const trustItems = [
     { value: "20 ans", label: "d'expérience" },
@@ -183,7 +185,7 @@ export default async function CityLandingPage({
                         className="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-900"
                       >
                         <Image
-                          src={s.heroImage}
+                          src={siteImageSrc(s.heroImage, overrides)}
                           alt=""
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"

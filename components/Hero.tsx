@@ -7,17 +7,19 @@ import { Phone } from "lucide-react";
 import { trackPhoneClick } from "@/lib/analytics";
 import { SITE_IMAGES } from "@/lib/site-images";
 
-const heroImages = [SITE_IMAGES.maison, SITE_IMAGES.cuisine, SITE_IMAGES.peinture, SITE_IMAGES.salleDeBains].map((i) => i.src);
+const defaultHeroImages = [SITE_IMAGES.maison, SITE_IMAGES.cuisine, SITE_IMAGES.peinture, SITE_IMAGES.salleDeBains].map((i) => i.src);
 
-export const Hero = () => {
+/** `images`: the 4 slides, with any photo replaced from the admin (resolved by the page) */
+export const Hero = ({ images: heroImages = defaultHeroImages }: { images?: string[] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const slideCount = heroImages.length;
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroImages.length);
+      setActiveIndex((prev) => (prev + 1) % slideCount);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slideCount]);
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');

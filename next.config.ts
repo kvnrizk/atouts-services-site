@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Next 16 refuses to optimise images served from localhost; in development the uploaded
+    // photos (portfolio, avant/après, replaced site photos) come from the local API on :8080.
+    dangerouslyAllowLocalIP: process.env.NODE_ENV !== "production",
     remotePatterns: [
       {
         protocol: "http",

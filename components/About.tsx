@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/Reveal";
 import { SITE_IMAGES } from "@/lib/site-images";
+import { getSiteImageOverrides, siteImageSrc } from "@/lib/site-image-overrides";
 
 /**
  * "Pourquoi Atouts Services" — concrete commitments confirmed by the owner (2026-09-26),
@@ -35,7 +36,8 @@ const proofs = [
   { value: "Paris & IDF", label: "Zone d'intervention" },
 ];
 
-export const About = () => {
+export const About = async () => {
+  const photo = siteImageSrc(SITE_IMAGES.appartementRenove.src, await getSiteImageOverrides());
   return (
     <section id="about" className="bg-neutral-950 py-24 text-white md:py-28" aria-labelledby="about-title">
       <div className="container mx-auto px-4">
@@ -83,7 +85,7 @@ export const About = () => {
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-neutral-900 ring-1 ring-white/10">
                 <Image
-                  src={SITE_IMAGES.appartementRenove.src}
+                  src={photo}
                   alt="Appartement lumineux entièrement rénové"
                   fill
                   sizes="(max-width: 1024px) 100vw, 45vw"

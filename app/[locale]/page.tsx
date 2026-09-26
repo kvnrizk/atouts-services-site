@@ -10,6 +10,8 @@ import { Footer } from "@/components/Footer";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { getLocalBusinessJsonLd } from "@/lib/structured-data";
 import type { Metadata } from "next";
+import { getSiteImageOverrides, siteImageSrc } from "@/lib/site-image-overrides";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -17,8 +19,12 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-export default function HomePage() {
+export default async function HomePage() {
   const jsonLd = getLocalBusinessJsonLd();
+  const overrides = await getSiteImageOverrides();
+  const heroImages = [SITE_IMAGES.maison, SITE_IMAGES.cuisine, SITE_IMAGES.peinture, SITE_IMAGES.salleDeBains].map((i) =>
+    siteImageSrc(i.src, overrides),
+  );
 
   return (
     <>
@@ -28,7 +34,7 @@ export default function HomePage() {
       />
       <Header />
       <main id="main-content">
-        <Hero />
+        <Hero images={heroImages} />
         <TrustBar />
         <Services />
         <BeforeAfterPreview />
