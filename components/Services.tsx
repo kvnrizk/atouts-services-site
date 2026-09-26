@@ -39,8 +39,8 @@ const services = [
   }
 ];
 
-/** Brand logo (transparent PNG) used as the section backdrop */
-const LOGO_SRC = "/images/brand/logo-atouts-services.png";
+/** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
+const LOGO_SRC = "/images/brand/logo-mark-large.png";
 
 // One consistent color for every service icon — dark steel to match the
 // bolt centerpiece, with the sky accent reserved for the hover state only.
@@ -68,19 +68,6 @@ export const Services = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-300 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Brand logo in full colour as the backdrop of the whole section (transparent PNG);
-          the services, the 3D nut and the button sit on top of it */}
-      <div className="pointer-events-none absolute inset-0 flex items-start justify-center pt-36 md:items-center md:pt-0" aria-hidden="true">
-        <Image
-          src={LOGO_SRC}
-          alt=""
-          width={1300}
-          height={434}
-          sizes="(max-width: 768px) 140vw, 1300px"
-          className="w-[140vw] max-w-none select-none md:w-[min(1300px,96vw)]"
-        />
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">Nos Services</h2>
@@ -88,9 +75,18 @@ export const Services = () => {
 
         <div className="relative flex items-center justify-center md:min-h-[700px]">
           {/* Central 3D hex nut — desktop only here: it sits in the middle of the circle of services,
-              with the logo as a faint watermark behind it (the 3D canvas is transparent) */}
+              under the faded logo mark (the 3D canvas is transparent) */}
           <div className="absolute top-1/2 left-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block">
             <div className="relative h-[420px] w-[420px]">
+              <Image
+                src={LOGO_SRC}
+                alt=""
+                aria-hidden="true"
+                width={760}
+                height={601}
+                sizes="760px"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[760px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+              />
               <div className="relative h-full w-full">
                 <LazyHexNut3D />
               </div>
@@ -103,6 +99,15 @@ export const Services = () => {
             <div className="md:hidden">
               {/* Mobile: the 3D nut sits above the list, in the flow, so it never covers a card */}
               <div className="relative mx-auto -mt-8 mb-6 h-56 w-56">
+                <Image
+                src={LOGO_SRC}
+                alt=""
+                aria-hidden="true"
+                width={400}
+                height={317}
+                sizes="400px"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[400px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+              />
                 <div className="relative h-full w-full">
                   <LazyHexNut3D />
                 </div>
@@ -137,7 +142,7 @@ export const Services = () => {
                           <div className={`${iconBg} w-14 h-14 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform shadow-md border-2 border-transparent ${iconHoverBorder}`}>
                             <service.icon className="h-7 w-7 text-white" />
                           </div>
-                          <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[220px] rounded-lg bg-white/80 px-3 py-1 shadow-sm backdrop-blur-sm`}>
+                          <h3 className={`text-neutral-900 font-semibold text-lg uppercase tracking-wide ${iconHoverText} transition-colors text-center max-w-[200px]`}>
                             {service.title}
                           </h3>
                         </div>
