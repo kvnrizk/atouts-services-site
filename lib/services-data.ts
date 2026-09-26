@@ -21,13 +21,6 @@ export interface ProcessStep {
   description: string;
 }
 
-export interface Testimonial {
-  name: string;
-  rating: number;
-  text: string;
-  project: string;
-}
-
 export interface FAQ {
   question: string;
   answer: string;
@@ -69,10 +62,10 @@ export interface ServiceData {
     subtitle: string;
     steps: ProcessStep[];
   };
+  /** Section heading only: the reviews themselves come from Admin → Avis clients (real reviews only) */
   testimonials: {
     title: string;
     subtitle: string;
-    items: Testimonial[];
   };
   faqs: {
     title: string;
@@ -135,10 +128,6 @@ export const servicesData: Record<string, ServiceData> = {
     testimonials: {
       title: "Avis Clients",
       subtitle: "Ce que disent nos clients satisfaits",
-      items: [
-        { name: "Sophie D.", rating: 5, text: "Travail parfait ! Les couleurs choisies ont complètement transformé mon salon. Très professionnel.", project: "Peinture intérieure" },
-        { name: "Marc T.", rating: 5, text: "Excellent service pour le ravalement de façade. Finitions impeccables et respect des délais.", project: "Peinture extérieure" },
-      ],
     },
     faqs: {
       title: "Questions Fréquentes",
@@ -204,10 +193,6 @@ export const servicesData: Record<string, ServiceData> = {
     testimonials: {
       title: "Avis Clients",
       subtitle: "Ce que disent nos clients satisfaits",
-      items: [
-        { name: "Claire B.", rating: 5, text: "Rénovation parfaite de notre appartement. Équipe professionnelle et résultat au-delà de nos attentes.", project: "Rénovation appartement" },
-        { name: "Thomas R.", rating: 5, text: "Excellente coordination et respect du planning. Notre cuisine est magnifique !", project: "Rénovation cuisine" },
-      ],
     },
     faqs: {
       title: "Questions Fréquentes",
@@ -273,10 +258,6 @@ export const servicesData: Record<string, ServiceData> = {
     testimonials: {
       title: "Avis Clients",
       subtitle: "Ce que disent nos clients satisfaits",
-      items: [
-        { name: "Laurent M.", rating: 5, text: "Mise aux normes impeccable. Travail soigné et conforme aux normes. Je recommande !", project: "Mise aux normes électrique" },
-        { name: "Nathalie P.", rating: 5, text: "Installation domotique parfaite. Équipe compétente et à l'écoute de nos besoins.", project: "Domotique" },
-      ],
     },
     faqs: {
       title: "Questions Fréquentes",
@@ -342,10 +323,6 @@ export const servicesData: Record<string, ServiceData> = {
     testimonials: {
       title: "Avis Clients",
       subtitle: "Ce que disent nos clients satisfaits",
-      items: [
-        { name: "Marie L.", rating: 5, text: "Travail impeccable ! Ma nouvelle salle de bain est magnifique. L'équipe a été professionnelle du début à la fin.", project: "Rénovation complète" },
-        { name: "Jean-Pierre M.", rating: 5, text: "Très satisfait du résultat. Respect des délais et du budget. Je recommande vivement !", project: "Création salle d'eau" },
-      ],
     },
     faqs: {
       title: "Questions Fréquentes",
@@ -411,10 +388,6 @@ export const servicesData: Record<string, ServiceData> = {
     testimonials: {
       title: "Avis Clients",
       subtitle: "Ce que disent nos clients satisfaits",
-      items: [
-        { name: "Isabelle D.", rating: 5, text: "Magnifique parquet posé avec soin. Le résultat dépasse nos espérances. Très pro !", project: "Pose parquet" },
-        { name: "David L.", rating: 5, text: "Carrelage impeccablement posé. Joints parfaits et respect total du planning.", project: "Carrelage salon" },
-      ],
     },
     faqs: {
       title: "Questions Fréquentes",

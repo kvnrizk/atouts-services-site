@@ -71,14 +71,13 @@ export default async function ServicePage({
     // API not available during build, that's fine
   }
 
-  const testimonialItems = apiTestimonials.length > 0
-    ? apiTestimonials.map((t) => ({
-        name: t.clientName,
-        rating: t.rating,
-        text: t.comment,
-        project: t.clientCity || service.title,
-      }))
-    : service.testimonials.items;
+  // Real reviews for this service only (Admin → Avis clients); no placeholder reviews
+  const testimonialItems = apiTestimonials.map((t) => ({
+    name: t.clientName,
+    rating: t.rating,
+    text: t.comment,
+    project: t.clientCity || service.title,
+  }));
 
 
   const jsonLd = [
@@ -262,29 +261,31 @@ export default async function ServicePage({
                 </section>
               </Reveal>
 
-              {/* Testimonials */}
-              <Reveal>
-                <section>
-                  <p className={eyebrow}>{service.testimonials.title}</p>
-                  <h2 className={sectionTitle}>{service.testimonials.subtitle}</h2>
-                  <div className="mt-10 grid gap-6 md:grid-cols-2">
-                    {testimonialItems.map((t) => (
-                      <figure key={t.name} className="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-neutral-200">
-                        <div className="flex gap-1" aria-label={`${t.rating} sur 5`}>
-                          {[...Array(t.rating)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 fill-sky-400 text-sky-400" />
-                          ))}
-                        </div>
-                        <blockquote className="mt-4 text-neutral-700">&ldquo;{t.text}&rdquo;</blockquote>
-                        <figcaption className="mt-5 text-sm">
-                          <span className="font-semibold text-neutral-950">{t.name}</span>
-                          <span className="text-neutral-500"> · {t.project}</span>
-                        </figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
+              {/* Testimonials — hidden until real reviews exist for this service */}
+              {testimonialItems.length > 0 && (
+                <Reveal>
+                  <section>
+                    <p className={eyebrow}>{service.testimonials.title}</p>
+                    <h2 className={sectionTitle}>{service.testimonials.subtitle}</h2>
+                    <div className="mt-10 grid gap-6 md:grid-cols-2">
+                      {testimonialItems.map((t) => (
+                        <figure key={t.name} className="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-neutral-200">
+                          <div className="flex gap-1" aria-label={`${t.rating} sur 5`}>
+                            {[...Array(t.rating)].map((_, i) => (
+                              <Star key={i} className="h-4 w-4 fill-sky-400 text-sky-400" />
+                            ))}
+                          </div>
+                          <blockquote className="mt-4 text-neutral-700">&ldquo;{t.text}&rdquo;</blockquote>
+                          <figcaption className="mt-5 text-sm">
+                            <span className="font-semibold text-neutral-950">{t.name}</span>
+                            <span className="text-neutral-500"> · {t.project}</span>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </section>
+                </Reveal>
+              )}
 
               {/* FAQ */}
               <Reveal>

@@ -1,82 +1,70 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { apiClient, endpoints } from "@/lib/api";
+import { PROJECT_TYPES } from "@/lib/constants";
 import type { Testimonial } from "@/types/api";
 import { Reveal } from "@/components/Reveal";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 
-const fallbackTestimonials = [
-  {
-    clientName: "Marie Dubois",
-    clientCity: "Issy-les-Moulineaux",
-    rating: 5,
-    comment: "Excellent travail pour la rénovation de notre salle de bain. L’équipe d’Atouts Services est très professionnelle et respecte les délais. Je recommande vivement !",
-    projectType: "salles-de-bains",
-  },
-  {
-    clientName: "Pierre Martin",
-    clientCity: "Boulogne-Billancourt",
-    rating: 5,
-    comment: "Peinture complète de notre appartement réalisée dans les règles de l’art. Travail soigné, prix correct et excellent conseil pour les couleurs.",
-    projectType: "peinture",
-  },
-  {
-    clientName: "Sophie Leroy",
-    clientCity: "Meudon",
-    rating: 5,
-    comment: "Rénovation électrique conforme aux normes avec un excellent rapport qualité-prix. L’équipe est à l’écoute et très compétente.",
-    projectType: "electricite",
-  },
-];
+/**
+ * Below this many real reviews the section is hidden: a nearly empty carousel looks worse than none.
+ * Only reviews entered in Admin → Avis clients are shown — never placeholder reviews
+ * (fake reviews are a deceptive commercial practice, Code de la consommation L121-2).
+ */
+const MIN_REVIEWS = 3;
 
 export async function Testimonials() {
-  let testimonials: Testimonial[] = [];
-
+  let reviews: Testimonial[] = [];
   try {
-    const data = await apiClient.get(`${endpoints.testimonials.getAll}?featured=true`);
-    testimonials = data as Testimonial[];
+    reviews = (await apiClient.get(endpoints.testimonials.getAll)) as Testimonial[];
   } catch {
-    // API unavailable, use fallback
+    // API unavailable: no section rather than invented content
   }
 
-  const items = testimonials.length > 0 ? testimonials : fallbackTestimonials;
+  if (reviews.length < MIN_REVIEWS) return null;
+
+  // Featured reviews first, then the most recent
+  const sorted = [...reviews].sort(
+    (a, b) => Number(!!b.featured) - Number(!!a.featured) || (b.createdAt ?? "").localeCompare(a.createdAt ?? ""),
+  );
+  const average = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+  const label = (type?: string) => PROJECT_TYPES.find((p) => p.value === type)?.label;
 
   return (
-    <section id="testimonials" className="py-20 bg-stone-50">
+    <section id="testimonials" className="bg-stone-50 py-20" aria-labelledby="testimonials-title">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Ce que disent nos clients</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            La satisfaction de nos clients est notre plus belle r&eacute;compense
-          </p>
-        </div>
+        <Reveal>
+          <div className="mb-14 text-center">
+            <h2 id="testimonials-title" className="mb-4 text-4xl font-bold text-gray-900">
+              Ce que disent nos clients
+            </h2>
+            <div className="inline-flex items-center gap-3 rounded-full bg-white px-5 py-2 shadow-sm ring-1 ring-neutral-200">
+              <div className="flex gap-0.5" aria-hidden="true">
+                {/* Filled stars match the real average (rounded), never a flat 5 */}
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star
+                    key={n}
+                    className={n <= Math.round(average) ? "h-5 w-5 fill-sky-400 text-sky-400" : "h-5 w-5 text-neutral-300"}
+                  />
+                ))}
+              </div>
+              <span className="font-semibold text-neutral-950">
+                {average.toLocaleString("fr-FR", { maximumFractionDigits: 1 })}/5
+              </span>
+              <span className="text-neutral-500">· {reviews.length} avis clients</span>
+            </div>
+          </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {items.slice(0, 3).map((testimonial, index) => (
-            <Reveal key={index} delay={index * 120}>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex space-x-1" role="img" aria-label={`Note : ${testimonial.rating} sur 5`}>
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-sky-400 fill-current" aria-hidden="true" />
-                      ))}
-                    </div>
-                    <Quote className="h-8 w-8 text-sky-100" aria-hidden="true" />
-                  </div>
-
-                  <p className="text-gray-700 mb-6 italic">&ldquo;{testimonial.comment}&rdquo;</p>
-
-                  <div className="border-t pt-4">
-                    <div className="font-semibold text-gray-900">{testimonial.clientName}</div>
-                    {testimonial.clientCity && (
-                      <div className="text-sm text-gray-600">{testimonial.clientCity}</div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
+        <TestimonialsCarousel
+          items={sorted.map((r) => ({
+            id: r.id,
+            clientName: r.clientName,
+            clientCity: r.clientCity,
+            rating: r.rating,
+            comment: r.comment,
+            projectLabel: label(r.projectType),
+          }))}
+        />
       </div>
     </section>
   );
