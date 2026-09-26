@@ -22,16 +22,9 @@ import { getSiteImageOverrides, siteImageSrc } from "@/lib/site-image-overrides"
 import { CityContent } from "./CityContent";
 import { CityMap } from "./CityMap";
 
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  try {
-    const cityPages = (await apiClient.get(endpoints.cityPages.getAll)) as CityPage[];
-    return cityPages.map((page) => ({ city: page.slug }));
-  } catch {
-    return [];
-  }
-}
+// Rendered on each visit, like the service pages: the translations read the request, which a
+// page prepared in advance may not do (unknown or new towns crashed with a 500 instead of a 404)
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
