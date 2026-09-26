@@ -64,4 +64,6 @@ export const CITY_COORDINATES: Record<string, { lat: number; lng: number }> = {
   'vanves': { lat: 48.8208, lng: 2.2893 },
   'clamart': { lat: 48.8027, lng: 2.2636 },
   'paris': { lat: 48.8566, lng: 2.3522 },
+  'paris-15': { lat: 48.8412, lng: 2.3003 },
+  'paris-16': { lat: 48.8637, lng: 2.2769 },
 };
