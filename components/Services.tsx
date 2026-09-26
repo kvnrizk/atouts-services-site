@@ -99,7 +99,7 @@ export const Services = () => {
                 width={980}
                 height={334}
                 sizes="980px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+220px)] select-none w-[980px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+100px)] select-none w-[980px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
               />
               <div className="relative h-full w-full">
                 <LazyHexNut3D />
@@ -120,7 +120,7 @@ export const Services = () => {
                 width={420}
                 height={143}
                 sizes="420px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+80px)] select-none w-[420px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+40px)] select-none w-[420px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
               />
                 <div className="relative h-full w-full">
                   <LazyHexNut3D />
