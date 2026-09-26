@@ -14,7 +14,7 @@ export function AuthorCard({ authorName }: AuthorCardProps) {
     .slice(0, 2);
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6 sticky top-24">
+    <div className="bg-white rounded-xl border border-gray-200 p-6">
       <div className="text-center">
         <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4">
           {initials}
