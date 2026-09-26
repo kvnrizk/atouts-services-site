@@ -49,6 +49,12 @@ no recognisable person. Checked as free Unsplash License photos (Unsplash+ photo
 Service pages no longer use a before/after slider as hero; the Avant/Après gallery only shows real projects
 added from the admin.
 
+### Section photos (added 2026-09-26)
+
+| # | File | Subject | Unsplash page | Status |
+|---|---|---|---|---|
+| 15 | `stock/appartement-renove.jpg` | Freshly renovated empty apartment | [aeTexYQKsuk](https://unsplash.com/photos/aeTexYQKsuk) | OK decoration — "Pourquoi Atouts Services"; **never present it as our own work**; replace with a real team/job photo when available |
+
 ### Service icons
 
 "Nos services" uses **Phosphor Icons** (duotone weight) from the `@phosphor-icons/react` package, MIT

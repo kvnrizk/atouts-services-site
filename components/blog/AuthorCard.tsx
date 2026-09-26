@@ -23,7 +23,7 @@ export function AuthorCard({ authorName }: AuthorCardProps) {
         </span>
         <div>
           <p className="font-bold">{authorName}</p>
-          <p className="text-sm text-neutral-400">Expert en rénovation depuis 2015</p>
+          <p className="text-sm text-neutral-400">Expert en rénovation depuis 2006</p>
         </div>
       </div>
       <p className="mt-5 text-sm text-neutral-300">

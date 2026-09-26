@@ -148,6 +148,15 @@ export const SITE_IMAGES = {
     unsplashId: "1786020843199-9f86e68d4bb7",
     license: UNSPLASH,
   },
+  appartementRenove: {
+    n: 15,
+    src: "/images/stock/appartement-renove.jpg",
+    title: "Appartement rénové (vide, lumineux)",
+    usedOn: ["Accueil — section « Pourquoi Atouts Services »"],
+    source: "Unsplash",
+    unsplashId: "1630699376289-b62375a35505",
+    license: UNSPLASH,
+  },
 } satisfies Record<string, SiteImage>;
 
 export const ALL_SITE_IMAGES: SiteImage[] = Object.values(SITE_IMAGES).sort((a, b) => a.n - b.n);
