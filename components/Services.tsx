@@ -34,8 +34,8 @@ const services = [
   }
 ];
 
-/** Roof + house mark of the logo: a soft watermark framing the 3D nut like the house under the roof */
-const LOGO_SRC = "/images/brand/logo-mark-large.png";
+/** Full logo as a soft watermark behind the 3D nut (16% + elliptical fade, so the name stays readable) */
+const LOGO_SRC = "/images/brand/logo-atouts-services.png";
 
 /** One Phosphor duotone icon per service (MIT): clean outline + light sky fill, professional and on-brand */
 const ICONS: Record<string, Icon> = {
@@ -96,10 +96,10 @@ export const Services = () => {
                 src={LOGO_SRC}
                 alt=""
                 aria-hidden="true"
-                width={760}
-                height={601}
-                sizes="760px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[760px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+                width={980}
+                height={334}
+                sizes="980px"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+100px)] select-none w-[980px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
               />
               <div className="relative h-full w-full">
                 <LazyHexNut3D />
@@ -117,10 +117,10 @@ export const Services = () => {
                 src={LOGO_SRC}
                 alt=""
                 aria-hidden="true"
-                width={400}
-                height={317}
-                sizes="400px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-[47%] -translate-y-[60%] select-none w-[400px] opacity-[0.16] [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+                width={420}
+                height={143}
+                sizes="420px"
+                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+40px)] select-none w-[420px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
               />
                 <div className="relative h-full w-full">
                   <LazyHexNut3D />
