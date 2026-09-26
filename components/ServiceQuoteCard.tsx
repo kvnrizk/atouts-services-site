@@ -3,14 +3,50 @@
 import { useState } from "react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { Phone, CheckCircle2 } from "lucide-react";
+import { ChatText, EnvelopeSimple, Phone as PhoneIcon, User, type Icon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { useQuoteRequests } from "@/hooks/useQuoteRequests";
 import { trackPhoneClick } from "@/lib/analytics";
 import { COMPANY_INFO } from "@/lib/constants";
 import { serviceLinks } from "@/lib/service-links";
 
-const inputClass =
-  "w-full rounded-md bg-neutral-900 border border-neutral-800 px-3 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400";
+/* Dark-card field: subtle fill, lighter border on hover, sky border + soft glow on focus,
+   red border only after the visitor has interacted (:user-invalid), no white autofill */
+const fieldClass =
+  "peer w-full rounded-xl border border-white/10 bg-white/[0.04] pl-11 pr-4 text-[15px] text-white outline-none transition " +
+  "placeholder:text-transparent hover:border-white/20 focus:border-sky-400 focus:bg-white/[0.06] focus:ring-4 focus:ring-sky-400/15 " +
+  "user-invalid:border-red-400/80 user-invalid:focus:ring-red-400/15 " +
+  "[&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#171717] [&:-webkit-autofill]:[-webkit-text-fill-color:#fff]";
+
+/* Label sits inside the field and slides up when the field is focused or filled */
+const labelClass =
+  "pointer-events-none absolute left-11 text-neutral-500 transition-all duration-200 " +
+  "peer-focus:text-[11px] peer-focus:text-sky-300 peer-[:not(:placeholder-shown)]:text-[11px]";
+
+/** Input with an icon and a floating label (placeholder=" " drives the :placeholder-shown state) */
+function Field({ icon: Glyph, label, multiline, ...props }: { icon: Icon; label: string; multiline?: boolean } & React.InputHTMLAttributes<HTMLInputElement> & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  const id = `quote-${props.name}`;
+  return (
+    <div className="relative">
+      {multiline ? (
+        <textarea id={id} placeholder=" " {...props} className={`${fieldClass} min-h-[104px] resize-y pb-3 pt-7`} />
+      ) : (
+        <input id={id} placeholder=" " {...props} className={`${fieldClass} h-14 pb-2 pt-6`} />
+      )}
+      <Glyph size={18} weight="duotone" aria-hidden="true" className={`pointer-events-none absolute left-4 text-sky-400/80 ${multiline ? "top-4" : "top-1/2 -translate-y-1/2"}`} />
+      <label
+        htmlFor={id}
+        className={`${labelClass} ${
+          multiline
+            ? "top-4 text-[15px] peer-focus:top-2 peer-[:not(:placeholder-shown)]:top-2"
+            : "top-1/2 -translate-y-1/2 text-[15px] peer-focus:top-4 peer-[:not(:placeholder-shown)]:top-4"
+        }`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+}
 
 /**
  * Short quote form, used on service pages (service fixed) and on the homepage (service picked
@@ -53,7 +89,7 @@ export function ServiceQuoteCard({
   };
 
   return (
-    <div id={anchorId ?? undefined} className="scroll-mt-24 rounded-2xl bg-neutral-950 p-6 text-white shadow-2xl">
+    <div id={anchorId ?? undefined} className="scroll-mt-24 rounded-3xl bg-neutral-950 p-6 text-white shadow-2xl md:p-7">
       {sent ? (
         <div className="py-8 text-center">
           <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-sky-400" />
@@ -64,24 +100,30 @@ export function ServiceQuoteCard({
         <>
           <p className="text-xl font-bold">Devis gratuit</p>
           <p className="mb-5 text-sm text-neutral-400">{serviceTitle ? `${serviceTitle} · ` : ""}réponse sous 24 h</p>
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             {!apiCategory && (
-              <select name="service" required defaultValue="" aria-label="Type de travaux" className={inputClass}>
-                <option value="" disabled>Type de travaux</option>
-                {serviceLinks.map((s) => (
-                  <option key={s.slug} value={s.slug}>{s.title}</option>
-                ))}
-                <option value="autre">Autre / plusieurs travaux</option>
-              </select>
+              <fieldset>
+                <legend className="mb-2 text-sm text-neutral-400">Type de travaux</legend>
+                <div className="flex flex-wrap gap-2">
+                  {[...serviceLinks.map((s) => ({ value: s.slug as string, label: s.title as string })), { value: "autre", label: "Autre" }].map((o) => (
+                    <label key={o.value} className="cursor-pointer">
+                      <input type="radio" name="service" value={o.value} required className="peer sr-only" />
+                      <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-sm text-neutral-300 transition hover:border-white/25 hover:text-white active:scale-[0.97] peer-checked:border-sky-400 peer-checked:bg-sky-400 peer-checked:font-semibold peer-checked:text-neutral-950 peer-focus-visible:ring-2 peer-focus-visible:ring-sky-400/60">
+                        {o.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
             )}
-            <input name="name" required maxLength={200} autoComplete="name" placeholder="Nom et prénom" aria-label="Nom et prénom" className={inputClass} />
-            <input name="phone" required type="tel" maxLength={20} autoComplete="tel" placeholder="Téléphone" aria-label="Téléphone" className={inputClass} />
-            <input name="email" required type="email" maxLength={255} autoComplete="email" placeholder="Email" aria-label="Email" className={inputClass} />
-            <textarea name="message" rows={3} maxLength={2000} placeholder="Votre projet en quelques mots (facultatif)" aria-label="Votre projet" className={inputClass} />
+            <Field icon={User} label="Nom et prénom" name="name" required maxLength={200} autoComplete="name" />
+            <Field icon={PhoneIcon} label="Téléphone" name="phone" required type="tel" maxLength={20} autoComplete="tel" />
+            <Field icon={EnvelopeSimple} label="Email" name="email" required type="email" maxLength={255} autoComplete="email" />
+            <Field icon={ChatText} label="Votre projet en quelques mots (facultatif)" name="message" multiline rows={3} maxLength={2000} />
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-sky-400 py-6 text-base font-semibold text-neutral-950 hover:bg-sky-300"
+              className="h-14 w-full rounded-xl bg-sky-400 text-base font-semibold text-neutral-950 transition hover:bg-sky-300 active:scale-[0.99]"
             >
               {isSubmitting ? "Envoi…" : "Être rappelé"}
             </Button>
