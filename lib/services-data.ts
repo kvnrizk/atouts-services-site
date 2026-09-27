@@ -208,7 +208,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Rénovation appartement Paris & IDF",
+      title: "Rénovation d'appartement à Paris et en Île-de-France",
       description: "Rénovation complète d'appartements et maisons à Paris et en Île-de-France. Clé en main, tous corps d'état. Devis gratuit.",
       keywords: ["rénovation", "rénovation appartement", "rénovation maison", "clé en main", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
@@ -338,7 +338,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos transformations",
     },
     seo: {
-      title: "Rénovation salle de bains Paris & IDF",
+      title: "Rénovation de salle de bains à Paris et en Île-de-France",
       description: "Création et rénovation de salles de bains à Paris et en Île-de-France. Design sur mesure, plomberie, carrelage. Devis gratuit.",
       keywords: ["salle de bains", "rénovation salle de bains", "création salle d'eau", "plomberie", "carrelage", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },
@@ -403,7 +403,7 @@ export const servicesData: Record<string, ServiceData> = {
       subtitle: "Découvrez nos réalisations",
     },
     seo: {
-      title: "Parquet & carrelage à Paris & IDF",
+      title: "Parquet et carrelage à Paris et en Île-de-France",
       description: "Pose de parquet, carrelage, PVC et moquette à Paris et en Île-de-France. Poseurs professionnels, finitions soignées. Devis gratuit.",
       keywords: ["revêtement sol", "parquet", "carrelage", "PVC", "moquette", "pose sol", "Paris", "Île-de-France", "Issy-les-Moulineaux"],
     },

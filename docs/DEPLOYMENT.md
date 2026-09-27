@@ -102,5 +102,5 @@ Until the domain is live, the API can be tested with the `onrender.com` address:
 
 - Log in at `https://www.atoutservice92.fr/admin`, then check the blog, city pages, a quote form (does the email arrive?), and a photo upload in Portfolio (the photo URL must start with `https://res.cloudinary.com/`).
 - Google Search Console: add the domain, submit `https://www.atoutservice92.fr/sitemap.xml`.
-- Still to fill in `lib/legal.ts`: AXA address and policy number, share capital, RM number, host addresses.
+- Still to fill in `lib/legal.ts`: insurer (Mutuelle de Poitiers Assurances) address and policy number, share capital, RM number, host addresses.
 - Database backups: Neon free keeps a short restore window. Before big changes, run a manual `pg_dump` of the Neon database.
