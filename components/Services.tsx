@@ -88,19 +88,22 @@ export const Services = () => {
         </div>
 
         <div className="relative flex items-center justify-center md:min-h-[700px]">
-          {/* Central 3D hex nut — desktop only here: it sits in the middle of the circle of services,
-              under the faded logo mark (the 3D canvas is transparent) */}
+          {/* Faded logo mark — desktop: spans the whole section width, edge to edge, behind the services
+              and the nut; same opacity and soft fade, centred on the nut and raised by 100px */}
+          <Image
+            src={LOGO_SRC}
+            alt=""
+            aria-hidden="true"
+            width={1400}
+            height={477}
+            sizes="100vw"
+            className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden w-screen max-w-none -translate-x-1/2 -translate-y-[calc(50%+100px)] select-none opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_70%,transparent)] md:block"
+          />
+
+          {/* Central 3D hex nut — desktop only here: it sits in the middle of the circle of services
+              (the 3D canvas is transparent) */}
           <div className="absolute top-1/2 left-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block">
             <div className="relative h-[420px] w-[420px]">
-              <Image
-                src={LOGO_SRC}
-                alt=""
-                aria-hidden="true"
-                width={980}
-                height={334}
-                sizes="980px"
-                className="pointer-events-none absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-[calc(50%+100px)] select-none w-[980px] opacity-[0.16] [mask-image:radial-gradient(ellipse_closest-side,black_55%,transparent)]"
-              />
               <div className="relative h-full w-full">
                 <LazyHexNut3D />
               </div>
