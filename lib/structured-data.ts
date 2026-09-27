@@ -24,7 +24,24 @@ const areaServed = [
   { "@type": "AdministrativeArea", name: SERVICE_REGION },
 ];
 
+/** Other spellings people type on Google, so a search for any of them finds the site */
+const ALTERNATE_NAMES = ["Atout Services", "Atouts Service", "Atout Service", "AtoutService", "Atoutservice92", "Atouts Services Issy-les-Moulineaux"];
+
 const providerRef = { "@type": "HomeAndConstructionBusiness", "@id": BUSINESS_ID, name: COMPANY_INFO.name };
+
+/** Site name shown by Google above the result (homepage only) */
+export function getWebSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
+    name: COMPANY_INFO.name,
+    alternateName: ALTERNATE_NAMES,
+    url: `${BASE_URL}/`,
+    inLanguage: "fr-FR",
+    publisher: { "@id": BUSINESS_ID },
+  };
+}
 
 export function getLocalBusinessJsonLd() {
   return {
@@ -32,6 +49,7 @@ export function getLocalBusinessJsonLd() {
     "@type": "HomeAndConstructionBusiness",
     "@id": BUSINESS_ID,
     name: COMPANY_INFO.name,
+    alternateName: ALTERNATE_NAMES,
     legalName: "ATOUTS SERVICES",
     url: BASE_URL,
     logo: LOGO_URL,
