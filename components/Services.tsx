@@ -8,12 +8,12 @@ import { Reveal } from "@/components/Reveal";
 
 const services = [
   {
-    title: "Entreprise de Peinture",
+    title: "Peinture",
     link: "/services/peinture",
     angle: -18,
   },
   {
-    title: "Rénovation Immobilière",
+    title: "Rénovation",
     link: "/services/renovation",
     angle: 54,
   },
@@ -23,12 +23,12 @@ const services = [
     angle: 126,
   },
   {
-    title: "Revêtements de Sols",
+    title: "Revêtements de sol",
     link: "/services/revetements-sol",
     angle: 198,
   },
   {
-    title: "Salle de Bains",
+    title: "Salles de bains",
     link: "/services/salles-de-bains",
     angle: 270,
   }
@@ -84,7 +84,7 @@ export const Services = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">Nos Services</h2>
+          <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">Nos services</h2>
         </div>
 
         <div className="relative flex items-center justify-center md:min-h-[700px]">
@@ -169,8 +169,8 @@ export const Services = () => {
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-gray-600 text-lg mb-6">
-            Une expertise complète pour tous vos projets de rénovation et d&apos;aménagement
+          <p className="text-neutral-600 text-lg mb-6">
+            Un seul interlocuteur pour l&apos;ensemble de vos travaux, de la visite à la réception du chantier.
           </p>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

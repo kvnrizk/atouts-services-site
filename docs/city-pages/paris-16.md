@@ -36,4 +36,4 @@ Passy, Auteuil, la Muette, le Trocadéro : le 16e réunit certains des plus beau
 - **Peinture** : moulures, boiseries, plafonds hauts.
 - **Rénovation complète** d'appartement ancien, avec un seul interlocuteur.
 
-**Visite et devis gratuits dans le 16e arrondissement** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits dans le 16e arrondissement** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.

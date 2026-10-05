@@ -33,4 +33,4 @@ Issy s'est largement reconstruite en trente ans, mais elle garde plusieurs visag
 
 Protection des parties communes, créneaux d'ascenseur, information du syndic et des voisins : en immeuble, un chantier réussi se prépare. Nous identifions dès la visite les travaux qui demandent l'accord de la copropriété (mur porteur, colonnes, fenêtres). Plus d'informations dans notre article [Travaux en copropriété : quelle autorisation demander ?](/blog/travaux-copropriete-autorisation)
 
-**Visite et devis gratuits à Issy-les-Moulineaux** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits à Issy-les-Moulineaux** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.

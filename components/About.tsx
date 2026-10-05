@@ -16,8 +16,8 @@ const commitments = [
     text: "Du premier rendez-vous à la réception du chantier, vous échangez avec la même personne.",
   },
   {
-    title: "Des artisans qualifiés et certifiés",
-    text: "Chaque métier est confié à un professionnel certifié dans sa spécialité : électricité, plomberie, peinture, sols.",
+    title: "Des artisans qualifiés et expérimentés",
+    text: "Chaque métier est confié à un artisan qualifié dans sa spécialité : électricité, plomberie, peinture, sols.",
   },
   {
     title: "Un chantier protégé et laissé propre",
@@ -25,13 +25,13 @@ const commitments = [
   },
   {
     title: "Visite et devis gratuits",
-    text: "Nous venons voir votre projet et vous remettons un devis gratuit, sans engagement.",
+    text: "Nous venons voir votre projet et vous remettons un devis détaillé, gratuit et sans engagement.",
   },
 ];
 
 const proofs = [
   { value: "Depuis 2006", label: "Entreprise fondée à Issy-les-Moulineaux" },
-  { value: "Artisans certifiés", label: "Dans chaque métier" },
+  { value: "Artisans qualifiés", label: "Dans chaque métier" },
   { value: "Garantie décennale", label: "Assurée par la Mutuelle de Poitiers" },
   { value: "Paris & Île-de-France", label: "Zone d'intervention" },
 ];
@@ -50,7 +50,7 @@ export const About = async () => {
               </h2>
               <p className="mt-6 max-w-xl text-lg text-neutral-400">
                 Depuis 2006, nous rénovons appartements et maisons à Paris et dans toute l&apos;Île-de-France,
-                depuis Issy-les-Moulineaux. Plus de 500 chantiers menés avec la même exigence : un travail
+                depuis Issy-les-Moulineaux. Chaque chantier est mené avec la même exigence : un travail
                 propre, confié aux bons artisans.
               </p>
             </Reveal>
@@ -104,7 +104,7 @@ export const About = async () => {
                 </span>
                 <div>
                   <p className="font-semibold">Garantie décennale</p>
-                  <p className="text-sm text-neutral-500">Assureur : Mutuelle de Poitiers Assurances · tous nos travaux couverts 10 ans</p>
+                  <p className="text-sm text-neutral-500">Assureur : Mutuelle de Poitiers Assurances</p>
                 </div>
               </div>
             </div>

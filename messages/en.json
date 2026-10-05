@@ -59,19 +59,19 @@
     "requestQuote": "Request a free quote"
   },
   "about": {
-    "title": "Why choose A Touts Services?",
+    "title": "Why choose Atouts Services?",
     "description": "Based in Issy-les-Moulineaux, on the edge of Paris, our company with 20 years of experience specialises in complete renovation and building services in Paris and across Île-de-France.",
     "expertise": "Recognised expertise",
-    "expertiseDesc": "Qualified and certified craftsmen for all your projects",
+    "expertiseDesc": "Qualified, experienced craftsmen for all your projects",
     "support": "Personalised support",
     "supportDesc": "End-to-end project management with a single point of contact",
     "guarantee": "Warranty and insurance",
-    "guaranteeDesc": "All our work is guaranteed and covered by 10-year insurance",
+    "guaranteeDesc": "Covered by 10-year building insurance (garantie décennale)",
     "stats": {
       "experience": "Years of experience",
       "experienceDesc": "Over a decade serving our clients",
       "projects": "Completed projects",
-      "projectsDesc": "Hundreds of satisfied clients",
+      "projectsDesc": "Apartments and houses alike",
       "satisfaction": "Client satisfaction",
       "satisfactionDesc": "Our absolute priority",
       "warranty": "10-year warranty",
@@ -96,7 +96,7 @@
     "serviceAreaDesc": "Based in Issy-les-Moulineaux, we work in Paris and across Île-de-France."
   },
   "footer": {
-    "description": "Your renovation expert in Paris and Île-de-France, based in Issy-les-Moulineaux. 20 years of experience in painting, electrical work, bathrooms and much more.",
+    "description": "Renovation company based in Issy-les-Moulineaux since 2006. Painting, electrical work, bathrooms, flooring and full renovations in Paris and across Île-de-France.",
     "quickLinks": "Quick links",
     "contact": "Contact",
     "serviceArea": "Service area",

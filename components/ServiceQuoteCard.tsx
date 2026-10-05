@@ -93,13 +93,13 @@ export function ServiceQuoteCard({
       {sent ? (
         <div className="py-8 text-center">
           <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-sky-400" />
-          <p className="text-lg font-bold">Demande envoyée !</p>
+          <p className="text-lg font-bold">Demande envoyée</p>
           <p className="mt-2 text-sm text-neutral-400">Nous vous rappelons sous 24 h ouvrées.</p>
         </div>
       ) : (
         <>
           <p className="text-xl font-bold">Devis gratuit</p>
-          <p className="mb-5 text-sm text-neutral-400">{serviceTitle ? `${serviceTitle} · ` : ""}réponse sous 24 h</p>
+          <p className="mb-5 text-sm text-neutral-400">{serviceTitle ? `${serviceTitle} · ` : ""}rappel sous 24 h ouvrées</p>
           <form onSubmit={handleSubmit} className="space-y-3.5">
             {!apiCategory && (
               <fieldset>
@@ -125,7 +125,7 @@ export function ServiceQuoteCard({
               disabled={isSubmitting}
               className="h-14 w-full rounded-xl bg-sky-400 text-base font-semibold text-neutral-950 transition hover:bg-sky-300 active:scale-[0.99]"
             >
-              {isSubmitting ? "Envoi…" : "Être rappelé"}
+              {isSubmitting ? "Envoi…" : "Demander un devis gratuit"}
             </Button>
             <PrivacyNotice className="text-neutral-500" />
           </form>

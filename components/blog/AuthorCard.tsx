@@ -27,7 +27,7 @@ export function AuthorCard({ authorName }: AuthorCardProps) {
         </div>
       </div>
       <p className="mt-5 text-sm text-neutral-300">
-        Une question sur votre projet ? Visite et devis gratuits, réponse sous 24 h.
+        Une question sur votre projet ? Visite et devis gratuits, rappel sous 24 h ouvrées.
       </p>
       <Link
         href="/#contact"
