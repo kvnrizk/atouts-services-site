@@ -6,17 +6,17 @@ import { Button } from '@/components/ui/button';
 
 export default function OfflinePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 p-4">
       <Card className="max-w-md w-full">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <div className="flex justify-center">
-            <div className="p-4 bg-gray-100 rounded-full">
-              <WifiOff className="h-12 w-12 text-gray-500" />
+            <div className="p-4 bg-neutral-100 rounded-full">
+              <WifiOff className="h-12 w-12 text-neutral-500" />
             </div>
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Hors connexion</h1>
-            <p className="text-gray-600 mt-2">
+            <h1 className="text-2xl font-bold text-neutral-900">Hors connexion</h1>
+            <p className="text-neutral-600 mt-2">
               Vous n&apos;avez pas de connexion internet. Veuillez vérifier votre réseau et réessayer.
             </p>
           </div>
@@ -31,7 +31,7 @@ export default function OfflinePage() {
               </Button>
             </a>
           </div>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-neutral-400">
             Atouts Services &mdash; Rénovation & Travaux
           </p>
         </CardContent>

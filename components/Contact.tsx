@@ -34,7 +34,7 @@ export const Contact = () => {
                 Parlons de votre projet.
               </h2>
               <p className="mt-5 max-w-lg text-lg text-neutral-600">
-                Visite et devis gratuits. Appelez-nous ou laissez vos coordonnées : nous vous répondons le jour même.
+                Visite et devis gratuits, sans engagement. Appelez-nous ou laissez vos coordonnées : nous vous rappelons sous 24 h ouvrées.
               </p>
             </Reveal>
 

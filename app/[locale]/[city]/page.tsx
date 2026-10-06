@@ -94,7 +94,7 @@ export default async function CityLandingPage({
   const trustItems = [
     { value: "20 ans", label: "d'expérience" },
     { value: "Décennale", label: "garantie 10 ans" },
-    { value: "24 h", label: "pour votre devis" },
+    { value: "24 h", label: "pour vous rappeler" },
     { value: page.postalCode ?? page.department ?? "", label: page.postalCode ? page.cityName : "" },
   ].filter((i) => i.value);
 

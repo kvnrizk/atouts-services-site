@@ -31,4 +31,4 @@ Le 15e est l'arrondissement le plus peuplé de Paris, et l'un des plus proches d
 
 Stationnement pour les livraisons, ascenseurs étroits, cours partagées, horaires fixés par le règlement de copropriété : un chantier à Paris se prépare. Nous l'organisons dès la visite et protégeons les parties communes. Découvrez aussi notre article [Travaux en copropriété : quelle autorisation demander ?](/blog/travaux-copropriete-autorisation)
 
-**Visite et devis gratuits dans le 15e arrondissement** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits dans le 15e arrondissement** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.

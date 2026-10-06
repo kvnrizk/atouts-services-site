@@ -59,19 +59,19 @@
     "requestQuote": "Demander un devis gratuit"
   },
   "about": {
-    "title": "Pourquoi choisir A Touts Services ?",
+    "title": "Pourquoi choisir Atouts Services ?",
     "description": "Implantée à Issy-les-Moulineaux, aux portes de Paris, notre entreprise forte de 20 ans d'expérience s'est spécialisée dans la rénovation complète et les services du bâtiment, à Paris et dans toute l'Île-de-France.",
     "expertise": "Expertise reconnue",
-    "expertiseDesc": "Des artisans qualifiés et certifiés pour tous vos travaux",
+    "expertiseDesc": "Des artisans qualifiés et expérimentés pour tous vos travaux",
     "support": "Accompagnement personnalisé",
     "supportDesc": "Un suivi de projet de A à Z avec un interlocuteur unique",
     "guarantee": "Garantie et assurance",
-    "guaranteeDesc": "Tous nos travaux sont garantis et assurés décennale",
+    "guaranteeDesc": "Entreprise assurée en garantie décennale",
     "stats": {
       "experience": "Années d'expérience",
       "experienceDesc": "Depuis 2006 au service de nos clients",
       "projects": "Projets réalisés",
-      "projectsDesc": "Des centaines de clients satisfaits",
+      "projectsDesc": "En appartement comme en maison",
       "satisfaction": "Satisfaction client",
       "satisfactionDesc": "Notre priorité absolue",
       "warranty": "Garantie décennale",
@@ -84,7 +84,7 @@
   },
   "contact": {
     "title": "Contactez-nous",
-    "subtitle": "Parlons de votre projet ! Devis gratuit sous 24h",
+    "subtitle": "Parlons de votre projet. Visite et devis gratuits, rappel sous 24 h ouvrées.",
     "coordinates": "Nos coordonnées",
     "address": "Adresse",
     "phone": "Téléphone",
@@ -96,7 +96,7 @@
     "serviceAreaDesc": "Basés à Issy-les-Moulineaux, nous intervenons à Paris et dans toute l'Île-de-France."
   },
   "footer": {
-    "description": "Votre expert en rénovation à Paris et en Île-de-France, basé à Issy-les-Moulineaux. 20 ans d'expérience dans la peinture, l'électricité, les salles de bains et bien plus encore.",
+    "description": "Entreprise de rénovation basée à Issy-les-Moulineaux depuis 2006. Peinture, électricité, salles de bains, revêtements de sol et rénovation complète, à Paris et dans toute l'Île-de-France.",
     "quickLinks": "Liens rapides",
     "contact": "Contact",
     "serviceArea": "Zone d'intervention",

@@ -31,4 +31,4 @@ Vanves touche Issy-les-Moulineaux : nos équipes y interviennent très réguliè
 
 Basés à Issy-les-Moulineaux, nous connaissons les contraintes des rues vanvéennes : stationnement pour les livraisons, petits immeubles sans ascenseur, horaires en copropriété. Un seul interlocuteur suit votre projet du début à la fin, et le chantier est protégé et laissé propre.
 
-**Visite et devis gratuits à Vanves** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits à Vanves** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.

@@ -97,8 +97,8 @@ export default async function ServicePage({
 
   const trustItems = [
     { value: "20 ans", label: "d'expérience" },
-    { value: "500+", label: "projets réalisés" },
-    { value: "Décennale", label: "garantie 10 ans" },
+    { value: "Gratuits", label: "visite et devis" },
+    { value: "Décennale", label: "entreprise assurée" },
     ...(service.duration ? [{ value: service.duration, label: "durée moyenne" }] : []),
   ];
 
@@ -135,7 +135,7 @@ export default async function ServicePage({
               </nav>
               <h1 className="max-w-3xl">
                 <span className="mb-4 block text-xs font-medium uppercase tracking-[0.2em] text-sky-400 md:text-sm">
-                  {service.title} à Paris · Île-de-France
+                  {service.title} à Issy-les-Moulineaux · Paris · Île-de-France
                 </span>
                 <span className="block text-4xl font-bold leading-[1.05] md:text-6xl">{service.tagline}</span>
               </h1>
@@ -144,7 +144,7 @@ export default async function ServicePage({
                   href="#contact"
                   className="inline-flex items-center rounded-md bg-sky-400 px-7 py-4 font-semibold text-neutral-950 shadow-xl hover:bg-sky-300"
                 >
-                  Devis gratuit
+                  Demander un devis gratuit
                 </a>
                 <TrackedPhoneLink
                   location="service-hero"
@@ -320,7 +320,7 @@ export default async function ServicePage({
         <section className="bg-white py-20" aria-labelledby="other-services">
           <div className="container mx-auto px-4">
             <p className={eyebrow}>Nos autres services</p>
-            <h2 id="other-services" className={sectionTitle}>Un seul artisan pour tout votre intérieur</h2>
+            <h2 id="other-services" className={sectionTitle}>Tous vos travaux avec la même entreprise</h2>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {Object.values(servicesData)
                 .filter((s) => s.slug !== service.slug)
@@ -357,7 +357,7 @@ export default async function ServicePage({
             <p className="mx-auto mt-4 max-w-xl text-lg text-neutral-400">Visite et devis gratuits, sans engagement.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a href="#contact" className="inline-flex items-center rounded-md bg-sky-400 px-7 py-4 font-semibold text-neutral-950 hover:bg-sky-300">
-                Demander mon devis
+                Demander un devis gratuit
               </a>
               <TrackedPhoneLink
                 location="service-closing-cta"

@@ -33,4 +33,4 @@ Boulogne est notre voisine directe : depuis Issy-les-Moulineaux, nous sommes sur
 
 Notre approche : conserver parquet, moulures et menuiseries de qualité, et refaire ce qui ne se voit pas (réseaux, étanchéité, isolation). Pour aller plus loin, lisez notre guide [Rénover un appartement ancien à Boulogne-Billancourt](/blog/renover-appartement-ancien-boulogne-billancourt).
 
-**Visite et devis gratuits à Boulogne-Billancourt** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits à Boulogne-Billancourt** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.

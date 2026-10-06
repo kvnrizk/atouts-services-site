@@ -74,7 +74,7 @@ export function getLocalBusinessJsonLd() {
     ],
     image: LOGO_URL,
     description:
-      "Entreprise de rénovation à Paris et en Île-de-France, basée à Issy-les-Moulineaux. Peinture, électricité, salles de bains, revêtements de sol. Devis gratuit, garantie décennale.",
+      "Entreprise de rénovation basée à Issy-les-Moulineaux (92) depuis 2006. Peinture, électricité, salles de bains et sols à Paris et en Île-de-France. Visite et devis gratuits.",
   };
 }
 

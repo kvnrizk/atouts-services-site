@@ -55,15 +55,15 @@ export const Hero = ({ images: heroImages = defaultHeroImages }: { images?: stri
             {/* The eyebrow is inside the H1 so the heading carries the "rénovation + city" keyword */}
             <h1 className="mb-[3svh]">
               <span className="block text-xs md:text-sm font-medium tracking-[0.2em] text-sky-400 uppercase mb-[3svh]">
-                Rénovation à Paris · Île-de-France
+                Rénovation à Issy-les-Moulineaux · Paris · Île-de-France
               </span>
               <span className="block text-[clamp(2.25rem,min(9vw,8.5svh),4.5rem)] font-bold text-white leading-[1.05]">
-                Tous vos travaux,<br />une seule équipe.
+                Rénovation d&apos;intérieur,<br />depuis 2006.
               </span>
             </h1>
             <p className="text-[clamp(1rem,2.5svh,1.25rem)] text-neutral-300 max-w-xl mb-[4svh]">
-              Peinture, rénovation, électricité, salle de bains, revêtements de sol —
-              réalisés par des artisans qualifiés, garantis 10 ans.
+              Peinture, électricité, salle de bains et sols, réalisés par des artisans
+              qualifiés et coordonnés par un seul interlocuteur. Entreprise assurée en garantie décennale.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-[5svh]">
@@ -73,7 +73,7 @@ export const Hero = ({ images: heroImages = defaultHeroImages }: { images?: stri
                   className="bg-sky-400 hover:bg-sky-300 text-neutral-950 px-8 py-[clamp(0.75rem,2svh,1.5rem)] text-base font-semibold shadow-xl"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  Appelez-nous maintenant
+                  Nous appeler
                 </Button>
               </a>
               <Button
@@ -90,19 +90,19 @@ export const Hero = ({ images: heroImages = defaultHeroImages }: { images?: stri
                 className="text-neutral-300 hover:text-white hover:bg-white/10 px-8 py-[clamp(0.75rem,2svh,1.5rem)] text-base font-semibold"
                 onClick={scrollToContact}
               >
-                Nous écrire
+                Demander un devis gratuit
               </Button>
             </div>
 
             <div className="flex flex-wrap gap-x-10 gap-y-3 text-sm text-neutral-400 border-t border-white/10 pt-[3svh]">
               <div>
-                <span className="text-2xl font-bold text-white">20</span> ans d&apos;expérience
+                <span className="text-2xl font-bold text-white">20 ans</span> d&apos;expérience
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">500+</span> projets réalisés
+                <span className="text-2xl font-bold text-white">24 h</span> pour vous rappeler
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">10 ans</span> garantie décennale
+                <span className="text-2xl font-bold text-white">Décennale</span> entreprise assurée
               </div>
             </div>
           </div>

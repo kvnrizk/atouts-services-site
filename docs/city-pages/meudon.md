@@ -31,4 +31,4 @@ Meudon est une ville de **maisons** autant que d'appartements. Entre Bellevue, l
 
 En maison, on vit souvent dans les lieux pendant les travaux. Nous organisons le chantier pièce par pièce quand c'est possible, protégeons les sols et le mobilier, et laissons le chantier propre. Pour les pièces d'eau, lisez notre article [Combien de temps dure la rénovation d'une salle de bains ?](/blog/duree-renovation-salle-de-bains)
 
-**Visite et devis gratuits à Meudon** : appelez-nous ou laissez vos coordonnées, nous vous répondons le jour même.
+**Visite et devis gratuits à Meudon** : appelez-nous ou laissez vos coordonnées, nous vous rappelons sous 24 h ouvrées.
