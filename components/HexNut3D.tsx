@@ -4,15 +4,15 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-/** Brushed, lightly polished steel — physical material so the clearcoat catches the studio lights */
+/** Polished steel: low roughness so the faces mirror the studio, clearcoat for a crisp top highlight */
 function steelMaterial(source: THREE.MeshStandardMaterial) {
   return new THREE.MeshPhysicalMaterial({
-    color: 0xc4c8ce,
+    color: 0xd6dadf,
     metalness: 1,
-    roughness: 0.3,
-    clearcoat: 0.3,
-    clearcoatRoughness: 0.15,
-    envMapIntensity: 1,
+    roughness: 0.16,
+    clearcoat: 0.7,
+    clearcoatRoughness: 0.08,
+    envMapIntensity: 1.25,
     // Keep any surface detail baked into the model
     normalMap: source.normalMap,
     roughnessMap: source.roughnessMap,
@@ -28,11 +28,39 @@ function steelMaterial(source: THREE.MeshStandardMaterial) {
  */
 function studioScene() {
   const scene = new THREE.Scene();
-  const room = new THREE.Mesh(
-    new THREE.BoxGeometry(20, 20, 20),
-    new THREE.MeshBasicMaterial({ color: 0x9ca0a6, side: THREE.BackSide }),
+  // Room shaded bright at the top to dark at the floor, so the faces pick up a light-to-dark sweep
+  const roomGeometry = new THREE.SphereGeometry(10, 32, 16);
+  const top = new THREE.Color(0xd9dce0);
+  const bottom = new THREE.Color(0x2f3236);
+  const positions = roomGeometry.attributes.position;
+  const colors = new Float32Array(positions.count * 3);
+  for (let i = 0; i < positions.count; i++) {
+    const c = bottom.clone().lerp(top, (positions.getY(i) / 10 + 1) / 2);
+    colors.set([c.r, c.g, c.b], i * 3);
+  }
+  roomGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  scene.add(new THREE.Mesh(roomGeometry, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide })));
+
+  // Big softbox behind the camera with a diagonal falloff: the face turned towards the viewer
+  // mirrors it, which gives the front a polished gradient instead of a flat grey
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 256;
+  const ctx = canvas.getContext("2d")!;
+  const gradient = ctx.createLinearGradient(0, 0, 256, 256);
+  gradient.addColorStop(0, "#ffffff");
+  gradient.addColorStop(0.55, "#8d9197");
+  gradient.addColorStop(1, "#1a1c1f");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 256, 256);
+  const sweepTexture = new THREE.CanvasTexture(canvas);
+  sweepTexture.colorSpace = THREE.SRGBColorSpace;
+  const sweep = new THREE.Mesh(
+    new THREE.PlaneGeometry(14, 14),
+    new THREE.MeshBasicMaterial({ map: sweepTexture, color: new THREE.Color(1.6, 1.6, 1.6) }),
   );
-  scene.add(room);
+  sweep.position.set(0, 1, 8);
+  sweep.lookAt(0, 0, 0);
+  scene.add(sweep);
 
   const panel = (w: number, h: number, intensity: number, color: number, pos: [number, number, number]) => {
     const material = new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide });
@@ -42,10 +70,11 @@ function studioScene() {
     mesh.lookAt(0, 0, 0);
     scene.add(mesh);
   };
-  panel(8, 3, 5, 0xffffff, [0, 7, 3]); // softbox: large key above
-  panel(1.5, 8, 3, 0xffffff, [-7, 0, 2]); // softbox: vertical strip, left
+  panel(8, 3, 7, 0xffffff, [0, 7, 3]); // softbox: large key above
+  panel(1.5, 8, 4, 0xffffff, [-7, 0, 2]); // softbox: vertical strip, left
   panel(1.5, 8, 2, 0x38bdf8, [7, -1, -2]); // softbox: brand-blue strip, right-back
   panel(4, 9, 1, 0x0a0a0a, [5, 0, 5]); // flag: dark band, front right
+  panel(2, 9, 1, 0x0a0a0a, [-5, 0, -5]); // flag: dark band, back left, so every face gets contrast
   panel(9, 3, 1, 0x0a0a0a, [0, -7, 2]); // flag: dark floor reflection
   return scene;
 }
@@ -71,7 +100,7 @@ export function HexNut3D() {
     // Filmic tone mapping rolls off the highlights the way a camera does: the main
     // difference between "plastic CG" and photographed metal
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.9;
+    renderer.toneMappingExposure = 1;
     container.appendChild(renderer.domElement);
 
     // Metal is mostly what it reflects: see studioScene()
@@ -84,6 +113,7 @@ export function HexNut3D() {
       const mesh = obj as THREE.Mesh;
       if (mesh.isMesh) {
         mesh.geometry.dispose();
+        (mesh.material as THREE.MeshBasicMaterial).map?.dispose();
         (mesh.material as THREE.Material).dispose();
       }
     });
