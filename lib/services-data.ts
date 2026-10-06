@@ -84,6 +84,74 @@ export interface ServiceData {
 }
 
 export const servicesData: Record<string, ServiceData> = {
+  electricite: {
+    slug: "electricite",
+    title: "Électricité",
+    description:
+      "Installation électrique, mise en sécurité et mise aux normes NF C 15-100, tableau électrique, éclairage et domotique. Une installation sûre, adaptée à votre usage.",
+    heroIcon: Zap,
+    // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see lib/site-images.ts). Site only.
+    heroImage: SITE_IMAGES.electricien.src,
+    apiCategory: "electricite",
+    tagline: "Une installation électrique sûre et aux normes.",
+    included: [
+      "Diagnostic de l'installation existante",
+      "Mise aux normes NF C 15-100",
+      "Remplacement du tableau électrique",
+      "Prises, interrupteurs et circuits",
+      "Éclairage LED intérieur et extérieur",
+      "Domotique et volets connectés",
+      "Saignées rebouchées, murs propres",
+      "Dépannage aux horaires d'ouverture",
+    ],
+    caseStudies: [],
+    features: {
+      title: "Notre savoir-faire",
+      subtitle: "Des installations électriques sûres et durables",
+      items: [
+        { icon: Shield, title: "Norme NF C 15-100", description: "Installations réalisées selon la norme française des installations électriques basse tension." },
+        { icon: Lightbulb, title: "Éclairage LED", description: "Un éclairage économe en énergie, intérieur comme extérieur." },
+        { icon: Zap, title: "Domotique", description: "Éclairage, volets et chauffage pilotables à distance." },
+        { icon: Wrench, title: "Dépannage", description: "Intervention sur panne électrique aux horaires d'ouverture." },
+      ],
+    },
+    process: {
+      title: "Notre méthode",
+      subtitle: "Quatre étapes, du diagnostic à la mise en service",
+      steps: [
+        { number: "01", title: "Diagnostic", description: "Nous contrôlons votre installation et repérons les points non conformes." },
+        { number: "02", title: "Devis", description: "Une proposition détaillée : ce qui est obligatoire, ce qui est conseillé." },
+        { number: "03", title: "Travaux", description: "Réalisés par des électriciens qualifiés, avec un chantier laissé propre." },
+        { number: "04", title: "Mise en service", description: "Essais, explications sur votre tableau et attestation Consuel lorsque la réglementation l'exige." },
+      ],
+    },
+    testimonials: {
+      title: "Avis clients",
+      subtitle: "Ils nous ont confié leur installation électrique",
+    },
+    faqs: {
+      title: "Questions fréquentes",
+      subtitle: "Vos questions sur l'électricité",
+      items: [
+        { question: "Qu'est-ce que la norme NF C 15-100 ?", answer: "C'est la norme française qui fixe les règles des installations électriques basse tension dans les logements : nombre de prises et de circuits, protections différentielles, mise à la terre, règles pour les salles de bains. Elle vise à protéger les personnes et les biens." },
+        { question: "La mise aux normes est-elle obligatoire ?", answer: "Elle est obligatoire pour une installation neuve ou entièrement rénovée. Pour un logement existant, elle ne l'est pas, mais un diagnostic électrique est exigé à la vente ou à la location si l'installation a plus de 15 ans. Une mise en sécurité est alors souvent recommandée." },
+        { question: "Comment savoir si mon installation est dangereuse ?", answer: "Quelques signes doivent alerter : absence de disjoncteur différentiel, fusibles en porcelaine, prises sans terre, fils apparents, disjonctions fréquentes ou prises qui chauffent. Dans ce cas, faites contrôler votre installation." },
+        { question: "Faut-il refaire toute l'installation ?", answer: "Pas toujours. Selon l'état de l'installation, une mise en sécurité (tableau, différentiels, mise à la terre) peut suffire. Nous vous indiquons après diagnostic ce qui est indispensable et ce qui peut attendre." },
+        { question: "Proposez-vous des solutions domotiques ?", answer: "Oui : éclairage, volets roulants, chauffage et alarme pilotables à distance, depuis un smartphone ou par programmation." },
+        { question: "Intervenez-vous en dépannage ?", answer: "Oui, aux horaires d'ouverture : du lundi au vendredi de 8 h à 18 h et le samedi de 9 h à 17 h. Appelez-nous directement pour une intervention rapide." },
+      ],
+    },
+    beforeAfter: {
+      title: "Avant / après",
+      subtitle: "Nos chantiers d'électricité",
+    },
+    seo: {
+      title: "Électricien à Issy-les-Moulineaux et Paris",
+      description: "Électricien à Issy-les-Moulineaux (92), à Paris et en Île-de-France : mise aux normes NF C 15-100, tableau, éclairage, domotique. Devis gratuit.",
+      keywords: ["électricien", "mise aux normes électrique", "NF C 15-100", "tableau électrique", "domotique", "électricien Issy-les-Moulineaux", "électricien Hauts-de-Seine", "Paris"],
+    },
+  },
+
   peinture: {
     slug: "peinture",
     title: "Peinture",
@@ -217,74 +285,6 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Rénovation d'appartement à Issy-les-Moulineaux",
       description: "Rénovation complète d'appartements et de maisons à Issy-les-Moulineaux (92), à Paris et en Île-de-France. Tous corps d'état, un seul interlocuteur.",
       keywords: ["rénovation appartement", "rénovation maison", "rénovation clé en main", "entreprise rénovation Issy-les-Moulineaux", "rénovation Hauts-de-Seine", "Paris", "Île-de-France"],
-    },
-  },
-
-  electricite: {
-    slug: "electricite",
-    title: "Électricité",
-    description:
-      "Installation électrique, mise en sécurité et mise aux normes NF C 15-100, tableau électrique, éclairage et domotique. Une installation sûre, adaptée à votre usage.",
-    heroIcon: Zap,
-    // ⚠️ NEVER USE IN ADS: recognisable person, no model release (see lib/site-images.ts). Site only.
-    heroImage: SITE_IMAGES.electricien.src,
-    apiCategory: "electricite",
-    tagline: "Une installation électrique sûre et aux normes.",
-    included: [
-      "Diagnostic de l'installation existante",
-      "Mise aux normes NF C 15-100",
-      "Remplacement du tableau électrique",
-      "Prises, interrupteurs et circuits",
-      "Éclairage LED intérieur et extérieur",
-      "Domotique et volets connectés",
-      "Saignées rebouchées, murs propres",
-      "Dépannage aux horaires d'ouverture",
-    ],
-    caseStudies: [],
-    features: {
-      title: "Notre savoir-faire",
-      subtitle: "Des installations électriques sûres et durables",
-      items: [
-        { icon: Shield, title: "Norme NF C 15-100", description: "Installations réalisées selon la norme française des installations électriques basse tension." },
-        { icon: Lightbulb, title: "Éclairage LED", description: "Un éclairage économe en énergie, intérieur comme extérieur." },
-        { icon: Zap, title: "Domotique", description: "Éclairage, volets et chauffage pilotables à distance." },
-        { icon: Wrench, title: "Dépannage", description: "Intervention sur panne électrique aux horaires d'ouverture." },
-      ],
-    },
-    process: {
-      title: "Notre méthode",
-      subtitle: "Quatre étapes, du diagnostic à la mise en service",
-      steps: [
-        { number: "01", title: "Diagnostic", description: "Nous contrôlons votre installation et repérons les points non conformes." },
-        { number: "02", title: "Devis", description: "Une proposition détaillée : ce qui est obligatoire, ce qui est conseillé." },
-        { number: "03", title: "Travaux", description: "Réalisés par des électriciens qualifiés, avec un chantier laissé propre." },
-        { number: "04", title: "Mise en service", description: "Essais, explications sur votre tableau et attestation Consuel lorsque la réglementation l'exige." },
-      ],
-    },
-    testimonials: {
-      title: "Avis clients",
-      subtitle: "Ils nous ont confié leur installation électrique",
-    },
-    faqs: {
-      title: "Questions fréquentes",
-      subtitle: "Vos questions sur l'électricité",
-      items: [
-        { question: "Qu'est-ce que la norme NF C 15-100 ?", answer: "C'est la norme française qui fixe les règles des installations électriques basse tension dans les logements : nombre de prises et de circuits, protections différentielles, mise à la terre, règles pour les salles de bains. Elle vise à protéger les personnes et les biens." },
-        { question: "La mise aux normes est-elle obligatoire ?", answer: "Elle est obligatoire pour une installation neuve ou entièrement rénovée. Pour un logement existant, elle ne l'est pas, mais un diagnostic électrique est exigé à la vente ou à la location si l'installation a plus de 15 ans. Une mise en sécurité est alors souvent recommandée." },
-        { question: "Comment savoir si mon installation est dangereuse ?", answer: "Quelques signes doivent alerter : absence de disjoncteur différentiel, fusibles en porcelaine, prises sans terre, fils apparents, disjonctions fréquentes ou prises qui chauffent. Dans ce cas, faites contrôler votre installation." },
-        { question: "Faut-il refaire toute l'installation ?", answer: "Pas toujours. Selon l'état de l'installation, une mise en sécurité (tableau, différentiels, mise à la terre) peut suffire. Nous vous indiquons après diagnostic ce qui est indispensable et ce qui peut attendre." },
-        { question: "Proposez-vous des solutions domotiques ?", answer: "Oui : éclairage, volets roulants, chauffage et alarme pilotables à distance, depuis un smartphone ou par programmation." },
-        { question: "Intervenez-vous en dépannage ?", answer: "Oui, aux horaires d'ouverture : du lundi au vendredi de 8 h à 18 h et le samedi de 9 h à 17 h. Appelez-nous directement pour une intervention rapide." },
-      ],
-    },
-    beforeAfter: {
-      title: "Avant / après",
-      subtitle: "Nos chantiers d'électricité",
-    },
-    seo: {
-      title: "Électricien à Issy-les-Moulineaux et Paris",
-      description: "Électricien à Issy-les-Moulineaux (92), à Paris et en Île-de-France : mise aux normes NF C 15-100, tableau, éclairage, domotique. Devis gratuit.",
-      keywords: ["électricien", "mise aux normes électrique", "NF C 15-100", "tableau électrique", "domotique", "électricien Issy-les-Moulineaux", "électricien Hauts-de-Seine", "Paris"],
     },
   },
 
