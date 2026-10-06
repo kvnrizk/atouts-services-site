@@ -8,6 +8,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { TrackedPhoneLink } from "@/components/TrackedPhoneLink";
 import { COMPANY_INFO } from "@/lib/constants";
+import { FEATURES } from "@/lib/features";
 import { serviceLinks as services } from "@/lib/service-links";
 import { cn } from "@/lib/utils";
 
@@ -117,9 +118,11 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden md:block">
-              <LanguageSwitcher />
-            </div>
+            {FEATURES.englishVersion && (
+              <div className="hidden md:block">
+                <LanguageSwitcher />
+              </div>
+            )}
             <TrackedPhoneLink
               location="header"
               aria-label={`Appeler le ${COMPANY_INFO.phone}`}
@@ -208,7 +211,7 @@ export const Header = () => {
             ))}
           </div>
           <div className="mt-auto space-y-4 pt-10">
-            <LanguageSwitcher variant="dark" />
+            {FEATURES.englishVersion && <LanguageSwitcher variant="dark" />}
             <Link
               href={contactHref}
               onClick={onContactClick}
