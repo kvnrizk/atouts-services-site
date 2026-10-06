@@ -4,15 +4,15 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-/** Polished steel: low roughness so the faces mirror the studio, clearcoat for a crisp top highlight */
+/** Near-chrome polished steel: very low roughness so the faces mirror the studio sharply */
 function steelMaterial(source: THREE.MeshStandardMaterial) {
   return new THREE.MeshPhysicalMaterial({
-    color: 0xd6dadf,
+    color: 0xeceef1,
     metalness: 1,
-    roughness: 0.16,
-    clearcoat: 0.7,
-    clearcoatRoughness: 0.08,
-    envMapIntensity: 1.25,
+    roughness: 0.07,
+    clearcoat: 1,
+    clearcoatRoughness: 0.03,
+    envMapIntensity: 1.5,
     // Keep any surface detail baked into the model
     normalMap: source.normalMap,
     roughnessMap: source.roughnessMap,
@@ -30,8 +30,8 @@ function studioScene() {
   const scene = new THREE.Scene();
   // Room shaded bright at the top to dark at the floor, so the faces pick up a light-to-dark sweep
   const roomGeometry = new THREE.SphereGeometry(10, 32, 16);
-  const top = new THREE.Color(0xd9dce0);
-  const bottom = new THREE.Color(0x2f3236);
+  const top = new THREE.Color(0xf2f3f5);
+  const bottom = new THREE.Color(0x101113);
   const positions = roomGeometry.attributes.position;
   const colors = new Float32Array(positions.count * 3);
   for (let i = 0; i < positions.count; i++) {
@@ -41,22 +41,28 @@ function studioScene() {
   roomGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   scene.add(new THREE.Mesh(roomGeometry, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide })));
 
-  // Big softbox behind the camera with a diagonal falloff: the face turned towards the viewer
-  // mirrors it, which gives the front a polished gradient instead of a flat grey
+  // Big softbox behind the camera striped with diagonal light and dark bands (a chrome-shot trick):
+  // the face turned towards the viewer mirrors a few bands at once, and they sweep across it as it turns
   const canvas = document.createElement("canvas");
-  canvas.width = canvas.height = 256;
+  canvas.width = canvas.height = 512;
   const ctx = canvas.getContext("2d")!;
-  const gradient = ctx.createLinearGradient(0, 0, 256, 256);
-  gradient.addColorStop(0, "#ffffff");
-  gradient.addColorStop(0.55, "#8d9197");
-  gradient.addColorStop(1, "#1a1c1f");
+  const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+  const bands = 5;
+  for (let b = 0; b < bands; b++) {
+    const start = b / bands;
+    gradient.addColorStop(start, "#ffffff");
+    gradient.addColorStop(start + 0.35 / bands, "#c9ccd0");
+    gradient.addColorStop(start + 0.55 / bands, "#16181a");
+    gradient.addColorStop(start + 0.9 / bands, "#5d6166");
+  }
+  gradient.addColorStop(1, "#ffffff");
   ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 256, 256);
+  ctx.fillRect(0, 0, 512, 512);
   const sweepTexture = new THREE.CanvasTexture(canvas);
   sweepTexture.colorSpace = THREE.SRGBColorSpace;
   const sweep = new THREE.Mesh(
     new THREE.PlaneGeometry(14, 14),
-    new THREE.MeshBasicMaterial({ map: sweepTexture, color: new THREE.Color(1.6, 1.6, 1.6) }),
+    new THREE.MeshBasicMaterial({ map: sweepTexture, color: new THREE.Color(1.8, 1.8, 1.8) }),
   );
   sweep.position.set(0, 1, 8);
   sweep.lookAt(0, 0, 0);
@@ -100,7 +106,7 @@ export function HexNut3D() {
     // Filmic tone mapping rolls off the highlights the way a camera does: the main
     // difference between "plastic CG" and photographed metal
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1;
+    renderer.toneMappingExposure = 1.05;
     container.appendChild(renderer.domElement);
 
     // Metal is mostly what it reflects: see studioScene()
