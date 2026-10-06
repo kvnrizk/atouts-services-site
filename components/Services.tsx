@@ -47,9 +47,8 @@ export function Services() {
 
         <div>
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">Nos services</p>
-            <h2 id="services-title" className="mt-4 text-4xl font-bold tracking-tight [text-wrap:balance] md:text-5xl">
-              Cinq métiers, une seule entreprise.
+            <h2 id="services-title" className="text-4xl font-bold tracking-tight [text-wrap:balance] md:text-5xl">
+              Nos domaines d&apos;intervention
             </h2>
             <p className="mt-5 max-w-lg text-lg text-neutral-600">
               Chaque métier est confié à un artisan qualifié, et un seul interlocuteur suit votre chantier du devis à la
