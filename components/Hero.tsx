@@ -62,7 +62,7 @@ export const Hero = ({ images: heroImages = defaultHeroImages }: { images?: stri
               </span>
             </h1>
             <p className="text-[clamp(1rem,2.5svh,1.25rem)] text-neutral-300 max-w-xl mb-[4svh]">
-              Peinture, électricité, salle de bains et sols, réalisés par des artisans
+              Électricité, peinture, salle de bains et sols, réalisés par des artisans
               qualifiés et coordonnés par un seul interlocuteur. Entreprise assurée en garantie décennale.
             </p>
 
